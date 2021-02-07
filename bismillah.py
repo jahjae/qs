@@ -1,7 +1,8 @@
 from wsgiref.simple_server import make_server
 from multiprocessing import *
 from core import *
-from init import *
+from init import
+
 import sys
 
 def alfaazha(environ, start_response):
