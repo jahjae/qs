@@ -2,10 +2,9 @@ from wsgiref.simple_server import make_server
 from multiprocessing import *
 from core import *
 from init import *
-
 import sys
 
-def main(environ, start_response):
+def alfaazha(environ, start_response):
     status = '200 OK'
     headers = [('Content-type', 'text/html; charset=utf-8')]
     start_response(status, headers)
@@ -53,8 +52,7 @@ def main(environ, start_response):
     body = ''.join(Kata)
     return [body.encode('utf-8')]
 
-
 if __name__ == "__main__":
-    http1 = make_server('', 8000, main)
-    print("PORT:8000 is serving ...")
+    http1 = make_server('', 8000, alfaazha)
+    print("PORT:8000 per halaman per ayat ...")
     http1.serve_forever()

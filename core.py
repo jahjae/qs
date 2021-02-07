@@ -1,20 +1,25 @@
-#
-#   Designed by Ismail Umar
-#   Quran Core
-#
 
 from init import *
 from qs import *
 
 def quranHuruf(Kata, view, Key):
-    qh = Ui()
+    q = Q()
     reset = True
 
+    if MUSHAF:
+        q.align = 'center'
+    else:
+        q.align = 'right'
+
+    if PRINT:
+        quran = q.kata
+    else:
+        quran = q.huruf
+
     Kata.append('<table style="width: 100%;"><tr><td>')
+    q.barisBaru(Kata)
 
-    qh.barisBaru(Kata, '200%', 'right', '1.2')
-
-    for x in qh.Huruf:
+    for x in quran:
         warnaKata = COLOR['BLACK']
         if x[view] == Key:
 
@@ -27,35 +32,42 @@ def quranHuruf(Kata, view, Key):
                 ayatSebelum = x[4]
                 kataSebelum = x[5]
 
-            barisBerikut = qh.compare(x[1], barisSebelum)
-            juzBerikut = qh.compare(x[2], juzSebelum)
-            suratBerikut = qh.compare(x[3], suratSebelum)
-            ayatBerikut = qh.compare(x[4], ayatSebelum)
-            kataBerikut = qh.compare(x[5], kataSebelum)
+            halamanBerikut = q.compare(x[0], halamanSebelum)
+            barisBerikut = q.compare(x[1], barisSebelum)
+            juzBerikut = q.compare(x[2], juzSebelum)
+            suratBerikut = q.compare(x[3], suratSebelum)
+            ayatBerikut = q.compare(x[4], ayatSebelum)
+            kataBerikut = q.compare(x[5], kataSebelum)
 
             if MUSHAF:
                 if barisBerikut:
-                    qh.barisBaru(Kata, '25px', 'left', '1')
-                    qh.barisBaru(Kata, '200%', 'right' , '1.2')
+                    q.barisBaru(Kata)
                     barisSebelum = x[1]
 
             if not MUSHAF:
                 if ayatBerikut:
 
                     if TAFSIR:
-                        qh.barisBaru(Kata, '100%', 'left', '1.2')
-                        qh.artiAyat(Kata, qh.Terjemahan, suratSebelum, ayatSebelum)
-                        qh.barisBaru(Kata, '200%', 'right' , '1.2')
+                        q.size = '50%'
+                        q.barisBaru(Kata)
+                        q.artiAyat(Kata, suratSebelum, ayatSebelum)
+                        q.size = '100%'
+                        q.barisBaru(Kata)
 
-                    qh.barisBaru(Kata, '200%', 'right' , '1.2')
+                    q.barisBaru(Kata)
                     ayatSebelum = x[4]
 
             if kataBerikut:
-                Kata.append(chr(32))
+                q.spasiBaru(Kata)
                 kataSebelum = x[5]
 
 #           print Unicode4
-            qh.mushafHuruf(Kata, x[7])
+            if PRINT:
+                # halaman, ayat, kata
+                q.mushafKata(Kata, x[0], x[4], x[6])
+
+            if not PRINT:
+                q.mushafHuruf(Kata, x[7])
 
     Kata.append('</td></tr></table>')
     return Kata

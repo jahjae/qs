@@ -1,20 +1,25 @@
 #
-#   Designed by Ismail Umar
+#   Designed by Ir. H. Ismail Umar
 #   Quran Class
 #
 
 from init import *
+from ui import *
 import csv
 
-class Ui:
+class Q:
     def __init__(self):
-        self.Kata       = self.bacaData(QURANDATA['MU'])
-        self.Terjemahan = self.bacaData(QURANDATA['TR'])
-        self.Juz        = self.bacaData(QURANDATA['JU'])
-        self.Halaman    = self.bacaData(QURANDATA['PA'])
-        self.Huruf      = self.bacaData(QURANDATA['DB'])
-        self.Tafsir     = self.bacaData(QURANDATA['TA'])
-        self.Warna      = COLOR['BLACK']
+        self.kata       = self.data(DATA['mushaf'])
+        self.arti       = self.data(DATA['depag'])
+        self.juz        = self.data(DATA['juz'])
+        self.halaman    = self.data(DATA['halaman'])
+        self.huruf      = self.data(DATA['alfaazha'])
+        self.tafsir     = self.data(DATA['jalalayn'])
+        self.warna      = COLOR['BLACK']
+        self.size       = '100%'
+        self.align      = 'right'
+        self.space      = '1.2'
+        self.random     = False
 
 
     def juz(self, array, juz):
@@ -59,13 +64,17 @@ class Ui:
         else:
             return False
 
-    def barisBaru(self, Kata, size, align, line):
-        Kata.append('</td></tr>')
-        Kata.append('<tr><td style="text-align: '+ align +'; padding: 5px; font-size: '+ size +'; line-height: '+ line +';">')
-        return Kata
+    def spasiBaru(self, array):
+        array.append(chr(32))
+        return array
 
-    def artiAyat(self, array, Artinya, surat, ayat):
-        for arti in Artinya:
+    def barisBaru(self, array):
+        array.append('</td></tr>')
+        array.append('<tr><td style="text-align: '+ self.align +'; padding: 5px; font-size: '+ self.size +'; line-height: '+ self.space +';">')
+        return array
+
+    def artiAyat(self, array, surat, ayat):
+        for arti in self.arti:
             if arti[0] == surat:
                 if arti[1] == ayat:
                     array.append('<a>')
@@ -87,14 +96,14 @@ class Ui:
                         if x[3] == d:
                             return x[4]
 
-    def bacaData(self, db):
+    def data(self, db):
         file = open(db)
         dbContent = csv.reader(file)
         next(dbContent)
         return dbContent
 
 
-    def mushafKata(self, array, huruf, surat, ayat, halaman):
+    def mushafKata(self, array, halaman, ayat, kata):
 
         if len(halaman) == 1:
             font = 'QCF_P00' + halaman
@@ -108,8 +117,8 @@ class Ui:
         if ayat == '0':
             font = 'QCF_BSML'
 
-        array.append('<a style="font-family: ' + font + '; color: ' + self.Warna + ';">')
-        array.append(chr(int(huruf)))
+        array.append('<a style="font-family: ' + font + ';">')
+        array.append(chr(int(kata)))
         array.append('</a>')
         return array
 
