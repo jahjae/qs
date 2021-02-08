@@ -2,16 +2,16 @@
 from init import *
 from qs import *
 
-def quranHuruf(c, view, Key):
+def quranHuruf(u, Key):
     q = Q()
     reset = True
 
-    if MUSHAF:
+    if u.props['mushaf']:
         q.align = 'center'
     else:
         q.align = 'right'
 
-    if PRINT:
+    if u.props['print']:
         quran = q.kata
     else:
         quran = q.huruf
@@ -21,7 +21,7 @@ def quranHuruf(c, view, Key):
 
     for x in quran:
         warnaKata = COLOR['BLACK']
-        if x[view] == Key:
+        if x[u.props['view']] == Key:
 
             if reset:
                 reset = False
@@ -39,15 +39,15 @@ def quranHuruf(c, view, Key):
             ayatBerikut = q.compare(x[4], ayatSebelum)
             kataBerikut = q.compare(x[5], kataSebelum)
 
-            if MUSHAF:
+            if u.props['mushaf']:
                 if barisBerikut:
                     q.barisBaru(u)
                     barisSebelum = x[1]
 
-            if not MUSHAF:
+            if not u.props['mushaf']:
                 if ayatBerikut:
 
-                    if TAFSIR:
+                    if u.props['tafsir']::
                         q.size = '50%'
                         q.barisBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
@@ -62,11 +62,11 @@ def quranHuruf(c, view, Key):
                 kataSebelum = x[5]
 
 #           print Unicode4
-            if PRINT:
+            if u.props['print']:
                 # component, halaman, ayat, kata
                 q.mushafKata(u, x[0], x[4], x[6])
 
-            if not PRINT:
+            if not u.props['print']::
                 q.mushafHuruf(u, x[7])
 
     u.render('</td></tr></table>')

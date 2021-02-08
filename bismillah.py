@@ -2,16 +2,26 @@ from wsgiref.simple_server import make_server
 from multiprocessing import *
 from core import *
 from init import *
-from ui import *
 
 import sys
 
-def alfaazha(environ, start_response):
+def main(environ, start_response):
     status = '200 OK'
     headers = [('Content-type', 'text/html; charset=utf-8')]
     start_response(status, headers)
 
     u = C()
+    u.props = {
+        'view'          : 0,
+        'tafsir'        : False,
+        'translation'   : False,
+        'word'          : False,
+        'tajweed'       : False,
+        'random'        : False,
+        'print'         : False,
+        'mushaf'        : False,
+
+    }
     u.render('<!DOCTYPE html>')
     u.render('<html>')
     u.render('<head>')
@@ -27,34 +37,34 @@ def alfaazha(environ, start_response):
 
     if path in ADDRESS:
         error = False
-        exec(ADDRESS[path[0]]+'(u, VIEW, "1")')
+        exec(ADDRESS[path[0]]+'(u, "1")')
 
     if len(path) == 2:
         if path[1] in NUMBER:
             error = False
             noPage = path[1:2]
-            exec(ADDRESS[path[0]]+'(u, VIEW, noPage)')
+            exec(ADDRESS[path[0]]+'(u, noPage)')
 
     if len(path) == 3:
         if path[2] in NUMBER:
             error = False
             noPage = path[1:3]
-            exec(ADDRESS[path[0]]+'(u, VIEW, noPage)')
+            exec(ADDRESS[path[0]]+'(u, noPage)')
 
     if len(path) == 4:
         if path[3] in NUMBER:
             error = False
             noPage = path[1:4]
-            exec(ADDRESS[path[0]]+'(u, VIEW, noPage)')
+            exec(ADDRESS[path[0]]+'(u, noPage)')
 
     if error == 1:
         u.render('Invalid address')
 
     u.render('</html>')
-    body = ''.join(u.comps)
+    body = ''.join(u.component)
     return [body.encode('utf-8')]
 
 if __name__ == "__main__":
-    http1 = make_server('', 8000, alfaazha)
+    http1 = make_server('', 8000, main)
     print("PORT:8000 per halaman per ayat ...")
     http1.serve_forever()

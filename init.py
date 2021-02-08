@@ -50,12 +50,3 @@ COLOR = {
     'BLUE'      : '#0000FF',
     'WHITE'     : '#FFFFFF',
 }
-
-VIEW =  0 # 0 = Halaman, 2 = Juz, 3 = Surat,
-TAFSIR = False
-TRANSLATION = False
-WORD = True
-TAJWEED = True
-RANDOM = True
-PRINT = False # True = Mushaf Medinah, False = alfaazha
-MUSHAF = False # True = Per Baris, False = Per Ayat

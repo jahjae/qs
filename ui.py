@@ -1,7 +1,7 @@
-class U:
+class C:
     def __init__(self):
-        self.comps = []
+        self.component = []
         self.props = {}
 
     def render(self, text):
-        self.comps.append(text)
+        self.component.append(text)
