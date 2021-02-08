@@ -46,9 +46,9 @@ class Q:
         </style>
         <div class="pagination" style="position: fixed ;right: 0px; left: 0px; bottom: 0px; height: 75px; background-color: #fff; opacity: 1">
         '''
-        array.append(a)
+        array.render(a)
         for x in juz:
-            array.append('<a>'+ x[0]+ '</a>')
+            array.render('<a>'+ x[0]+ '</a>')
 
         array.append('</div>')
         return array
@@ -65,26 +65,26 @@ class Q:
             return False
 
     def spasiBaru(self, array):
-        array.append(chr(32))
+        array.render(chr(32))
         return array
 
     def barisBaru(self, array):
-        array.append('</td></tr>')
-        array.append('<tr><td style="text-align: '+ self.align +'; padding: 5px; font-size: '+ self.size +'; line-height: '+ self.space +';">')
+        array.render('</td></tr>')
+        array.render('<tr><td style="text-align: '+ self.align +'; padding: 5px; font-size: '+ self.size +'; line-height: '+ self.space +';">')
         return array
 
     def artiAyat(self, array, surat, ayat):
         for arti in self.arti:
             if arti[0] == surat:
                 if arti[1] == ayat:
-                    array.append('<a>')
-                    array.append('[')
-                    array.append(surat)
-                    array.append(':')
-                    array.append(ayat)
-                    array.append('] ')
-                    array.append(arti[2])
-                    array.append('</a>')
+                    array.render('<a>')
+                    array.render('[')
+                    array.render(surat)
+                    array.render(':')
+                    array.render(ayat)
+                    array.render('] ')
+                    array.render(arti[2])
+                    array.render('</a>')
                     return array
 
 
@@ -117,33 +117,33 @@ class Q:
         if ayat == '0':
             font = 'QCF_BSML'
 
-        array.append('<a style="font-family: ' + font + ';">')
-        array.append(chr(int(kata)))
-        array.append('</a>')
+        array.render('<a style="font-family: ' + font + ';">')
+        array.render(chr(int(kata)))
+        array.render('</a>')
         return array
 
 
     def mushafHuruf(self, array, huruf):
-        array.append('<a style="font-family: Scheherazade;">')
-        array.append(chr(int(huruf)))
-        array.append('</a>')
+        array.render('<a style="font-family: Scheherazade;">')
+        array.render(chr(int(huruf)))
+        array.render('</a>')
         return array
 
-    def nomorSurat(self, Kata, listSurat, index):
+    def nomorSurat(self, array, listSurat, index):
         namaSurat = ''
         for surat in listSurat:
             if surat[0] == index:
                 namaSurat = surat[2]
 
-        Kata.append(namaSurat)
-        return Kata
+        array.render(namaSurat)
+        return array
 
-    def nomorAyat(self, Kata, Ayat):
+    def nomorAyat(self, array, Ayat):
         num = ''
         for x in Ayat:
             num = num + chr(int(PAGES[int(x)]))
 
-        Kata.append('<a style="font-family: Scheherazade, serif;">')
-        Kata.append(' ' + chr(1757) + num)
-        Kata.append('</a>')
-        return Kata
+        array.render('<a style="font-family: Scheherazade, serif;">')
+        array.render(' ' + chr(1757) + num)
+        array.render('</a>')
+        return array

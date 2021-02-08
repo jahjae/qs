@@ -1,4 +1,7 @@
 class U:
     def __init__(self):
-        pass
-        
+        self.comps = []
+        self.props = {}
+
+    def render(self, text):
+        self.comps.append(text)

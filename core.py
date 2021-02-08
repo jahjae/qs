@@ -2,7 +2,7 @@
 from init import *
 from qs import *
 
-def quranHuruf(Kata, view, Key):
+def quranHuruf(c, view, Key):
     q = Q()
     reset = True
 
@@ -16,8 +16,8 @@ def quranHuruf(Kata, view, Key):
     else:
         quran = q.huruf
 
-    Kata.append('<table style="width: 100%;"><tr><td>')
-    q.barisBaru(Kata)
+    u.render('<table style="width: 100%;"><tr><td>')
+    q.barisBaru(u)
 
     for x in quran:
         warnaKata = COLOR['BLACK']
@@ -41,7 +41,7 @@ def quranHuruf(Kata, view, Key):
 
             if MUSHAF:
                 if barisBerikut:
-                    q.barisBaru(Kata)
+                    q.barisBaru(u)
                     barisSebelum = x[1]
 
             if not MUSHAF:
@@ -49,25 +49,25 @@ def quranHuruf(Kata, view, Key):
 
                     if TAFSIR:
                         q.size = '50%'
-                        q.barisBaru(Kata)
-                        q.artiAyat(Kata, suratSebelum, ayatSebelum)
+                        q.barisBaru(u)
+                        q.artiAyat(u, suratSebelum, ayatSebelum)
                         q.size = '100%'
-                        q.barisBaru(Kata)
+                        q.barisBaru(u)
 
-                    q.barisBaru(Kata)
+                    q.barisBaru(u)
                     ayatSebelum = x[4]
 
             if kataBerikut:
-                q.spasiBaru(Kata)
+                q.spasiBaru(u)
                 kataSebelum = x[5]
 
 #           print Unicode4
             if PRINT:
-                # halaman, ayat, kata
-                q.mushafKata(Kata, x[0], x[4], x[6])
+                # component, halaman, ayat, kata
+                q.mushafKata(u, x[0], x[4], x[6])
 
             if not PRINT:
-                q.mushafHuruf(Kata, x[7])
+                q.mushafHuruf(u, x[7])
 
-    Kata.append('</td></tr></table>')
-    return Kata
+    u.render('</td></tr></table>')
+    return u
