@@ -47,7 +47,7 @@ def quranHuruf(u, Key):
             if not u.props['mushaf']:
                 if ayatBerikut:
 
-                    if u.props['tafsir']::
+                    if u.props['tafsir']:
                         q.size = '50%'
                         q.barisBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
@@ -66,7 +66,7 @@ def quranHuruf(u, Key):
                 # component, halaman, ayat, kata
                 q.mushafKata(u, x[0], x[4], x[6])
 
-            if not u.props['print']::
+            if not u.props['print']:
                 q.mushafHuruf(u, x[7])
 
     u.render('</td></tr></table>')
