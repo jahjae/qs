@@ -1,6 +1,6 @@
 class C:
     def __init__(self):
-        self.component = []
+        self.comps = []
         self.props = {}
 
     def render(self, text):
