@@ -21,7 +21,7 @@ def main(environ, start_response):
         'tajweed'           : False,
         'random'            : False,
         'arabicfontsize'    : 12,
-        'arabicfont'        : 'Scheherazade'
+        'arabicfont'        : 'Scheherazade',
         'tafsirfontsize'    : 12,
         'print'             : False,
         'mushaf'            : False,
