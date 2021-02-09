@@ -11,6 +11,23 @@ def main(environ, start_response):
     headers = [('Content-type', 'text/html; charset=utf-8')]
     start_response(status, headers)
 
+    u = C()
+    u.props = {
+        'view'              : 0,
+        'arabic'            : True,
+        'tafsir'            : False,
+        'translation'       : False,
+        'word'              : False,
+        'tajweed'           : False,
+        'random'            : False,
+        'arabicfontsize'    : 12,
+        'arabicfont'        : 'Scheherazade'
+        'tafsirfontsize'    : 12,
+        'print'             : False,
+        'mushaf'            : False,
+
+    }
+
     u.render('<!DOCTYPE html>')
     u.render('<html>')
     u.render('<head>')
@@ -54,20 +71,7 @@ def main(environ, start_response):
     return [body.encode('utf-8')]
 
 if __name__ == "__main__":
-    
-    u = C()
-    u.props = {
-        'view'          : 0,
-        'tafsir'        : False,
-        'translation'   : False,
-        'word'          : False,
-        'tajweed'       : False,
-        'random'        : False,
-        'print'         : False,
-        'mushaf'        : False,
-
-    }
-
+    q = Q()
     http1 = make_server('', 8000, main)
     print("PORT:8000 per halaman per ayat ...")
     http1.serve_forever()
