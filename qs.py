@@ -20,6 +20,7 @@ class Q:
         self.align      = 'right'
         self.space      = '1.2'
         self.random     = False
+        self.number     = ''
 
 
     def juz(self, array, juz):
@@ -65,7 +66,7 @@ class Q:
             return False
 
     def spasiBaru(self, array):
-        array.render(chr(32))
+        array.render(' ')
         return array
 
     def barisBaru(self, array):
@@ -143,7 +144,7 @@ class Q:
         for x in Ayat:
             num = num + chr(int(PAGES[int(x)]))
 
-        array.render('<a style="font-family: Scheherazade, serif;">')
+        array.render('<a style="font-family: Scheherazade;">')
         array.render(' ' + chr(1757) + num)
         array.render('</a>')
         return array
