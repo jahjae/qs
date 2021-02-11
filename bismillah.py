@@ -24,7 +24,7 @@ def main(environ, start_response):
         'arabicfont'        : 'Scheherazade',
         'tafsirfontsize'    : 12,
         'print'             : False,
-        'mushaf'            : False,
+        'mushaf'            : True,
 
     }
 
