@@ -43,7 +43,9 @@ PAGES = {
 }
 
 ADDRESS = {
-    '/'      : 'quranHuruf',
+    '/'        : 'quranHuruf',
+    '/surat/'   : 'quranHuruf',
+    '/juz/'     : 'quranHuruf',
 }
 COLOR = {
     'BLACK'     : '#000000',

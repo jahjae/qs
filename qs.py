@@ -71,7 +71,7 @@ class Q:
 
     def barisBaru(self, array):
         array.render('</td></tr>')
-        array.render('<tr><td style="text-align: '+ self.align +'; padding: 5px; font-size: '+ self.size +'; line-height: '+ self.space +';">')
+        array.render('<tr><td style="white-space: nowrap; width=100%; text-align: '+ self.align +'; padding: 5px; font-size: '+ self.size +'; line-height: '+ self.space +';">')
         return array
 
     def artiAyat(self, array, surat, ayat):

@@ -41,6 +41,7 @@ def main(environ, start_response):
     error = True
     path = environ['PATH_INFO']
 
+    print(path)
     if path in ADDRESS:
         error = False
         exec(ADDRESS[path[0]]+'(u, "1")')
@@ -63,8 +64,8 @@ def main(environ, start_response):
             noPage = path[1:4]
             exec(ADDRESS[path[0]]+'(u, noPage)')
 
-    if error == 1:
-        u.render('Invalid address')
+    if error:
+        u.render('Invalid')
 
     u.render('</html>')
     body = ''.join(u.component)
