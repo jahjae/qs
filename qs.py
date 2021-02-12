@@ -129,7 +129,7 @@ class Q:
 
 
     def mushafHuruf(self, array, huruf):
-        array.render('<a style="font-family: Scheherazade;">')
+        array.render('<a>')
         array.render(chr(int(huruf)))
         array.render('</a>')
         return array

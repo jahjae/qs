@@ -5,6 +5,7 @@ from init import *
 from ui import *
 
 import sys
+import urllib.request
 
 def main(environ, start_response):
     status = '200 OK'
@@ -26,7 +27,6 @@ def main(environ, start_response):
         'print'             : False,
         'mushaf'            : False,
         'firstword'         : True,
-        'warp'              : '',
     }
 
     u.render('<!DOCTYPE html>')
@@ -42,7 +42,7 @@ def main(environ, start_response):
     error = True
     path = environ['PATH_INFO']
 
-    print(path)
+    print(u.props)
     if path in ADDRESS:
         error = False
         exec(ADDRESS[path[0]]+'(u, "1")')
@@ -64,6 +64,7 @@ def main(environ, start_response):
             error = False
             noPage = path[1:4]
             exec(ADDRESS[path[0]]+'(u, noPage)')
+
 
     if error:
         u.render('Invalid')
