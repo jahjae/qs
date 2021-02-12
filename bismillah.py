@@ -24,8 +24,9 @@ def main(environ, start_response):
         'arabicfont'        : 'Scheherazade',
         'tafsirfontsize'    : 12,
         'print'             : False,
-        'mushaf'            : True,
-
+        'mushaf'            : False,
+        'firstword'         : True,
+        'warp'              : '',
     }
 
     u.render('<!DOCTYPE html>')

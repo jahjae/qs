@@ -65,14 +65,18 @@ class Q:
         else:
             return False
 
-    def spasiBaru(self, array):
-        array.render(' ')
-        return array
+    def spasiBaru(self, u):
+        u.render(' ')
+        return u
 
-    def barisBaru(self, array):
-        array.render('</td></tr>')
-        array.render('<tr><td style="white-space: nowrap; width=100%; text-align: '+ self.align +'; padding: 5px; font-size: '+ self.size +'; line-height: '+ self.space +';">')
-        return array
+    def barisBaru(self, u):
+        u.render('</td></tr>')
+        warp = ''
+        if u.props['mushaf']:
+            warp = 'nowrap'
+
+        u.render('<tr><td style="white-space: '+ warp +' ; width=100%; text-align: '+ self.align +'; padding: 5px; font-size: '+ self.size +'; line-height: '+ self.space +';">')
+        return u
 
     def artiAyat(self, array, surat, ayat):
         for arti in self.arti:

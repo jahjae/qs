@@ -43,7 +43,7 @@ PAGES = {
 }
 
 ADDRESS = {
-    '/'        : 'quranHuruf',
+    '/'         : 'quranHuruf',
     '/surat/'   : 'quranHuruf',
     '/juz/'     : 'quranHuruf',
 }

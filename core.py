@@ -44,8 +44,8 @@ def quranHuruf(u, Key):
                     q.barisBaru(u)
                     barisSebelum = x[1]
 
-            if not u.props['mushaf']:
-                if ayatBerikut:
+            if ayatBerikut:
+                if not u.props['mushaf']:
 
                     if u.props['tafsir']:
                         q.size = '50%'
@@ -55,17 +55,19 @@ def quranHuruf(u, Key):
                         q.barisBaru(u)
 
                     q.barisBaru(u)
-                    ayatSebelum = x[4]
+                ayatSebelum = x[4]
 
+#           adding space before next word
             if kataBerikut:
                 q.spasiBaru(u)
                 kataSebelum = x[5]
 
-#           print Unicode4
+#           use font QCF
             if u.props['print']:
                 # component, halaman, ayat, kata
                 q.mushafKata(u, x[0], x[4], x[6])
 
+#           use font Scheherazade
             if not u.props['print']:
                 q.mushafHuruf(u, x[7])
 
