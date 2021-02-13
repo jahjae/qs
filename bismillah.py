@@ -28,8 +28,8 @@ def main(environ, start_response):
         'align'             : 'right',
         'arabicfont'        : 'Scheherazade',
         'arabicfontcolor'   : '#000000',
-        'arabicfontsize'    : '50px',
-        'tafsirfontsize'    : '50px',
+        'arabicfontsize'    : '30px',
+        'tafsirfontsize'    : '20px',
     }
 
     u.render('<!DOCTYPE html>')
