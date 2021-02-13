@@ -17,7 +17,6 @@ class Q:
         self.tafsir     = self.data(DATA['jalalayn'])
         self.warna      = COLOR['BLACK']
         self.size       = '100%'
-        self.align      = 'right'
         self.space      = '1.2'
         self.random     = False
         self.number     = ''
@@ -75,22 +74,22 @@ class Q:
         if u.props['mushaf']:
             warp = 'nowrap'
 
-        u.render('<tr><td style="white-space: '+ warp +' ; width=100%; text-align: '+ self.align +'; padding: 5px; font-size: '+ self.size +'; line-height: '+ self.space +';">')
+        u.render('<tr><td style="white-space: '+ warp +' ; width=100%; text-align: '+ u.props['align'] +'; padding: 5px; font-size: '+ u.props['arabicfontsize'] +'; line-height: '+ self.space +';">')
         return u
 
-    def artiAyat(self, array, surat, ayat):
+    def artiAyat(self, u, surat, ayat):
         for arti in self.arti:
             if arti[0] == surat:
                 if arti[1] == ayat:
-                    array.render('<a>')
-                    array.render('[')
-                    array.render(surat)
-                    array.render(':')
-                    array.render(ayat)
-                    array.render('] ')
-                    array.render(arti[2])
-                    array.render('</a>')
-                    return array
+                    u.render('<a>')
+                    u.render('[')
+                    u.render(surat)
+                    u.render(':')
+                    u.render(ayat)
+                    u.render('] ')
+                    u.render(arti[2])
+                    u.render('</a>')
+                    return u
 
 
     def periksaHuruf(self, qBase, a, b, c, d):
@@ -128,11 +127,9 @@ class Q:
         return array
 
 
-    def mushafHuruf(self, array, huruf):
-        array.render('<a>')
-        array.render(chr(int(huruf)))
-        array.render('</a>')
-        return array
+    def mushafHuruf(self, u, huruf):
+        u.render('<a style="color: '+ u.props['arabicfontcolor'] +';">' + chr(int(huruf)) + '</a>')
+        return u
 
     def nomorSurat(self, array, listSurat, index):
         namaSurat = ''

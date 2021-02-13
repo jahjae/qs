@@ -21,12 +21,15 @@ def main(environ, start_response):
         'word'              : False,
         'tajweed'           : False,
         'random'            : False,
-        'arabicfontsize'    : 12,
-        'arabicfont'        : 'Scheherazade',
-        'tafsirfontsize'    : 12,
         'print'             : False,
         'mushaf'            : False,
         'firstword'         : True,
+        'firstwordcolor'    : '#000000',
+        'align'             : 'right',
+        'arabicfont'        : 'Scheherazade',
+        'arabicfontcolor'   : '#000000',
+        'arabicfontsize'    : '50px',
+        'tafsirfontsize'    : '50px',
     }
 
     u.render('<!DOCTYPE html>')
