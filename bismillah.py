@@ -3,35 +3,18 @@ from multiprocessing import *
 from core import *
 from init import *
 from ui import *
+from qs import *
 
 import sys
 import urllib.request
+import random
 
 def main(environ, start_response):
     status = '200 OK'
     headers = [('Content-type', 'text/html; charset=utf-8')]
     start_response(status, headers)
 
-    u = C()
-    u.props = {
-        'view'              : 0,
-        'arabic'            : True,
-        'tafsir'            : False,
-        'translation'       : False,
-        'word'              : False,
-        'tajweed'           : False,
-        'random'            : False,
-        'print'             : False,
-        'mushaf'            : False,
-        'firstword'         : True,
-        'firstwordcolor'    : '#000000',
-        'align'             : 'right',
-        'arabicfont'        : 'Scheherazade',
-        'arabicfontcolor'   : '#000000',
-        'arabicfontsize'    : '30px',
-        'tafsirfontsize'    : '20px',
-    }
-
+    u.component = []
     u.render('<!DOCTYPE html>')
     u.render('<html>')
     u.render('<head>')
@@ -39,21 +22,22 @@ def main(environ, start_response):
     u.render('<link rel="preconnect" href="https://fonts.gstatic.com">')
     u.render('<link href="https://fonts.googleapis.com/css2?family=Scheherazade&display=swap" rel="stylesheet">')
     u.render('</head>')
-    u.render('<body style="padding: 0px; font-size: 200%; font-family: Scheherazade">')
+    u.render('<body style="padding: 0px; font-size: '+ u.props['arabicfontsize']  +'; font-family: '+ u.props['arabicfont']+ ';">')
     u.render('</body>')
 
     error = True
     path = environ['PATH_INFO']
 
-    print(u.props)
+
     if path in ADDRESS:
         error = False
-        exec(ADDRESS[path[0]]+'(u, "1")')
+        noPage = u.props['page']
+        exec(ADDRESS[path[0]]+'(u, noPage)')
 
     if len(path) == 2:
         if path[1] in NUMBER:
             error = False
-            noPage = path[1:2]
+            noPage = path[1]
             exec(ADDRESS[path[0]]+'(u, noPage)')
 
     if len(path) == 3:
@@ -68,6 +52,7 @@ def main(environ, start_response):
             noPage = path[1:4]
             exec(ADDRESS[path[0]]+'(u, noPage)')
 
+    print(u.props)
 
     if error:
         u.render('Invalid')
@@ -77,7 +62,27 @@ def main(environ, start_response):
     return [body.encode('utf-8')]
 
 if __name__ == "__main__":
-    q = Q()
+    u = C()
+    u.props = {
+        'view'              : 0,
+        'arabic'            : True,
+        'tafsir'            : False,
+        'translation'       : False,
+        'word'              : False,
+        'tajweed'           : False,
+        'random'            : False,
+        'print'             : False,
+        'mushaf'            : True,
+        'firstword'         : True,
+        'firstwordcolor'    : '#000000',
+        'align'             : 'right',
+        'arabicfont'        : 'Scheherazade',
+        'arabicfontcolor'   : '#000000',
+        'arabicfontsize'    : '35px',
+        'tafsirfontsize'    : '25px',
+        'page'              : '1',
+    }
+
     http1 = make_server('', 8000, main)
     print("PORT:8000 per halaman per ayat ...")
     http1.serve_forever()

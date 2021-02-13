@@ -18,8 +18,6 @@ class Q:
         self.warna      = COLOR['BLACK']
         self.size       = '100%'
         self.space      = '1.2'
-        self.random     = False
-        self.number     = ''
 
 
     def juz(self, array, juz):
@@ -74,7 +72,7 @@ class Q:
         if u.props['mushaf']:
             warp = 'nowrap'
 
-        u.render('<tr><td style="white-space: '+ warp +' ; width=100%; text-align: '+ u.props['align'] +'; padding: 5px; font-size: '+ u.props['arabicfontsize'] +'; line-height: '+ self.space +';">')
+        u.render('<tr><td style="white-space: '+ warp +' ; width=100%; text-align: '+ u.props['align'] +'; padding: 5px; line-height: '+ self.space +';">')
         return u
 
     def artiAyat(self, u, surat, ayat):
