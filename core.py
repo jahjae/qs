@@ -64,6 +64,11 @@ def quranHuruf(u, index):
                 q.spasiBaru(u)
                 kataSebelum = x[5]
 
+            # first word 
+            if x[5] == '1' and u.props['firstword']:
+                u.props['arabicfontcolor'] = u.props['firstwordcolor']
+
+
 #           use font QCF
             if u.props['print']:
                 # component, halaman, ayat, unicode kata
@@ -74,7 +79,7 @@ def quranHuruf(u, index):
             if not u.props['print']:
                 # component, unicode huruf
 
-                if x[7] == '1757':
+                if x[7] == '1758' or  x[7] == '1769':
                     u.props['arabicfontcolor'] = '#DAA520'
 
                 q.mushafHuruf(u, x[7])

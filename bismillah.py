@@ -74,7 +74,7 @@ if __name__ == "__main__":
         'print'             : False,
         'mushaf'            : True,
         'firstword'         : True,
-        'firstwordcolor'    : '#000000',
+        'firstwordcolor'    : '#FF0000',
         'align'             : 'right',
         'arabicfont'        : 'Scheherazade',
         'arabicfontcolor'   : '#000000',
