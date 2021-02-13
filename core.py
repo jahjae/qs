@@ -47,17 +47,21 @@ def quranHuruf(u, index):
 
                 barisSebelum = x[1]
 
+            if halamanBerikut:
+                halamanSebelum = x[0]
+
             if ayatBerikut:
                 if not u.props['mushaf']:
                     q.barisBaru(u)
 
                     if u.props['tafsir']:
-                        q.size = '50%'
-                        q.artiAyat(u, suratSebelum, ayatSebelum)
-                        q.size = '100%'
                         q.barisBaru(u)
-
+                        q.artiAyat(u, suratSebelum, ayatSebelum)
+                        
                 ayatSebelum = x[4]
+
+            if suratBerikut:
+                suratSebelum = x[3]
 
 #           adding space before next word
             if kataBerikut:

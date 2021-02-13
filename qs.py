@@ -67,19 +67,19 @@ class Q:
         return u
 
     def barisBaru(self, u):
-        u.render('</td></tr>')
         warp = ''
         if u.props['mushaf']:
             warp = 'nowrap'
 
-        u.render('<tr><td style="white-space: '+ warp +' ; width=100%; text-align: '+ u.props['align'] +'; padding: 5px; line-height: '+ self.space +';">')
+        u.render('</td></tr>')
+        u.render('<tr><td style="border-bottom: 1px solid #eee; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: '+ self.space +';">')
         return u
 
     def artiAyat(self, u, surat, ayat):
         for arti in self.arti:
             if arti[0] == surat:
                 if arti[1] == ayat:
-                    u.render('<a>')
+                    u.render('<a style="font-size: '+ u.props['tafsirfontsize'] + ';>')
                     u.render('[')
                     u.render(surat)
                     u.render(':')
@@ -126,7 +126,7 @@ class Q:
 
 
     def mushafHuruf(self, u, huruf):
-        u.render('<a style="color: '+ u.props['arabicfontcolor'] +';">' + chr(int(huruf)) + '</a>')
+        u.render('<a style="text-align: '+ u.props['align']+';font-size: '+ u.props['arabicfontsize'] + ';color: '+ u.props['arabicfontcolor'] +';">' + chr(int(huruf)) + '</a>')
         return u
 
     def nomorSurat(self, array, listSurat, index):

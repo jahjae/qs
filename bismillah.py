@@ -22,7 +22,7 @@ def main(environ, start_response):
     u.render('<link rel="preconnect" href="https://fonts.gstatic.com">')
     u.render('<link href="https://fonts.googleapis.com/css2?family=Scheherazade&display=swap" rel="stylesheet">')
     u.render('</head>')
-    u.render('<body style="padding: 0px; font-size: '+ u.props['arabicfontsize']  +'; font-family: '+ u.props['arabicfont']+ ';">')
+    u.render('<body style="padding: 0px; font-family: '+ u.props['arabicfont']+ ';">')
     u.render('</body>')
 
     error = True
@@ -31,7 +31,7 @@ def main(environ, start_response):
 
     if path in ADDRESS:
         error = False
-        noPage = u.props['page']
+        noPage = u.props['index']
         exec(ADDRESS[path[0]]+'(u, noPage)')
 
     if len(path) == 2:
@@ -64,7 +64,7 @@ def main(environ, start_response):
 if __name__ == "__main__":
     u = C()
     u.props = {
-        'view'              : 0,
+        'view'              : 3,
         'arabic'            : True,
         'tafsir'            : False,
         'translation'       : False,
@@ -72,17 +72,17 @@ if __name__ == "__main__":
         'tajweed'           : False,
         'random'            : False,
         'print'             : False,
-        'mushaf'            : False,
+        'mushaf'            : True,
         'firstword'         : True,
-        'firstwordcolor'    : '#FF0000',
+        'firstwordcolor'    : '#DAA520',
         'align'             : 'right',
         'arabicfont'        : 'Scheherazade',
         'arabicfontcolor'   : '#000000',
         'arabicfontsize'    : '35px',
-        'tafsirfontsize'    : '25px',
-        'page'              : '1',
+        'tafsirfontsize'    : '20px',
+        'index'              : '1',
     }
 
     http1 = make_server('', 8000, main)
-    print("PORT:8000 per halaman per ayat ...")
+    print("PORT:8000 per halaman mode " + str(u.props['view']) )
     http1.serve_forever()
