@@ -64,8 +64,8 @@ def quranHuruf(u, index):
                 q.spasiBaru(u)
                 kataSebelum = x[5]
 
-            # first word 
-            if x[5] == '1' and u.props['firstword']:
+            # first word
+            if x[5] == '1' and u.props['firstword'] and x[4] != '0':
                 u.props['arabicfontcolor'] = u.props['firstwordcolor']
 
 

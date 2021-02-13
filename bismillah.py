@@ -72,7 +72,7 @@ if __name__ == "__main__":
         'tajweed'           : False,
         'random'            : False,
         'print'             : False,
-        'mushaf'            : True,
+        'mushaf'            : False,
         'firstword'         : True,
         'firstwordcolor'    : '#FF0000',
         'align'             : 'right',
