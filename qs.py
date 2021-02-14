@@ -9,12 +9,13 @@ import csv
 
 class Q:
     def __init__(self):
-        self.kata       = self.data(DATA['mushaf'])
-        self.arti       = self.data(DATA['depag'])
+        self.kata       = self.data(DATA['kata'])
+        self.artiayat   = self.data(DATA['artiayat'])
         self.juz        = self.data(DATA['juz'])
         self.halaman    = self.data(DATA['halaman'])
-        self.huruf      = self.data(DATA['alfaazha'])
-        self.tafsir     = self.data(DATA['jalalayn'])
+        self.huruf      = self.data(DATA['huruf'])
+        self.tafsir     = self.data(DATA['tafsir'])
+        self.artikata    = self.data(DATA['artikata'])
         self.warna      = COLOR['BLACK']
         self.size       = '100%'
         self.space      = '1.2'
