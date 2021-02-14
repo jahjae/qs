@@ -68,7 +68,7 @@ if __name__ == "__main__":
         'arabic'            : True,
         'tafsir'            : False,
         'translation'       : False,
-        'word'              : False,
+        'word'              : True,
         'tajweed'           : False,
         'random'            : False,
         'print'             : False,

@@ -5,3 +5,30 @@ class C:
 
     def render(self, text):
         self.component.append(text)
+
+    def rect(self):
+        pass
+
+    def circle(self):
+        pass
+
+    def ellipse(self):
+        pass
+
+    def line(def):
+        pass
+
+    def polygon(self):
+        pass
+
+    def polyline(self):
+        pass
+
+    def path(self):
+        pass
+
+    def text(self):
+        pass
+
+    def stroge(self):
+        pass
