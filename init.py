@@ -13,27 +13,23 @@ NUMBER = [
     '9'
 ]
 DATA = {
-        'huruf'  : './data/alfaazha.db',
-        'kata'    : './data/mushaf.db',
-        'juz'       : './data/juz.db',
-        'surat'     : './data/surat.db',
-        'halaman'	: './data/halaman.db',
-        'hizb'      : './data/hizb.db',
-        'rukuq'     : './data/rukuq.db',
-        'sajadah'   : './data/sajadah.db',
-        'artiayat'  : './data/depag.db',
-        'tafsir'    : './data/jalalayn.db',
-        'artikata'  : './data/kata.db',
-}
-WARNAHURUF = {
-    '1648'  : '#ff0000',
-    '1750'  : '#ff0000',
+    'huruf'     : './data/alfaazha.db',
+    'kata'      : './data/mushaf.db',
+    'juz'       : './data/juz.db',
+    'surat'     : './data/surat.db',
+    'halaman'	: './data/halaman.db',
+    'hizb'      : './data/hizb.db',
+    'rukuq'     : './data/rukuq.db',
+    'sajadah'   : './data/sajadah.db',
+    'artiayat'  : './data/depag.db',
+    'tafsir'    : './data/jalalayn.db',
+    'artikata'  : './data/kata.db',
 }
 
 SYMBOL = [
-'1619',
-'1769',
-'1758',
+    '1619',
+    '1769',
+    '1758',
 ]
 
 PAGES = {
@@ -51,9 +47,9 @@ PAGES = {
 }
 
 ADDRESS = {
-    '/'         : 'quranHuruf',
+    '/'     : 'quranHuruf',
     '/s/'   : 'quranHuruf',
-    '/j/'     : 'quranHuruf',
+    '/j/'   : 'quranHuruf',
 }
 COLOR = {
     'BLACK'     : '#000000',

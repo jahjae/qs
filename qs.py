@@ -15,47 +15,8 @@ class Q:
         self.halaman    = self.data(DATA['halaman'])
         self.huruf      = self.data(DATA['huruf'])
         self.tafsir     = self.data(DATA['tafsir'])
-        self.artikata    = self.data(DATA['artikata'])
-        self.warna      = COLOR['BLACK']
-        self.size       = '100%'
-        self.space      = '1.2'
+        self.artikata   = self.data(DATA['artikata'])
 
-
-    def juz(self, array, juz):
-        a = '''
-        <style>
-        .pagination {
-          display: inline-block;
-        }
-
-        .pagination a {
-          color: black;
-          float: left;
-          padding: 8px 16px;
-          text-decoration: none;
-          transition: background-color .3s;
-        }
-
-        .pagination a.active {
-          background-color: #4CAF50;
-          color: white;
-        }
-
-        .pagination a:hover:not(.active) {background-color: #ddd;}
-        </style>
-        <div class="pagination" style="position: fixed ;right: 0px; left: 0px; bottom: 0px; height: 75px; background-color: #fff; opacity: 1">
-        '''
-        array.render(a)
-        for x in juz:
-            array.render('<a>'+ x[0]+ '</a>')
-
-        array.append('</div>')
-        return array
-
-    def page(self):
-        return '''
-        <div class="sura" style="position: fixed ;right: 0px; left: 0px; bottom: 0px; height: 50px; background-color: #fff; opacity: 1">
-        </div>'''
 
     def compare(self, a, b):
         if a != b:
@@ -73,7 +34,7 @@ class Q:
             warp = 'nowrap'
 
         u.render('</td></tr>')
-        u.render('<tr><td style="border-bottom: 1px solid #eee; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: '+ self.space +';">')
+        u.render('<tr><td style="border-bottom: 1px solid #eee; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1;">')
         return u
 
     def artiAyat(self, u, surat, ayat):

@@ -1,6 +1,7 @@
 class C:
     def __init__(self):
         self.component = []
+        self.artikata = []
         self.props = {}
 
     def render(self, text):
@@ -15,7 +16,7 @@ class C:
     def ellipse(self):
         pass
 
-    def line(def):
+    def line(self):
         pass
 
     def polygon(self):

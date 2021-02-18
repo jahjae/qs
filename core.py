@@ -4,7 +4,6 @@ from qs import *
 
 def quranHuruf(u, index):
     q = Q()
-
     u.props['align'] = 'right'
     if u.props['mushaf']:
         u.props['align'] = 'center'
@@ -53,11 +52,11 @@ def quranHuruf(u, index):
             if ayatBerikut:
                 if not u.props['mushaf']:
                     q.barisBaru(u)
-
+                    
                     if u.props['tafsir']:
                         q.barisBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
-                        
+
                 ayatSebelum = x[4]
 
             if suratBerikut:

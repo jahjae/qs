@@ -52,7 +52,7 @@ def main(environ, start_response):
             noPage = path[1:4]
             exec(ADDRESS[path[0]]+'(u, noPage)')
 
-    print(u.props)
+    print(u.artikata)
 
     if error:
         u.render('Invalid')
