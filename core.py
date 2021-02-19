@@ -52,7 +52,7 @@ def quranHuruf(u, index):
             if ayatBerikut:
                 if not u.props['mushaf']:
                     q.barisBaru(u)
-                    
+
                     if u.props['tafsir']:
                         q.barisBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
