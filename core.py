@@ -5,8 +5,10 @@ from qs import *
 def quranHuruf(u, index):
     q = Q()
     u.props['align'] = 'right'
+
     if u.props['medina']:
         u.props['align'] = 'center'
+        u.props['tafsir'] = False
 
     quran = q.huruf
     if u.props['print']:
@@ -61,7 +63,8 @@ def quranHuruf(u, index):
                         q.artiAyat(u, suratSebelum, ayatSebelum)
                         q.barisBaru(u)
 
-                q.barisBaru(u)
+                    q.barisBaru(u)
+
                 ayatSebelum = x[4]
 
             if suratBerikut:
@@ -102,6 +105,11 @@ def quranHuruf(u, index):
             if not u.props['print']:
                 # component, unicode huruf
                 q.mushafHuruf(u, x[7])
+
+    if not u.props['medina']:
+        if u.props['tafsir'] and ayatSebelum  != '0':
+            q.artiBaru(u)
+            q.artiAyat(u, suratSebelum, ayatSebelum)
 
     u.render('</td></tr></table>')
     return u

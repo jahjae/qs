@@ -55,6 +55,7 @@ def main(environ, start_response):
     if error:
         u.render('Invalid')
 
+    print(u.props)
     u.render('</html>')
     body = ''.join(u.component)
     return [body.encode('utf-8')]
@@ -63,7 +64,7 @@ if __name__ == "__main__":
     u = C() # User Interface
     u.props = {
         'mode'              : 3,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
-        'view'              : 0,        #0: Show All, 1: Hide All, 2, firstword
+        'view'              : 2,        #0: Show All, 1: Hide All, 2, firstword
         'arabic'            : True,
         'tafsir'            : True,
         'translation'       : True,
@@ -71,7 +72,7 @@ if __name__ == "__main__":
         'tajweed'           : False,
         'random'            : False,
         'print'             : False,
-        'medina'            : False,   #True: Usmani, False: Medina
+        'medina'            : False,   #True: Medina, False: Usmani
         'firstword'         : True,
         'firstwordcolor'    : '#BDB76B',
         'align'             : 'right',
@@ -79,7 +80,13 @@ if __name__ == "__main__":
         'arabicfontcolor'   : '#000000',
         'arabicfontsize'    : '50px',
         'tafsirfontsize'    : '20px',
-        'index'              : '1',
+        'index'             : '1',
+        'page'              : '1',
+        'row'               : '1',
+        'juz'               : '1',
+        'surat'             : '1',
+        'ayat'              : '1',
+        'kata'              : '1',
     }
 
     http1 = make_server('', 8000, main)
