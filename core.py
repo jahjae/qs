@@ -56,11 +56,14 @@ def quranHuruf(u, index):
 
             if ayatBerikut:
                 if not u.props['medina']:
+
                     q.barisBaru(u)
 
-                    if u.props['tafsir']:
-                        q.barisBaru(u)
+                    if u.props['tafsir'] and ayatSebelum  != '0':
+                        q.artiBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
+                        q.barisBaru(u)
+                        q.barisBaru(u)
 
                 ayatSebelum = x[4]
 

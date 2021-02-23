@@ -75,7 +75,7 @@ if __name__ == "__main__":
         'print'             : False,
         'medina'            : False,   #True: Usmani, False: Medina
         'firstword'         : True,
-        'firstwordcolor'    : '#000000',
+        'firstwordcolor'    : '#BDB76B',
         'align'             : 'right',
         'arabicfont'        : 'Scheherazade',
         'arabicfontcolor'   : '#000000',

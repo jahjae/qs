@@ -10,13 +10,23 @@ import csv
 class Q:
     def __init__(self):
         self.kata       = self.data(DATA['kata'])
-        self.artiayat   = self.data(DATA['artiayat'])
+        self.huruf      = self.data(DATA['huruf'])
         self.juz        = self.data(DATA['juz'])
         self.halaman    = self.data(DATA['halaman'])
-        self.huruf      = self.data(DATA['huruf'])
         self.tafsir     = self.data(DATA['tafsir'])
         self.artikata   = self.data(DATA['artikata'])
+        self.artiayat   = {}
+        self.loadArtiayat(DATA['artiayat'])
 
+
+    def loadArtiayat(self, db):
+        file = open(db)
+        dbContent = csv.reader(file)
+        next(dbContent)
+
+        for x in dbContent:
+            key = 'S' + str(x[0]) + 'A' + str(x[1])
+            self.artiayat[key] = x[2]
 
     def compare(self, a, b):
         if a != b:
@@ -37,20 +47,28 @@ class Q:
         u.render('<tr><td style="border-bottom: 1px solid #eee; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
         return u
 
-    def artiAyat(self, u, surat, ayat):
-        for arti in self.artiayat:
-            if arti[0] == surat:
-                if arti[1] == ayat:
-                    u.render('<a style="font-size: '+ u.props['tafsirfontsize'] + ';>')
-                    u.render('[')
-                    u.render(surat)
-                    u.render(':')
-                    u.render(ayat)
-                    u.render('] ')
-                    u.render(arti[2])
-                    u.render('</a>')
+    def artiBaru(self, u):
+        warp = ''
+        if u.props['medina']:
+            warp = 'nowrap'
 
-                return u
+        u.render('</td></tr>')
+        u.render('<tr><td style="border-bottom: 1px solid #eee; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+        return u
+
+    def artiAyat(self, u, surat, ayat):
+        key = 'S' + str(surat) + 'A' + str(ayat)
+
+        u.render('<a style="font-size:' + u.props['tafsirfontsize'] + ';">')
+        u.render('[')
+        u.render(surat)
+        u.render(':')
+        u.render(ayat)
+        u.render('] ')
+        u.render(self.artiayat[key])
+        u.render('</a>')
+
+        return u
 
 
     def periksaHuruf(self, qBase, a, b, c, d):
