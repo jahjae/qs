@@ -30,7 +30,7 @@ class Q:
 
     def barisBaru(self, u):
         warp = ''
-        if u.props['mushaf']:
+        if u.props['medina']:
             warp = 'nowrap'
 
         u.render('</td></tr>')
@@ -38,7 +38,7 @@ class Q:
         return u
 
     def artiAyat(self, u, surat, ayat):
-        for arti in self.arti:
+        for arti in self.artiayat:
             if arti[0] == surat:
                 if arti[1] == ayat:
                     u.render('<a style="font-size: '+ u.props['tafsirfontsize'] + ';>')
@@ -49,7 +49,8 @@ class Q:
                     u.render('] ')
                     u.render(arti[2])
                     u.render('</a>')
-                    return u
+
+                return u
 
 
     def periksaHuruf(self, qBase, a, b, c, d):

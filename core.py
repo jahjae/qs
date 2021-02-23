@@ -5,20 +5,25 @@ from qs import *
 def quranHuruf(u, index):
     q = Q()
     u.props['align'] = 'right'
-    if u.props['mushaf']:
+    if u.props['medina']:
         u.props['align'] = 'center'
 
     quran = q.huruf
     if u.props['print']:
         quran = q.kata
 
+    if u.props['view'] == 1:
+        u.props['firstword'] = False
+
     u.render('<table style="width: 100%;"><tr><td>')
     q.barisBaru(u)
     reset = True
+
     for x in quran:
 
         u.props['arabicfontcolor'] = '#000000'
-        if x[u.props['view']] == index:
+
+        if x[u.props['mode']] == index:
 
             if reset:
                 reset = False
@@ -37,10 +42,10 @@ def quranHuruf(u, index):
             kataBerikut = q.compare(x[5], kataSebelum)
 
             if barisBerikut:
-                if u.props['mushaf']:
+                if u.props['medina']:
                     q.barisBaru(u)
 
-                if not u.props['mushaf']:
+                if not u.props['medina']:
                     if x[4] == '0':
                         q.barisBaru(u)
 
@@ -50,7 +55,7 @@ def quranHuruf(u, index):
                 halamanSebelum = x[0]
 
             if ayatBerikut:
-                if not u.props['mushaf']:
+                if not u.props['medina']:
                     q.barisBaru(u)
 
                     if u.props['tafsir']:
@@ -67,9 +72,25 @@ def quranHuruf(u, index):
                 q.spasiBaru(u)
                 kataSebelum = x[5]
 
+            # show or hide
+            if u.props['view']  != 0:
+                u.props['arabicfontcolor'] = '#DDDDDD'
+
+            # non ayat
+            if x[4] == '0':
+                u.props['arabicfontcolor'] = '#000000'
+
             # first word
             if x[5] == '1' and u.props['firstword'] and x[4] != '0':
                 u.props['arabicfontcolor'] = u.props['firstwordcolor']
+
+            # Tanda
+            if x[7] == '1758' or  x[7] == '1769':
+                u.props['arabicfontcolor'] = '#000000'
+
+            # Nomor ayat
+            if x[7] in PAGES:
+                u.props['arabicfontcolor'] = '#000000'
 
 
 #           use font QCF
@@ -81,10 +102,6 @@ def quranHuruf(u, index):
 #           use font Scheherazade
             if not u.props['print']:
                 # component, unicode huruf
-
-                if x[7] == '1758' or  x[7] == '1769':
-                    u.props['arabicfontcolor'] = '#DAA520'
-
                 q.mushafHuruf(u, x[7])
 
     u.render('</td></tr></table>')
