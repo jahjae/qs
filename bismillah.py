@@ -64,11 +64,11 @@ def main(environ, start_response):
 if __name__ == "__main__":
     u = C() # User Interface
     u.props = {
-        'mode'              : 3,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
-        'view'              : 2,        #0: Show All, 1: Hide All, 2, firstword
+        'mode'              : 0,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
+        'view'              : 0,        #0: Show All, 1: Hide All, 2, firstword
         'arabic'            : True,
         'tafsir'            : True,
-        'translation'       : False,
+        'translation'       : True,
         'word'              : True,
         'tajweed'           : False,
         'random'            : False,
@@ -79,7 +79,7 @@ if __name__ == "__main__":
         'align'             : 'right',
         'arabicfont'        : 'Scheherazade',
         'arabicfontcolor'   : '#000000',
-        'arabicfontsize'    : '35px',
+        'arabicfontsize'    : '50px',
         'tafsirfontsize'    : '20px',
         'index'              : '1',
     }
