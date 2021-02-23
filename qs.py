@@ -14,10 +14,10 @@ class Q:
         self.juz        = self.data(DATA['juz'])
         self.halaman    = self.data(DATA['halaman'])
         self.tafsir     = self.data(DATA['tafsir'])
-        self.artikata   = self.data(DATA['artikata'])
+        self.artikata   = {}
         self.artiayat   = {}
         self.loadArtiayat(DATA['artiayat'])
-
+        self.loadArtikata(DATA['artikata'])
 
     def loadArtiayat(self, db):
         file = open(db)
@@ -27,6 +27,15 @@ class Q:
         for x in dbContent:
             key = 'S' + str(x[0]) + 'A' + str(x[1])
             self.artiayat[key] = x[2]
+
+    def loadArtikata(self, db):
+        file = open(db)
+        dbContent = csv.reader(file)
+        next(dbContent)
+
+        for x in dbContent:
+            key = 'S' + str(x[0]) + 'A' + str(x[1]) + 'K' + str(x[2])
+            self.artikata[key] = x[3]
 
     def compare(self, a, b):
         if a != b:
