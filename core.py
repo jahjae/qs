@@ -60,7 +60,7 @@ def quranHuruf(u, index):
                         q.artiBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
                         q.barisBaru(u)
-                        
+
                 q.barisBaru(u)
                 ayatSebelum = x[4]
 
@@ -70,6 +70,11 @@ def quranHuruf(u, index):
 #           adding space before next word
             if kataBerikut:
                 q.spasiBaru(u)
+                if not u.props['medina']:
+                    if u.props['word'] and ayatSebelum != '0':
+                            q.kataBaru(u)
+                            # q.artiKata(u, x[3], x[4], x[5])
+
                 kataSebelum = x[5]
 
             # show or hide
@@ -84,20 +89,14 @@ def quranHuruf(u, index):
             if x[5] == '1' and u.props['firstword'] and x[4] != '0':
                 u.props['arabicfontcolor'] = u.props['firstwordcolor']
 
-            # Tanda
-            if x[7] == '1758' or  x[7] == '1769':
+            # Black
+            if x[7] == '1758' or  x[7] == '1769' or x[7] in PAGES:
                 u.props['arabicfontcolor'] = '#000000'
-
-            # Nomor ayat
-            if x[7] in PAGES:
-                u.props['arabicfontcolor'] = '#000000'
-
 
 #           use font QCF
             if u.props['print']:
                 # component, halaman, ayat, unicode kata
                 q.mushafKata(u, x[0], x[4], x[6])
-
 
 #           use font Scheherazade
             if not u.props['print']:

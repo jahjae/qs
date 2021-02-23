@@ -52,8 +52,6 @@ def main(environ, start_response):
             noPage = path[1:4]
             exec(ADDRESS[path[0]]+'(u, noPage)')
 
-    print(u.artikata)
-
     if error:
         u.render('Invalid')
 
@@ -64,7 +62,7 @@ def main(environ, start_response):
 if __name__ == "__main__":
     u = C() # User Interface
     u.props = {
-        'mode'              : 0,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
+        'mode'              : 3,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
         'view'              : 0,        #0: Show All, 1: Hide All, 2, firstword
         'arabic'            : True,
         'tafsir'            : True,
