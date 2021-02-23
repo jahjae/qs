@@ -62,7 +62,7 @@ class Q:
             warp = 'nowrap'
 
         u.render('</td></tr>')
-        u.render('<tr><td style="border-bottom: 1px solid #eee; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+        u.render('<tr><td style="border-bottom: 1px solid #fff; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
         return u
 
     def artiAyat(self, u, surat, ayat):
