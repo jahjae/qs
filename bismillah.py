@@ -64,7 +64,7 @@ def main(environ, start_response):
 if __name__ == "__main__":
     u = C() # User Interface
     u.props = {
-        'mode'              : 0,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
+        'mode'              : 3,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
         'view'              : 2,        #0: Show All, 1: Hide All, 2, firstword
         'arabic'            : True,
         'tafsir'            : True,
@@ -73,9 +73,9 @@ if __name__ == "__main__":
         'tajweed'           : False,
         'random'            : False,
         'print'             : False,
-        'medina'            : True,   #True: Usmani, False: Medina
+        'medina'            : False,   #True: Usmani, False: Medina
         'firstword'         : True,
-        'firstwordcolor'    : '#DAA520',
+        'firstwordcolor'    : '#000000',
         'align'             : 'right',
         'arabicfont'        : 'Scheherazade',
         'arabicfontcolor'   : '#000000',
