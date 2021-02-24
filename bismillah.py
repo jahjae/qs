@@ -32,25 +32,25 @@ def main(environ, start_response):
     if path in ADDRESS:
         error = False
         noPage = u.props['index']
-        exec(ADDRESS[path[0]]+'(u, noPage)')
+        exec(ADDRESS[path[0]]+'(q, u, noPage)')
 
     if len(path) == 2:
         if path[1] in NUMBER:
             error = False
             noPage = path[1]
-            exec(ADDRESS[path[0]]+'(u, noPage)')
+            exec(ADDRESS[path[0]]+'(q, u, noPage)')
 
     if len(path) == 3:
         if path[2] in NUMBER:
             error = False
             noPage = path[1:3]
-            exec(ADDRESS[path[0]]+'(u, noPage)')
+            exec(ADDRESS[path[0]]+'(q, u, noPage)')
 
     if len(path) == 4:
         if path[3] in NUMBER:
             error = False
             noPage = path[1:4]
-            exec(ADDRESS[path[0]]+'(u, noPage)')
+            exec(ADDRESS[path[0]]+'(q, u, noPage)')
 
     if error:
         u.render('Invalid')
@@ -62,32 +62,11 @@ def main(environ, start_response):
 
 if __name__ == "__main__":
     u = C() # User Interface
-    u.props = {
-        'mode'              : 3,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
-        'view'              : 2,        #0: Show All, 1: Hide All, 2, firstword
-        'arabic'            : True,
-        'tafsir'            : True,
-        'translation'       : True,
-        'word'              : True,
-        'tajweed'           : False,
-        'random'            : False,
-        'print'             : False,
-        'medina'            : False,   #True: Medina, False: Usmani
-        'firstword'         : True,
-        'firstwordcolor'    : '#BDB76B',
-        'align'             : 'right',
-        'arabicfont'        : 'Scheherazade',
-        'arabicfontcolor'   : '#000000',
-        'arabicfontsize'    : '50px',
-        'tafsirfontsize'    : '20px',
-        'index'             : '1',
-        'page'              : '1',
-        'row'               : '1',
-        'juz'               : '1',
-        'surat'             : '1',
-        'ayat'              : '1',
-        'kata'              : '1',
-    }
+    #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
+    u.props['mode'] = 0
+    u.props['view'] = 0
+
+    q = Q()
 
     http1 = make_server('', 8000, main)
     print("PORT:8000 per halaman mode " + str(u.props['view']) )

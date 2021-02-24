@@ -2,7 +2,7 @@
 from init import *
 from qs import *
 
-def quranHuruf(u, index):
+def quranHuruf(qdata, u, index):
     q = Q()
     u.props['align'] = 'right'
 
