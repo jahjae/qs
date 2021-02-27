@@ -2,8 +2,13 @@
 from init import *
 from qs import *
 
+import os
+
 def quranHuruf(qdata, u, index):
     q = Q()
+    u.props['mode'] = int(os.environ.get('MODE'))
+    u.props['view'] = int(os.environ.get('VIEW'))
+
     u.props['align'] = 'right'
 
     if u.props['medina']:
@@ -26,7 +31,6 @@ def quranHuruf(qdata, u, index):
         u.props['arabicfontcolor'] = '#000000'
 
         if x[u.props['mode']] == index:
-
             if reset:
                 reset = False
                 halamanSebelum = x[0]

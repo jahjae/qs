@@ -1,10 +1,12 @@
+import os
+
 class C:
     def __init__(self):
         self.component = []
         self.artikata = []
         self.props = {
-                'mode'              : 3,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
-                'view'              : 2,        #0: Show All, 1: Hide All, 2, firstword
+                'mode'              : '3',        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
+                'view'              : '2',        #0: Show All, 1: Hide All, 2, firstword
                 'arabic'            : True,
                 'tafsir'            : True,
                 'translation'       : True,
@@ -28,7 +30,6 @@ class C:
                 'ayat'              : '1',
                 'kata'              : '1',
             }
-
 
     def render(self, text):
         self.component.append(text)

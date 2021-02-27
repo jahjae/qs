@@ -22,7 +22,7 @@ class Q:
         self.loadHalaman(DATA['halaman'])
         self.loadArtiAyat(DATA['artiayat'])
         self.loadArtiKata(DATA['artikata'])
-
+        
     def loadSurat(self, db):
         file = open(db)
         dbContent = csv.reader(file)

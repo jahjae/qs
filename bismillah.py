@@ -6,6 +6,7 @@ from ui import *
 from qs import *
 
 import sys
+import os
 import urllib.request
 import random
 
@@ -27,11 +28,11 @@ def main(environ, start_response):
 
     error = True
     path = environ['PATH_INFO']
-
+    u.props['index'] = int(os.environ.get('INDEX'))
 
     if path in ADDRESS:
         error = False
-        noPage = u.props['index']
+        noPage = str(u.props['index'])
         exec(ADDRESS[path[0]]+'(q, u, noPage)')
 
     if len(path) == 2:
@@ -62,12 +63,19 @@ def main(environ, start_response):
 
 if __name__ == "__main__":
     u = C() # User Interface
+    print('Loading ...')
+
     #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
-    u.props['mode'] = 0
-    u.props['view'] = 0
+    u.props['mode'] = '3'
+    u.props['view'] = '0'
+    u.props['index'] = '1'
+
+    os.environ['MODE'] = u.props['mode']
+    os.environ['VIEW'] = u.props['view']
+    os.environ['INDEX'] = u.props['index']
 
     q = Q()
 
     http1 = make_server('', 8000, main)
-    print("PORT:8000 per halaman mode " + str(u.props['view']) )
+    print("Serving ..."  )
     http1.serve_forever()
