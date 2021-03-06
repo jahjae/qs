@@ -182,7 +182,7 @@ class Q:
 
         result = ''
         try:
-            result = self.artikata[s][a][k]
+            result = '[' + surat + ':' + ayat + ':' + kata + '] '+self.artikata[s][a][k]
 
         except KeyError:
             result = ''

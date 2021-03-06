@@ -76,9 +76,13 @@ def quranHuruf(qdata, u, index):
                     q.barisBaru(u)
 
                 ayatSebelum = x[4]
+                kataSebelum = '0'
+
 
             if suratBerikut:
                 suratSebelum = x[3]
+                ayatSebelum = '0'
+                kataSebelum = '0'
 
 #           adding space before next word
             if kataBerikut:
