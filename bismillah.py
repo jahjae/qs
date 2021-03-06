@@ -19,11 +19,10 @@ def main(environ, start_response):
     u.render('<!DOCTYPE html>')
     u.render('<html>')
     u.render('<head>')
-    u.render('<meta name="viewport" content="width=device-width, initial-scale=1.0">')
-    u.render('<link rel="preconnect" href="https://fonts.gstatic.com">')
     u.render('<link href="https://fonts.googleapis.com/css2?family=Scheherazade&display=swap" rel="stylesheet">')
+    u.render('<meta name="viewport" content="width=device-width, initial-scale=1.0">')
     u.render('</head>')
-    u.render('<body style="padding: 0px; font-family: '+ u.props['arabicfont']+ ';">')
+    u.render('<body style="padding: 10px; font-family: '+ u.props['arabicfont']+ ';">')
     u.render('</body>')
 
     error = True
@@ -66,9 +65,13 @@ if __name__ == "__main__":
     print('Loading ...')
 
     #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
-    u.props['mode'] = '3'
+    u.props['mode'] = '0'
     u.props['view'] = '0'
     u.props['index'] = '1'
+    u.props['print'] = False
+    u.props['medina'] = False
+    u.props['tafsir'] = True
+    u.props['word'] = True
 
     os.environ['MODE'] = u.props['mode']
     os.environ['VIEW'] = u.props['view']

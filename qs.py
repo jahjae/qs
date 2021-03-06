@@ -3,26 +3,49 @@
 #   Quran Class
 #
 
+import csv
+
 from init import *
 from ui import *
-import csv
 
 class Q:
     def __init__(self):
-        self.kata       = self.data(DATA['kata'])
-        self.huruf      = self.data(DATA['huruf'])
-        self.tafsir     = self.data(DATA['tafsir'])
         self.surat      = {}
         self.juz        = {}
         self.halaman    = {}
         self.artiayat   = {}
         self.artikata   = {}
+        self.codehuruf  = {}
+        self.codekata   = {}
+        self.kata       = self.data(DATA['kata'])
+        self.huruf      = self.data(DATA['huruf'])
+        self.tafsir     = self.data(DATA['tafsir'])
         self.loadJuz(DATA['juz'])
         self.loadSurat(DATA['surat'])
         self.loadHalaman(DATA['halaman'])
         self.loadArtiAyat(DATA['artiayat'])
         self.loadArtiKata(DATA['artikata'])
-        
+        self.loadCodeHuruf(DATA['huruf'])
+        self.loadCodeKata(DATA['kata'])
+
+    def loadCodeKata(self, db):
+        file = open(db)
+        dbContent = csv.reader(file)
+        next(dbContent)
+
+        for x in dbContent:
+            key = x[6]
+            self.codekata[key] = x[6]
+
+    def loadCodeHuruf(self, db):
+        file = open(db)
+        dbContent = csv.reader(file)
+        next(dbContent)
+
+        for x in dbContent:
+            key = x[7]
+            self.codehuruf[key] = x[7]
+
     def loadSurat(self, db):
         file = open(db)
         dbContent = csv.reader(file)
@@ -30,7 +53,7 @@ class Q:
 
         for x in dbContent:
             key = str(x[0])
-            self.surat[key] = {'ayat': x[1], 'bahasa': x[4], 'wahyu': x[6],}
+            self.surat[key] = {x[1],x[3]}
 
     def loadJuz(self, db):
         file = open(db)
@@ -39,7 +62,7 @@ class Q:
 
         for x in dbContent:
             key = str(x[0])
-            self.juz[key] = {'surat': x[1], 'ayat': x[2],}
+            self.juz[key] = {'Surat': x[1],'Ayat': x[2]}
 
     def loadHalaman(self, db):
         file = open(db)
@@ -55,18 +78,42 @@ class Q:
         dbContent = csv.reader(file)
         next(dbContent)
 
+        ns = 0
         for x in dbContent:
-            key = 'S' + str(x[0]) + 'A' + str(x[1])
-            self.artiayat[key] = x[2]
+            s = int(x[0])
+            a = int(x[1])
+            if ns != s:
+                ns = s
+                ta = {}
+
+            ta[a] = x[2]
+            self.artiayat[s] = ta
 
     def loadArtiKata(self, db):
         file = open(db)
         dbContent = csv.reader(file)
         next(dbContent)
 
+        ns = 0
+        na = 0
         for x in dbContent:
-            key = 'S' + str(x[0]) + 'A' + str(x[1]) + 'K' + str(x[3])
-            self.artikata[key] = x[4]
+            s = int(x[0])
+            a = int(x[1])
+            k = int(x[3])
+
+            if ns != s:
+                ns = s
+                ta = {}
+                tk = {}
+
+            if na != a:
+                na = a
+                tk = {}
+
+            tk[k] = x[4]
+            ta[a] = tk
+            self.artikata[s] = ta
+
 
     def compare(self, a, b):
         if a != b:
@@ -75,10 +122,6 @@ class Q:
             return False
 
     def spasiBaru(self, u):
-        u.render(' ')
-        return u
-
-    def kataBaru(self, u):
         u.render(' ')
         return u
 
@@ -113,9 +156,11 @@ class Q:
 
 
     def artiAyat(self, u, surat, ayat):
-        key = 'S' + str(surat) + 'A' + str(ayat)
+        s = int(surat)
+        a = int(ayat)
+        result = ''
         try:
-            result = self.artiayat[key]
+            result = self.artiayat[s][a]
 
         except KeyError:
             result = ''
@@ -131,10 +176,13 @@ class Q:
         return u
 
     def artiKata(self, u, surat, ayat, kata):
-        key = 'S' + str(surat) + 'A' + str(ayat) + 'K' + str(kata)
+        s = int(surat)
+        a = int(ayat)
+        k = int(kata)
 
+        result = ''
         try:
-            result = self.artikata[key]
+            result = self.artikata[s][a][k]
 
         except KeyError:
             result = ''
@@ -160,8 +208,7 @@ class Q:
         next(dbContent)
         return dbContent
 
-
-    def mushafKata(self, array, halaman, ayat, kata):
+    def mushafKata(self, u, halaman, ayat, kata):
 
         if len(halaman) == 1:
             font = 'QCF_P00' + halaman
@@ -175,10 +222,11 @@ class Q:
         if ayat == '0':
             font = 'QCF_BSML'
 
-        array.render('<a style="font-family: ' + font + ';">')
-        array.render(chr(int(kata)))
-        array.render('</a>')
-        return array
+        u.render('<a style="font-size: '+ u.props['arabicfontsize'] + '; font-family: ' + font + ';color: '+ u.props['arabicfontcolor'] +';">')
+        u.render(chr(int(kata)))
+        u.render('</a>')
+
+        return u
 
 
     def mushafHuruf(self, u, huruf):

@@ -4,6 +4,9 @@ from qs import *
 
 import os
 
+def statistic():
+    pass
+
 def quranHuruf(qdata, u, index):
     q = Q()
     u.props['mode'] = int(os.environ.get('MODE'))
@@ -11,13 +14,16 @@ def quranHuruf(qdata, u, index):
 
     u.props['align'] = 'right'
 
+    quran = q.huruf
+    if u.props['print']:
+        u.props['medina'] = True
+        u.props['mode'] = 0
+        u.props['view'] = 0
+        quran = q.kata
+
     if u.props['medina']:
         u.props['align'] = 'center'
         u.props['tafsir'] = False
-
-    quran = q.huruf
-    if u.props['print']:
-        quran = q.kata
 
     if u.props['view'] == 1:
         u.props['firstword'] = False
@@ -77,28 +83,31 @@ def quranHuruf(qdata, u, index):
 #           adding space before next word
             if kataBerikut:
                 q.spasiBaru(u)
+
                 if not u.props['medina']:
-                    if u.props['word'] and ayatSebelum != '0':
-                            q.kataBaru(u)
-                            # q.artiKata(u, x[3], x[4], x[5])
+                    if u.props['word'] and ayatSebelum != '0' and kataSebelum != '0':
+                            q.barisBaru(u)
+                            q.artiKata(u, suratSebelum, ayatSebelum, kataSebelum)
+                            q.barisBaru(u)
 
                 kataSebelum = x[5]
 
             # show or hide
             if u.props['view']  != 0:
-                u.props['arabicfontcolor'] = '#DDDDDD'
+                u.props['arabicfontcolor'] = '#ffffff'
+
+            # first word
+            if u.props['firstword'] and x[5] == '1':
+                u.props['arabicfontcolor'] = u.props['firstwordcolor']
 
             # non ayat
             if x[4] == '0':
                 u.props['arabicfontcolor'] = '#000000'
 
-            # first word
-            if x[5] == '1' and u.props['firstword'] and x[4] != '0':
-                u.props['arabicfontcolor'] = u.props['firstwordcolor']
-
             # Black
-            if x[7] == '1758' or  x[7] == '1769' or x[7] in PAGES:
-                u.props['arabicfontcolor'] = '#000000'
+            if not u.props['print']:
+                if x[7] == '1758' or  x[7] == '1769' or x[7] in PAGES:
+                    u.props['arabicfontcolor'] = '#000000'
 
 #           use font QCF
             if u.props['print']:

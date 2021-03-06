@@ -16,7 +16,7 @@ class C:
                 'print'             : False,
                 'medina'            : False,   #True: Medina, False: Usmani
                 'firstword'         : True,
-                'firstwordcolor'    : '#BDB76B',
+                'firstwordcolor'    : '#FF0000',
                 'align'             : 'right',
                 'arabicfont'        : 'Scheherazade',
                 'arabicfontcolor'   : '#000000',
