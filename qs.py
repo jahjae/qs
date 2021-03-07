@@ -30,55 +30,37 @@ class Q:
         self.loadCodeKata(DATA['kata'])
 
     def loadCodeKata(self, db):
-        file = open(db)
-        dbContent = csv.reader(file)
-        next(dbContent)
-
+        dbContent = self.data(db)
         for x in dbContent:
             key = x[6]
             self.codekata[key] = x[6]
 
     def loadCodeHuruf(self, db):
-        file = open(db)
-        dbContent = csv.reader(file)
-        next(dbContent)
-
+        dbContent = self.data(db)
         for x in dbContent:
             key = x[7]
             self.codehuruf[key] = x[7]
 
     def loadSurat(self, db):
-        file = open(db)
-        dbContent = csv.reader(file)
-        next(dbContent)
-
+        dbContent = self.data(db)
         for x in dbContent:
-            key = str(x[0])
+            key = x[0]
             self.surat[key] = {x[1],x[3]}
 
     def loadJuz(self, db):
-        file = open(db)
-        dbContent = csv.reader(file)
-        next(dbContent)
-
+        dbContent = self.data(db)
         for x in dbContent:
             key = str(x[0])
             self.juz[key] = {'Surat': x[1],'Ayat': x[2]}
 
     def loadHalaman(self, db):
-        file = open(db)
-        dbContent = csv.reader(file)
-        next(dbContent)
-
+        dbContent = self.data(db)
         for x in dbContent:
             key = str(x[0])
             self.halaman[key] = {'surat': x[1], 'ayat': x[2]}
 
     def loadArtiAyat(self, db):
-        file = open(db)
-        dbContent = csv.reader(file)
-        next(dbContent)
-
+        dbContent = self.data(db)
         ns = 0
         for x in dbContent:
             s = int(x[0])
@@ -91,9 +73,7 @@ class Q:
             self.artiayat[s] = ta
 
     def loadArtiKata(self, db):
-        file = open(db)
-        dbContent = csv.reader(file)
-        next(dbContent)
+        dbContent = self.data(db)
 
         ns = 0
         na = 0
@@ -124,6 +104,21 @@ class Q:
 
     def spasiBaru(self, u):
         u.render(' ')
+        return u
+
+    def kataBaru(self, u):
+        warp = ''
+        if u.props['medina']:
+            warp = 'nowrap'
+
+        u.render('</td></tr>')
+
+        if u.props['tafsir']:
+            u.render('<tr><td style="border-bottom: 1px solid #fff; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+
+        if not u.props['tafsir']:
+            u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+
         return u
 
     def barisBaru(self, u):
@@ -166,7 +161,7 @@ class Q:
         except KeyError:
             result = ''
 
-        u.render('<a style="font-size:' + u.props['tafsirfontsize'] + ';">')
+        u.render('<a style="font-size:' + u.props['fontsize'] + ';">')
         u.render('[')
         u.render(surat)
         u.render(':')
@@ -188,7 +183,7 @@ class Q:
         except KeyError:
             result = ''
 
-        u.render('<a style="font-size:' + u.props['tafsirfontsize'] + ';">')
+        u.render('<a style="font-size:' + u.props['fontsize'] + ';">')
         u.render(result)
         u.render('</a>')
 
@@ -231,7 +226,7 @@ class Q:
 
 
     def mushafHuruf(self, u, huruf):
-        u.render('<a style="text-align: '+ u.props['align']+';font-size: '+ u.props['arabicfontsize'] + ';color: '+ u.props['arabicfontcolor'] +';">' + chr(int(huruf)) + '</a>')
+        u.render('<a style="text-align: '+ u.props['align']+';font-family: '+ u.props['arabicfont']+ ';font-size: '+ u.props['arabicfontsize'] + ';color: '+ u.props['arabicfontcolor'] +';">' + chr(int(huruf)) + '</a>')
         return u
 
     def nomorSurat(self, array, listSurat, index):

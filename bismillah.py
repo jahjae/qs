@@ -1,7 +1,9 @@
 from wsgiref.simple_server import make_server
 from multiprocessing import *
+
 from core import *
 from init import *
+
 from ui import *
 from qs import *
 
@@ -32,7 +34,7 @@ def main(environ, start_response):
     if path in ADDRESS:
         error = False
         noPage = str(u.props['index'])
-        exec(ADDRESS[path[0]]+'(q, u, noPage)')
+        exec(ADDRESS[path]+'(q, u, noPage)')
 
     if len(path) == 2:
         if path[1] in NUMBER:
@@ -64,13 +66,13 @@ if __name__ == "__main__":
     print('Loading ...')
 
     #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
-    u.props['mode'] = '0'
+    u.props['mode'] = '3'
     u.props['view'] = '0'
     u.props['index'] = '1'
     u.props['print'] = False
     u.props['medina'] = False
     u.props['tafsir'] = True
-    u.props['word'] = True
+    u.props['word'] = False
 
     os.environ['MODE'] = u.props['mode']
     os.environ['VIEW'] = u.props['view']

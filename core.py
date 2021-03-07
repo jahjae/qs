@@ -1,11 +1,15 @@
 
 from init import *
 from qs import *
-
 import os
 
-def statistic():
-    pass
+def infoHuruf(qdata, u, index):
+    q = Q()
+    u.render('<table style="width: 100%;"><tr><td>')
+    for x in q.codehuruf:
+        q.barisBaru(u)
+        q.mushafHuruf(u, x)
+
 
 def quranHuruf(qdata, u, index):
     q = Q()
@@ -91,8 +95,9 @@ def quranHuruf(qdata, u, index):
                 if not u.props['medina']:
                     if u.props['word'] and ayatSebelum != '0' and kataSebelum != '0':
                             q.barisBaru(u)
-                            q.artiKata(u, suratSebelum, ayatSebelum, kataSebelum)
-                            q.barisBaru(u)
+                            if u.props['tafsir']:
+                                q.artiKata(u, suratSebelum, ayatSebelum, kataSebelum)
+                                q.barisBaru(u)
 
                 kataSebelum = x[5]
 
