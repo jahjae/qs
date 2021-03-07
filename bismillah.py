@@ -72,7 +72,7 @@ if __name__ == "__main__":
     u.props['print'] = False
     u.props['medina'] = False
     u.props['tafsir'] = True
-    u.props['word'] = False
+    u.props['word'] = True
 
     os.environ['MODE'] = u.props['mode']
     os.environ['VIEW'] = u.props['view']
