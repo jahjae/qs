@@ -55,7 +55,6 @@ def main(environ, start_response):
     if error:
         u.render('Invalid')
 
-    print(u.props)
     u.render('</html>')
     body = ''.join(u.component)
     return [body.encode('utf-8')]

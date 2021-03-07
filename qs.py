@@ -20,6 +20,7 @@ class Q:
         self.kata       = self.data(DATA['kata'])
         self.huruf      = self.data(DATA['huruf'])
         self.tafsir     = self.data(DATA['tafsir'])
+        print('Indexing ...')
         self.loadJuz(DATA['juz'])
         self.loadSurat(DATA['surat'])
         self.loadHalaman(DATA['halaman'])
@@ -182,7 +183,7 @@ class Q:
 
         result = ''
         try:
-            result = '[' + surat + ':' + ayat + ':' + kata + '] '+self.artikata[s][a][k]
+            result = self.artikata[s][a][k]
 
         except KeyError:
             result = ''
