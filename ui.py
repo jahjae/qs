@@ -14,7 +14,7 @@ class C:
                 'tajweed'           : False,
                 'random'            : False,
                 'print'             : False,
-                'medina'            : False,   #True: Medina, False: Usmani
+                'mushaf'            : False,   #True: Medina, False: Usmani
                 'firstword'         : True,
                 'firstwordcolor'    : '#FF0000',
                 'align'             : 'right',

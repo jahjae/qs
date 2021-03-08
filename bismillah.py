@@ -70,7 +70,7 @@ if __name__ == "__main__":
     u.props['view'] = '0'
     u.props['index'] = '1'
     u.props['print'] = False
-    u.props['medina'] = False
+    u.props['mushaf'] = False
     u.props['tafsir'] = True
     u.props['word'] = True
 

@@ -108,22 +108,22 @@ class Q:
 
     def kataBaru(self, u):
         warp = ''
-        if u.props['medina']:
+        if u.props['mushaf']:
             warp = 'nowrap'
 
         u.render('</td></tr>')
 
         if u.props['tafsir']:
-            u.render('<tr><td style="border-bottom: 1px solid #fff; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+            u.render('<tr><td style="border-bottom: 1px solid #fff; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 0.5;">')
 
         if not u.props['tafsir']:
-            u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+            u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 0.5;">')
 
         return u
 
     def barisBaru(self, u):
         warp = ''
-        if u.props['medina']:
+        if u.props['mushaf']:
             warp = 'nowrap'
 
         u.render('</td></tr>')
@@ -138,7 +138,7 @@ class Q:
 
     def artiBaru(self, u):
         warp = ''
-        if u.props['medina']:
+        if u.props['mushaf']:
             warp = 'nowrap'
 
         u.render('</td></tr>')
@@ -229,21 +229,13 @@ class Q:
         u.render('<a style="text-align: '+ u.props['align']+';font-family: '+ u.props['arabicfont']+ ';font-size: '+ u.props['arabicfontsize'] + ';color: '+ u.props['arabicfontcolor'] +';">' + chr(int(huruf)) + '</a>')
         return u
 
-    def nomorSurat(self, array, listSurat, index):
-        namaSurat = ''
-        for surat in listSurat:
-            if surat[0] == index:
-                namaSurat = surat[2]
-
-        array.render(namaSurat)
-        return array
-
-    def nomorAyat(self, array, Ayat):
+    def nomorAyat(self, u, noayat):
         num = ''
-        for x in Ayat:
-            num = num + chr(int(PAGES[int(x)]))
+        for x in noayat:
+            nomor = PAGENUMBER[x]
+            num = num + chr(nomor)
 
-        array.render('<a style="font-family: Scheherazade;">')
-        array.render(' ' + chr(1757) + num)
-        array.render('</a>')
-        return array
+        u.render('<a>')
+        u.render(chr(1757)+ num)
+        u.render('</a>')
+        return u

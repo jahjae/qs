@@ -20,12 +20,12 @@ def quranHuruf(qdata, u, index):
 
     quran = q.huruf
     if u.props['print']:
-        u.props['medina'] = True
+        u.props['mushaf'] = True
         u.props['mode'] = 0
         u.props['view'] = 0
         quran = q.kata
 
-    if u.props['medina']:
+    if u.props['mushaf']:
         u.props['align'] = 'center'
         u.props['tafsir'] = False
 
@@ -58,10 +58,10 @@ def quranHuruf(qdata, u, index):
             kataBerikut = q.compare(x[5], kataSebelum)
 
             if barisBerikut:
-                if u.props['medina']:
+                if u.props['mushaf']:
                     q.barisBaru(u)
 
-                if not u.props['medina']:
+                if not u.props['mushaf']:
                     if x[4] == '0':
                         q.barisBaru(u)
 
@@ -71,7 +71,9 @@ def quranHuruf(qdata, u, index):
                 halamanSebelum = x[0]
 
             if ayatBerikut:
-                if not u.props['medina']:
+                #q.nomorAyat(u, ayatSebelum)
+
+                if not u.props['mushaf']:
                     if u.props['tafsir'] and ayatSebelum  != '0':
                         q.artiBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
@@ -92,12 +94,14 @@ def quranHuruf(qdata, u, index):
             if kataBerikut:
                 q.spasiBaru(u)
 
-                if not u.props['medina']:
+                if not u.props['mushaf']:
                     if u.props['word'] and ayatSebelum != '0' and kataSebelum != '0':
-                            q.barisBaru(u)
-                            if u.props['tafsir']:
-                                q.artiKata(u, suratSebelum, ayatSebelum, kataSebelum)
-                                q.barisBaru(u)
+                        if u.props['tafsir']:
+                            q.kataBaru(u)
+                            q.artiKata(u, suratSebelum, ayatSebelum, kataSebelum)
+                            q.kataBaru(u)
+
+                        q.barisBaru(u)
 
                 kataSebelum = x[5]
 
@@ -115,7 +119,7 @@ def quranHuruf(qdata, u, index):
 
             # Black
             if not u.props['print']:
-                if x[7] == '1758' or  x[7] == '1769' or x[7] in PAGES:
+                if x[7] == '1758' or  x[7] == '1769':
                     u.props['arabicfontcolor'] = '#000000'
 
 #           use font QCF
@@ -128,7 +132,7 @@ def quranHuruf(qdata, u, index):
                 # component, unicode huruf
                 q.mushafHuruf(u, x[7])
 
-    if not u.props['medina']:
+    if not u.props['mushaf']:
         if u.props['tafsir'] and ayatSebelum  != '0':
             q.artiBaru(u)
             q.artiAyat(u, suratSebelum, ayatSebelum)
