@@ -1,10 +1,24 @@
 #
 # Quran Parameter
 MODE = {
-    0:  0,
-    1:  2,
-    2:  3,
+    0:  'Page',
+    1:  'Row',
+    2:  'Juz',
+    3:  'Sura',
 }
+
+LOGICAL = {
+    0:  'False',
+    1:  'True',
+}
+
+VIEW = {
+    0:  'Show All',
+    1:  'Hide All',
+    2:  'Show only first',
+
+}
+
 NUMBER = [
     '0',
     '1',
@@ -74,6 +88,9 @@ ADDRESS = {
     '/tafsir'       : 'Tafsir',
     '/quran'        : 'Quran',
     '/mode'         : 'View',
+    '/info'         : 'Info',
+    '/pertama'      : 'Pertama',
+
 }
 
 HIGHLIGHT = {

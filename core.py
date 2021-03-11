@@ -11,6 +11,15 @@ def View(qdata, u, index):
 
     os.environ['VIEW'] = str(u.props['view'])
 
+def Pertama(qdata, u, index):
+    if u.props['firstword'] == 1:
+        u.props['firstword'] = 0
+    else:
+        u.props['firstword'] = 1
+
+    os.environ['FIRSTWORD'] = str(u.props['firstword'])
+
+
 def Quran(qdata, u, index):
     if u.props['print'] == 1:
         u.props['print'] = 0
@@ -52,12 +61,14 @@ def Juz(qdata, u, index):
 def Surat(qdata, u, index):
     os.environ['MODE'] = '3'
 
-def infoHuruf(qdata, u, index):
-    q = Q()
-    u.render('<table style="width: 100%;"><tr><td>')
-    for x in q.codehuruf:
-        q.barisBaru(u)
-        q.mushafHuruf(u, x)
+def Info(qdata, u, index):
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> MUSHAF: '+ LOGICAL[u.props['mushaf']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> FIRST WORD: '+ LOGICAL[u.props['firstword']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> MODE: '+ MODE[u.props['mode']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> VIEW: '+ VIEW[u.props['view']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> TAFSIR: '+ LOGICAL[u.props['tafsir']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> WORD BY WORD: '+ LOGICAL[u.props['word']] +'</p>')
+
 
 def quranHuruf(qdata, u, index):
     q = Q()

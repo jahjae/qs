@@ -114,44 +114,44 @@ class Q:
 
     def kataBaru(self, u):
         warp = ''
-        if u.props['mushaf']:
+        if u.props['mushaf'] == 1:
             warp = 'nowrap'
 
         u.render('</td></tr>')
 
-        if u.props['tafsir']:
+        if u.props['tafsir'] == 1:
             u.render('<tr><td style="border-bottom: 1px solid #fff; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 0.5;">')
 
-        if not u.props['tafsir']:
+        if u.props['tafsir'] != 1:
             u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 0.5;">')
 
         return u
 
     def barisBaru(self, u):
         warp = ''
-        if u.props['mushaf']:
+        if u.props['mushaf'] == 1:
             warp = 'nowrap'
 
         u.render('</td></tr>')
 
-        if u.props['tafsir']:
+        if u.props['tafsir'] == 1:
             u.render('<tr><td style="border-bottom: 1px solid #fff; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
 
-        if not u.props['tafsir']:
+        if u.props['tafsir'] != 1 :
             u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
 
         return u
 
     def artiBaru(self, u):
         warp = ''
-        if u.props['mushaf']:
+        if u.props['mushaf'] == 1:
             warp = 'nowrap'
 
         u.render('</td></tr>')
-        if u.props['tafsir']:
+        if u.props['tafsir'] == 1:
             u.render('<tr><td style=" border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
 
-        if not u.props['tafsir']:
+        if u.props['tafsir'] != 1:
             u.render('<tr><td style=" border-bottom: 1px solid #fff; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
 
         return u
