@@ -3,7 +3,23 @@ from init import *
 from qs import *
 import os
 
-def viewKata(qdata, u, index):
+def Quran(qdata, u, index):
+    if u.props['print'] == 1:
+        u.props['print'] = 0
+    else:
+        u.props['print'] = 1
+
+    os.environ['PRINT'] = str(u.props['print'])
+
+def Tafsir(qdata, u, index):
+    if u.props['tafsir'] == 1:
+        u.props['tafsir'] = 0
+    else:
+        u.props['tafsir'] = 1
+
+    os.environ['TAFSIR'] = str(u.props['tafsir'])
+
+def Kata(qdata, u, index):
     if u.props['word'] == 1:
         u.props['word'] = 0
     else:
@@ -11,7 +27,7 @@ def viewKata(qdata, u, index):
 
     os.environ['WORD'] = str(u.props['word'])
 
-def viewMushaf(qdata, u, index):
+def Mushaf(qdata, u, index):
     if u.props['mushaf'] == 1:
         u.props['mushaf'] = 0
     else:
@@ -19,13 +35,13 @@ def viewMushaf(qdata, u, index):
 
     os.environ['MUSHAF'] = str(u.props['mushaf'])
 
-def modeHalaman(qdata, u, index):
+def Halaman(qdata, u, index):
     os.environ['MODE'] = '0'
 
-def modeJuz(qdata, u, index):
+def Juz(qdata, u, index):
     os.environ['MODE'] = '2'
 
-def modeSurat(qdata, u, index):
+def Surat(qdata, u, index):
     os.environ['MODE'] = '3'
 
 def infoHuruf(qdata, u, index):
@@ -41,6 +57,8 @@ def quranHuruf(qdata, u, index):
     u.props['view'] = int(os.environ.get('VIEW'))
     u.props['mushaf'] = int(os.environ.get('MUSHAF'))
     u.props['word'] = int(os.environ.get('WORD'))
+    u.props['tafsir'] = int(os.environ.get('TAFSIR'))
+    u.props['print'] = int(os.environ.get('PRINT'))
 
     u.props['align'] = 'right'
 
@@ -53,7 +71,7 @@ def quranHuruf(qdata, u, index):
 
     if u.props['mushaf'] == 1:
         u.props['align'] = 'center'
-        u.props['tafsir'] = False
+        u.props['tafsir'] = 0
 
     if u.props['view'] == 1:
         u.props['firstword'] = False
@@ -100,7 +118,7 @@ def quranHuruf(qdata, u, index):
                 #q.nomorAyat(u, ayatSebelum)
 
                 if u.props['mushaf'] != 1:
-                    if u.props['tafsir'] and ayatSebelum  != '0':
+                    if u.props['tafsir'] == 1 and ayatSebelum  != '0':
                         q.artiBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
                         q.barisBaru(u)
@@ -122,7 +140,7 @@ def quranHuruf(qdata, u, index):
 
                 if u.props['mushaf'] != 1:
                     if u.props['word'] == 1 and ayatSebelum != '0' and kataSebelum != '0':
-                        if u.props['tafsir']:
+                        if u.props['tafsir'] == 1:
                             q.kataBaru(u)
                             q.artiKata(u, suratSebelum, ayatSebelum, kataSebelum)
                             q.kataBaru(u)
@@ -144,17 +162,17 @@ def quranHuruf(qdata, u, index):
                 u.props['arabicfontcolor'] = '#000000'
 
             # Black
-            if not u.props['print']:
+            if u.props['print'] != 1:
                 if x[7] == '1758' or  x[7] == '1769':
                     u.props['arabicfontcolor'] = '#000000'
 
             # use font QCF
-            if u.props['print']:
+            if u.props['print'] == 1:
                 # component, halaman, ayat, unicode kata
                 q.mushafKata(u, x[0], x[4], x[6])
 
 #           use font Scheherazade and Harmattan for Numberd
-            if not u.props['print']:
+            if u.props['print'] != 1:
                 u.props['arabicfontsize'] = '50px'
                 u.props['arabicfont'] = 'Scheherazade'
                 if x[7] in PAGES:

@@ -5,17 +5,17 @@ class C:
         self.component = []
         self.artikata = []
         self.props = {
-                'mode'              : '3',        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
-                'view'              : '2',        #0: Show All, 1: Hide All, 2, firstword
+                'mode'              : 0,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
+                'view'              : 0,        #0: Show All, 1: Hide All, 2, firstword
                 'çolor'             : True,
                 'arabic'            : True,
-                'tafsir'            : True,
+                'tafsir'            : 1,
                 'translation'       : True,
-                'word'              : True,
+                'word'              : 1,
                 'tajweed'           : False,
                 'random'            : False,
-                'print'             : False, # True: Mushaf Madina, False: Mushaf Usmani
-                'mushaf'            : False,
+                'print'             : 0, # True: Mushaf Madina, False: Mushaf Usmani
+                'mushaf'            : 0,
                 'firstword'         : True,
                 'firstwordcolor'    : '#FF0000',
                 'align'             : 'right',

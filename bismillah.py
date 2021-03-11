@@ -69,10 +69,10 @@ if __name__ == "__main__":
     u.props['mode'] = 0
     u.props['view'] = 0
     u.props['index'] = 1
-    u.props['print'] = False
+    u.props['print'] = 1 # 1 = True, 0 = False
 
     u.props['mushaf'] = 1 # 1 = True, 0 = False
-    u.props['tafsir'] = True
+    u.props['tafsir'] = 0 # 1 = True,
     u.props['word'] = 0 # 1 = True, 0 = False
 
     os.environ['MODE'] = str(u.props['mode'])
@@ -80,6 +80,9 @@ if __name__ == "__main__":
     os.environ['INDEX'] = str(u.props['index'])
     os.environ['MUSHAF'] = str(u.props['mushaf'])
     os.environ['WORD'] = str(u.props['word'])
+    os.environ['TAFSIR'] = str(u.props['tafsir'])
+    os.environ['PRINT'] = str(u.props['print'])
+
 
     q = Q()
 

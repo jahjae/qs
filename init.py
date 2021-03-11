@@ -66,11 +66,13 @@ PAGENUMBER = {
 
 ADDRESS = {
     '/'             : 'quranHuruf',
-    '/halaman'      : 'modeHalaman',
-    '/juz'          : 'modeJuz',
-    '/surat'        : 'modeSurat',
-    '/mushaf'       : 'viewMushaf',
-    '/kata'         : 'viewKata',
+    '/halaman'      : 'Halaman',
+    '/juz'          : 'Juz',
+    '/surat'        : 'Surat',
+    '/mushaf'       : 'Mushaf',
+    '/kata'         : 'Kata',
+    '/tafsir'       : 'Tafsir',
+    '/quran'        : 'Quran',
 }
 
 HIGHLIGHT = {
