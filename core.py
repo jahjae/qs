@@ -3,6 +3,14 @@ from init import *
 from qs import *
 import os
 
+def View(qdata, u, index):
+    if u.props['view'] == 2:
+        u.props['view'] = 0
+    else:
+        u.props['view'] = u.props['view'] + 1
+
+    os.environ['VIEW'] = str(u.props['view'])
+
 def Quran(qdata, u, index):
     if u.props['print'] == 1:
         u.props['print'] = 0
@@ -59,6 +67,7 @@ def quranHuruf(qdata, u, index):
     u.props['word'] = int(os.environ.get('WORD'))
     u.props['tafsir'] = int(os.environ.get('TAFSIR'))
     u.props['print'] = int(os.environ.get('PRINT'))
+    u.props['firstword'] = int(os.environ.get('FIRSTWORD'))
 
     u.props['align'] = 'right'
 
@@ -74,7 +83,7 @@ def quranHuruf(qdata, u, index):
         u.props['tafsir'] = 0
 
     if u.props['view'] == 1:
-        u.props['firstword'] = False
+        u.props['firstword'] = 0
 
     u.render('<table style="width: 100%;"><tr><td>')
     q.barisBaru(u)
@@ -154,7 +163,7 @@ def quranHuruf(qdata, u, index):
                 u.props['arabicfontcolor'] = '#ffffff'
 
             # first word
-            if u.props['firstword'] and x[5] == '1':
+            if u.props['firstword'] == 1 and x[5] == '1':
                 u.props['arabicfontcolor'] = u.props['firstwordcolor']
 
             # non ayat
@@ -176,8 +185,9 @@ def quranHuruf(qdata, u, index):
                 u.props['arabicfontsize'] = '50px'
                 u.props['arabicfont'] = 'Scheherazade'
                 if x[7] in PAGES:
-                    u.props['arabicfontsize'] = '30px'
                     u.props['arabicfont'] = 'Harmattan'
+                    u.props['arabicfontsize'] = '30px'
+                    u.props['arabicfontcolor'] = '#000000'
 
                 # component, unicode huruf
                 q.mushafHuruf(u, x[7])

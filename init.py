@@ -73,6 +73,7 @@ ADDRESS = {
     '/kata'         : 'Kata',
     '/tafsir'       : 'Tafsir',
     '/quran'        : 'Quran',
+    '/mode'         : 'View',
 }
 
 HIGHLIGHT = {

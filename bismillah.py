@@ -82,6 +82,7 @@ if __name__ == "__main__":
     os.environ['WORD'] = str(u.props['word'])
     os.environ['TAFSIR'] = str(u.props['tafsir'])
     os.environ['PRINT'] = str(u.props['print'])
+    os.environ['FIRSTWORD'] = str(u.props['firstword'])
 
 
     q = Q()
