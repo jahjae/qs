@@ -69,7 +69,7 @@ if __name__ == "__main__":
     u.props['mode'] = 0
     u.props['view'] = 0
     u.props['index'] = 1
-    u.props['print'] = 1 # 1 = True, 0 = False
+    u.props['print'] = 0 # 1 = True, 0 = False
 
     u.props['mushaf'] = 1 # 1 = True, 0 = False
     u.props['tafsir'] = 0 # 1 = True,
