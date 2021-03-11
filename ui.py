@@ -7,14 +7,15 @@ class C:
         self.props = {
                 'mode'              : '3',        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
                 'view'              : '2',        #0: Show All, 1: Hide All, 2, firstword
+                'çolor'             : True,
                 'arabic'            : True,
                 'tafsir'            : True,
                 'translation'       : True,
                 'word'              : True,
                 'tajweed'           : False,
                 'random'            : False,
-                'print'             : False,
-                'mushaf'            : False,   #True: Medina, False: Usmani
+                'print'             : False, # True: Mushaf Madina, False: Mushaf Usmani
+                'mushaf'            : False,
                 'firstword'         : True,
                 'firstwordcolor'    : '#FF0000',
                 'align'             : 'right',

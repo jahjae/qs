@@ -21,7 +21,7 @@ def main(environ, start_response):
     u.render('<!DOCTYPE html>')
     u.render('<html>')
     u.render('<head>')
-    u.render('<link href="https://fonts.googleapis.com/css2?family=Scheherazade&display=swap" rel="stylesheet">')
+    u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Amiri&family=Harmattan&family=Lateef&family=Montserrat&family=Open+Sans&family=Scheherazade&display=swap");</style>')
     u.render('<meta name="viewport" content="width=device-width, initial-scale=1.0">')
     u.render('</head>')
     u.render('<body style="padding: 10px; font-family: '+ u.props['arabicfont']+ ';">')
@@ -66,17 +66,20 @@ if __name__ == "__main__":
     print('Loading ...')
 
     #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
-    u.props['mode'] = '3'
-    u.props['view'] = '0'
-    u.props['index'] = '1'
+    u.props['mode'] = 0
+    u.props['view'] = 0
+    u.props['index'] = 1
     u.props['print'] = False
-    u.props['mushaf'] = False
-    u.props['tafsir'] = True
-    u.props['word'] = True
 
-    os.environ['MODE'] = u.props['mode']
-    os.environ['VIEW'] = u.props['view']
-    os.environ['INDEX'] = u.props['index']
+    u.props['mushaf'] = 1 # 1 = True, 0 = False
+    u.props['tafsir'] = True
+    u.props['word'] = 0 # 1 = True, 0 = False
+
+    os.environ['MODE'] = str(u.props['mode'])
+    os.environ['VIEW'] = str(u.props['view'])
+    os.environ['INDEX'] = str(u.props['index'])
+    os.environ['MUSHAF'] = str(u.props['mushaf'])
+    os.environ['WORD'] = str(u.props['word'])
 
     q = Q()
 

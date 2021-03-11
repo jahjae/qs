@@ -38,8 +38,15 @@ class Q:
     def loadCodeHuruf(self, db):
         dbContent = self.data(db)
         for x in dbContent:
-            key = x[7]
-            self.codehuruf[key] = x[7]
+            u = int(x[7])
+
+            try:
+                a = self.codehuruf[u]
+            except Exception:
+                a = []
+
+            a.append([x[0],x[1],x[2],x[3],x[4],x[5]])
+            self.codehuruf[u] = a
 
     def loadSurat(self, db):
         dbContent = self.data(db)
