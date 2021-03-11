@@ -68,6 +68,9 @@ def Info(qdata, u, index):
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> VIEW: '+ VIEW[u.props['view']] +'</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> TAFSIR: '+ LOGICAL[u.props['tafsir']] +'</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> WORD BY WORD: '+ LOGICAL[u.props['word']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> JUZ: '+ str(u.props['juz']) +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> SURA: '+ str(qdata.surat[u.props['surat']][1]) + '</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> PAGE: '+ str(u.props['page']) +'</p>')
 
 
 def quranHuruf(qdata, u, index):
@@ -105,6 +108,10 @@ def quranHuruf(qdata, u, index):
         u.props['arabicfontcolor'] = '#000000'
 
         if x[u.props['mode']] == index:
+            u.props['juz'] = int(x[2])
+            u.props['surat'] = int(x[3])
+            u.props['page'] = int(x[0])
+
             if reset:
                 reset = False
                 halamanSebelum = x[0]

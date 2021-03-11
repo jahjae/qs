@@ -25,12 +25,12 @@ class C:
                 'font'              : 'Harmattan',
                 'fontsize'          : '20px',
                 'index'             : '1',
-                'page'              : '1',
-                'row'               : '1',
-                'juz'               : '1',
-                'surat'             : '1',
-                'ayat'              : '1',
-                'kata'              : '1',
+                'page'              : 1,
+                'row'               : 1,
+                'juz'               : 1,
+                'surat'             : 1,
+                'ayat'              : 1,
+                'kata'              : 1,
             }
 
     def render(self, text):

@@ -50,8 +50,8 @@ class Q:
     def loadSurat(self, db):
         dbContent = self.data(db)
         for x in dbContent:
-            key = x[0]
-            self.surat[key] = {x[1],x[3]}
+            key = int(x[0])
+            self.surat[key] = [x[1],x[3]]
 
     def loadJuz(self, db):
         dbContent = self.data(db)
@@ -229,7 +229,6 @@ class Q:
         u.render('</a>')
 
         return u
-
 
     def mushafHuruf(self, u, huruf):
         u.render('<a style="text-align: '+ u.props['align']+';font-family: '+ u.props['arabicfont']+ ';font-size: '+ u.props['arabicfontsize'] + ';color: '+ u.props['arabicfontcolor'] +';">' + chr(int(huruf)) + '</a>')
