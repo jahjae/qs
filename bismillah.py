@@ -67,6 +67,7 @@ if __name__ == "__main__":
     q = Q() # Quran
 
     print('Loading ...')
+    print('Indexing ...')
 
     #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
     u.props['mode'] = 0
