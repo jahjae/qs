@@ -1,6 +1,5 @@
 
 from init import *
-from qs import *
 import os
 
 def View(qdata, u, index):
@@ -74,7 +73,7 @@ def Info(qdata, u, index):
 
 
 def quranHuruf(qdata, u, index):
-    q = Q()
+    q = qdata
     u.props['mode'] = int(os.environ.get('MODE'))
     u.props['view'] = int(os.environ.get('VIEW'))
     u.props['mushaf'] = int(os.environ.get('MUSHAF'))
@@ -103,7 +102,8 @@ def quranHuruf(qdata, u, index):
     q.barisBaru(u)
     reset = True
 
-    for x in quran:
+
+    for x in quran[1:]:
 
         u.props['arabicfontcolor'] = '#000000'
 

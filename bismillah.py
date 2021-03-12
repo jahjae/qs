@@ -61,8 +61,11 @@ def main(environ, start_response):
     body = ''.join(u.component)
     return [body.encode('utf-8')]
 
+
 if __name__ == "__main__":
     u = C() # User Interface
+    q = Q() # Quran
+
     print('Loading ...')
 
     #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
@@ -84,8 +87,6 @@ if __name__ == "__main__":
     os.environ['PRINT'] = str(u.props['print'])
     os.environ['FIRSTWORD'] = str(u.props['firstword'])
 
-
-    q = Q()
 
     http1 = make_server('', 8000, main)
     print("Serving ..."  )

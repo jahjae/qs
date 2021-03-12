@@ -4,9 +4,7 @@
 #
 
 import csv
-
 from init import *
-from ui import *
 
 class Q:
     def __init__(self):
@@ -205,10 +203,15 @@ class Q:
                             return x[4]
 
     def data(self, db):
+        rows = []
         file = open(db)
         dbContent = csv.reader(file)
         next(dbContent)
-        return dbContent
+
+        for row in dbContent:
+            rows.append(row)
+
+        return rows
 
     def mushafKata(self, u, halaman, ayat, kata):
 
@@ -232,15 +235,4 @@ class Q:
 
     def mushafHuruf(self, u, huruf):
         u.render('<a style="text-align: '+ u.props['align']+';font-family: '+ u.props['arabicfont']+ ';font-size: '+ u.props['arabicfontsize'] + ';color: '+ u.props['arabicfontcolor'] +';">' + chr(int(huruf)) + '</a>')
-        return u
-
-    def nomorAyat(self, u, noayat):
-        num = ''
-        for x in noayat:
-            nomor = PAGENUMBER[x]
-            num = num + chr(nomor)
-
-        u.render('<a>')
-        u.render(chr(1757)+ num)
-        u.render('</a>')
         return u
