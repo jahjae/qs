@@ -1,22 +1,27 @@
 #
 # Quran Parameter
-MODE = {
+MODET = {
     0:  'Page',
     1:  'Row',
     2:  'Juz',
     3:  'Sura',
 }
 
-LOGICAL = {
+LOGICALT = {
     0:  'False',
     1:  'True',
 }
 
-VIEW = {
+VIEWT = {
     0:  'Show All',
     1:  'Hide All',
     2:  'Show only first',
 
+}
+
+MUSHAFT = {
+    0:  'OFF',
+    1:  'ON'
 }
 
 NUMBER = [

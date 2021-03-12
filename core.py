@@ -9,6 +9,9 @@ def View(qdata, u, index):
         u.props['view'] = u.props['view'] + 1
 
     os.environ['VIEW'] = str(u.props['view'])
+    os.environ['INDEX'] = str(u.props['index'])
+
+
 
 def Pertama(qdata, u, index):
     if u.props['firstword'] == 1:
@@ -17,6 +20,7 @@ def Pertama(qdata, u, index):
         u.props['firstword'] = 1
 
     os.environ['FIRSTWORD'] = str(u.props['firstword'])
+    os.environ['INDEX'] = str(u.props['index'])
 
 
 def Quran(qdata, u, index):
@@ -26,6 +30,7 @@ def Quran(qdata, u, index):
         u.props['print'] = 1
 
     os.environ['PRINT'] = str(u.props['print'])
+    os.environ['INDEX'] = str(u.props['index'])
 
 def Tafsir(qdata, u, index):
     if u.props['tafsir'] == 1:
@@ -34,6 +39,7 @@ def Tafsir(qdata, u, index):
         u.props['tafsir'] = 1
 
     os.environ['TAFSIR'] = str(u.props['tafsir'])
+    os.environ['INDEX'] = str(u.props['index'])
 
 def Kata(qdata, u, index):
     if u.props['word'] == 1:
@@ -42,6 +48,7 @@ def Kata(qdata, u, index):
         u.props['word'] = 1
 
     os.environ['WORD'] = str(u.props['word'])
+    os.environ['INDEX'] = str(u.props['index'])
 
 def Mushaf(qdata, u, index):
     if u.props['mushaf'] == 1:
@@ -50,23 +57,27 @@ def Mushaf(qdata, u, index):
         u.props['mushaf'] = 1
 
     os.environ['MUSHAF'] = str(u.props['mushaf'])
+    os.environ['INDEX'] = str(u.props['index'])
 
 def Halaman(qdata, u, index):
     os.environ['MODE'] = '0'
+    os.environ['INDEX'] = str(u.props['index'])
 
 def Juz(qdata, u, index):
     os.environ['MODE'] = '2'
+    os.environ['INDEX'] = str(u.props['index'])
 
 def Surat(qdata, u, index):
     os.environ['MODE'] = '3'
+    os.environ['INDEX'] = str(u.props['index'])
 
 def Info(qdata, u, index):
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> MUSHAF: '+ LOGICAL[u.props['mushaf']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> FIRST WORD: '+ LOGICAL[u.props['firstword']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> MODE: '+ MODE[u.props['mode']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> VIEW: '+ VIEW[u.props['view']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> TAFSIR: '+ LOGICAL[u.props['tafsir']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> WORD BY WORD: '+ LOGICAL[u.props['word']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> MUSHAF: '+ MUSHAFT[u.props['mushaf']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> FIRST WORD: '+ LOGICALT[u.props['firstword']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> MODE: '+ MODET[u.props['mode']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> VIEW: '+ VIEWT[u.props['view']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> TAFSIR: '+ LOGICALT[u.props['tafsir']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> WORD BY WORD: '+ LOGICALT[u.props['word']] +'</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> JUZ: '+ str(u.props['juz']) +'</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> SURA: '+ str(qdata.surat[u.props['surat']][1]) + '</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> PAGE: '+ str(u.props['page']) +'</p>')

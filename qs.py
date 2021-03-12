@@ -166,13 +166,7 @@ class Q:
             result = ''
 
         u.render('<a style="font-size:' + u.props['fontsize'] + ';">')
-        u.render('[')
-        u.render(surat)
-        u.render(':')
-        u.render(ayat)
-        u.render('] ')
-        u.render(result)
-        u.render('</a>')
+        u.render('['+surat+':'+ayat+ '] '+result+ '</a>')
         return u
 
     def artiKata(self, u, surat, ayat, kata):
