@@ -2,6 +2,25 @@
 from init import *
 import os
 
+def Thema(qdata, u, index):
+    if u.props['thema'] == len(COLOR)-1:
+        u.props['thema'] = 0
+    else:
+        u.props['thema'] = u.props['thema'] + 1
+
+    os.environ['THEMA'] = str(u.props['thema'])
+    os.environ['INDEX'] = str(u.props['index'])
+
+    x = u.props['thema']
+    u.props['backgroundcolor'] = COLOR[x][0]
+    u.props['firstwordcolor'] = COLOR[x][1]
+    u.props['arabicfontcolor'] = COLOR[x][2]
+    u.props['fontcolor'] = COLOR[x][3]
+
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
+
+
 def View(qdata, u, index):
     if u.props['view'] == 2:
         u.props['view'] = 0
@@ -11,7 +30,8 @@ def View(qdata, u, index):
     os.environ['VIEW'] = str(u.props['view'])
     os.environ['INDEX'] = str(u.props['index'])
 
-
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 def Pertama(qdata, u, index):
     if u.props['firstword'] == 1:
@@ -21,6 +41,9 @@ def Pertama(qdata, u, index):
 
     os.environ['FIRSTWORD'] = str(u.props['firstword'])
     os.environ['INDEX'] = str(u.props['index'])
+
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 
 def Quran(qdata, u, index):
@@ -32,6 +55,10 @@ def Quran(qdata, u, index):
     os.environ['PRINT'] = str(u.props['print'])
     os.environ['INDEX'] = str(u.props['index'])
 
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
+
+
 def Tafsir(qdata, u, index):
     if u.props['tafsir'] == 1:
         u.props['tafsir'] = 0
@@ -40,6 +67,10 @@ def Tafsir(qdata, u, index):
 
     os.environ['TAFSIR'] = str(u.props['tafsir'])
     os.environ['INDEX'] = str(u.props['index'])
+
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
+
 
 def Kata(qdata, u, index):
     if u.props['word'] == 1:
@@ -50,6 +81,10 @@ def Kata(qdata, u, index):
     os.environ['WORD'] = str(u.props['word'])
     os.environ['INDEX'] = str(u.props['index'])
 
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
+
+
 def Mushaf(qdata, u, index):
     if u.props['mushaf'] == 1:
         u.props['mushaf'] = 0
@@ -59,17 +94,30 @@ def Mushaf(qdata, u, index):
     os.environ['MUSHAF'] = str(u.props['mushaf'])
     os.environ['INDEX'] = str(u.props['index'])
 
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
+
+
 def Halaman(qdata, u, index):
     os.environ['MODE'] = '0'
     os.environ['INDEX'] = str(u.props['index'])
+
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 def Juz(qdata, u, index):
     os.environ['MODE'] = '2'
     os.environ['INDEX'] = str(u.props['index'])
 
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
+
 def Surat(qdata, u, index):
     os.environ['MODE'] = '3'
     os.environ['INDEX'] = str(u.props['index'])
+
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 def Info(qdata, u, index):
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> MUSHAF: '+ MUSHAFT[u.props['mushaf']] +'</p>')
@@ -109,16 +157,17 @@ def quranHuruf(qdata, u, index):
     if u.props['view'] == 1:
         u.props['firstword'] = 0
 
-    u.render('<table style="width: 100%;"><tr><td>')
+    u.render('<table style="padding: 10px; background-color :'+u.props['backgroundcolor']+';width: 100%;"><tr><td>')
     q.barisBaru(u)
     reset = True
 
 
-    for x in quran[1:]:
+    for x in quran[0:]:
 
         u.props['arabicfontcolor'] = '#000000'
 
         if x[u.props['mode']] == index:
+            u.props['index'] = index
             u.props['juz'] = int(x[2])
             u.props['surat'] = int(x[3])
             u.props['page'] = int(x[0])
@@ -189,7 +238,7 @@ def quranHuruf(qdata, u, index):
 
             # show or hide
             if u.props['view']  != 0:
-                u.props['arabicfontcolor'] = '#ffffff'
+                u.props['arabicfontcolor'] = u.props['backgroundcolor']
 
             # first word
             if u.props['firstword'] == 1 and x[5] == '1':

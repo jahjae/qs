@@ -24,6 +24,13 @@ MUSHAFT = {
     1:  'ON'
 }
 
+COLOR = [
+    ['#ffffff','#ff0000','#000000','#000000'],
+    ['#F5F5DC','#ff0000','#000000','#000000'],
+    ['#f8f8ff','#ff0000','#000000','#000000'],
+    ['#ffebff','#ff0000','#000000','#000000']
+]
+
 NUMBER = [
     '0',
     '1',
@@ -79,8 +86,8 @@ PAGENUMBER = {
     '5' : 1637,
     '6' : 1638,
     '7' : 1639,
-    '9' : 1640,
-    '0' : 1641,
+    '8' : 1640,
+    '9' : 1641,
 }
 
 ADDRESS = {
@@ -92,10 +99,10 @@ ADDRESS = {
     '/kata'         : 'Kata',
     '/tafsir'       : 'Tafsir',
     '/quran'        : 'Quran',
-    '/mode'         : 'View',
+    '/view'         : 'View',
     '/info'         : 'Info',
     '/pertama'      : 'Pertama',
-
+    '/thema'        : 'Thema',
 }
 
 HIGHLIGHT = {

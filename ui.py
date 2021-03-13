@@ -8,6 +8,7 @@ class C:
                 'mode'              : 0,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
                 'view'              : 0,        #0: Show All, 1: Hide All, 2, firstword
                 'çolor'             : True,
+                'backgroundcolor'   : '#fffffff',
                 'arabic'            : True,
                 'tafsir'            : 1,
                 'translation'       : True,
@@ -17,12 +18,13 @@ class C:
                 'print'             : 0, # True: Mushaf Madina, False: Mushaf Usmani
                 'mushaf'            : 0,
                 'firstword'         : 1,
-                'firstwordcolor'    : '#FF0000',
+                'firstwordcolor'    : '#ff0000',
                 'align'             : 'right',
                 'arabicfont'        : 'Scheherazade',
                 'arabicfontcolor'   : '#000000',
                 'arabicfontsize'    : '50px',
                 'font'              : 'Harmattan',
+                'fontcolor'         : '#000000',
                 'fontsize'          : '20px',
                 'index'             : '1',
                 'page'              : 1,
@@ -31,6 +33,8 @@ class C:
                 'surat'             : 1,
                 'ayat'              : 1,
                 'kata'              : 1,
+                'title'             : 'QURAN',
+                'thema'             : 0,
             }
 
     def render(self, text):
