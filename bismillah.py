@@ -19,11 +19,11 @@ def main(environ, start_response):
 
     u.component = []
     u.render('<!DOCTYPE html>')
-    u.render('<html>')
+    u.render('<html lang="EN">')
     u.render('<head>')
+    u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
     u.render('<title>'+u.props['title']+' | ' +MODET[u.props['mode']]+ '</title>')
     u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Amiri&family=Harmattan&family=Lateef&family=Montserrat&family=Open+Sans&family=Scheherazade&display=swap");</style>')
-    u.render('<meta name="viewport" content="width=device-width, initial-scale=1.0">')
     u.render('</head>')
     u.render('<body style="font-family: '+ u.props['arabicfont']+ ';">')
     u.render('</body>')

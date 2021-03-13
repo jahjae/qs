@@ -118,7 +118,7 @@ class Q:
         u.render('</td></tr>')
 
         if u.props['tafsir'] == 1:
-            u.render('<tr><td style="border-bottom: 1px solid #fff; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 0.5;">')
+            u.render('<tr><td style="border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 0.5;">')
 
         if u.props['tafsir'] != 1:
             u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 0.5;">')
@@ -133,7 +133,7 @@ class Q:
         u.render('</td></tr>')
 
         if u.props['tafsir'] == 1:
-            u.render('<tr><td style="border-bottom: 1px solid #fff; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+            u.render('<tr><td style="border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
 
         if u.props['tafsir'] != 1 :
             u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
@@ -150,7 +150,7 @@ class Q:
             u.render('<tr><td style=" border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
 
         if u.props['tafsir'] != 1:
-            u.render('<tr><td style=" border-bottom: 1px solid #fff; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+            u.render('<tr><td style=" border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
 
         return u
 
