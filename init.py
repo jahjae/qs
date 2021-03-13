@@ -103,6 +103,7 @@ ADDRESS = {
     '/info'         : 'Info',
     '/pertama'      : 'Pertama',
     '/thema'        : 'Thema',
+    '/menu'         : 'Menu'
 }
 
 HIGHLIGHT = {

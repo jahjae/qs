@@ -1,8 +1,3 @@
-#
-#   Designed by Ir. H. Ismail Umar
-#   Quran Class
-#
-
 import csv
 from init import *
 

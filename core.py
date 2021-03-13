@@ -2,6 +2,20 @@
 from init import *
 import os
 
+def Menu(qdata, u, index):
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
+
+    u.render('<div style="background-color: #ffffff ;bottom: 0; width: 100%; left: 0; right: 0;">')
+    u.render('<table style="background-color: #ffffff ; width: 100%;">')
+    u.render('<tr>')
+    u.render('<td>SEARCH</td>')
+    u.render('<td>MODE</td>')
+    u.render('<td>VIEW</td>')
+    u.render('<td>TAFSIR</td>')
+    u.render('<td>THEME</td>')
+    u.render('</tr></table></div>')
+
 
 def quranHuruf(qdata, u, index):
     q = qdata
@@ -40,7 +54,7 @@ def quranHuruf(qdata, u, index):
     q.barisBaru(u)
     reset = True
 
-    for x in quran[0:]:
+    for x in quran[1:]:
 
         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 

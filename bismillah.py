@@ -65,10 +65,10 @@ def main(environ, start_response):
 
 if __name__ == "__main__":
     u = C() # User Interface
+    print('Loading Data Source ...')
     q = Q() # Quran
 
-    print('Loading ...')
-    print('Indexing ...')
+    print('Generating Data Lake ...')
 
     #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
     u.props['mode'] = 0
