@@ -8,14 +8,17 @@ def Thema(qdata, u, index):
     else:
         u.props['thema'] = u.props['thema'] + 1
 
+    x = u.props['thema']
+
+    os.environ['BACKGROUNDCOLOR'] = COLOR[x][0]
+    os.environ['FIRSTWORDCOLOR'] = COLOR[x][1]
+    os.environ['ARABICFONTCOLOR'] = COLOR[x][2]
+    os.environ['FONTCOLOR'] = COLOR[x][3]
+
     os.environ['THEMA'] = str(u.props['thema'])
     os.environ['INDEX'] = str(u.props['index'])
 
-    x = u.props['thema']
-    u.props['backgroundcolor'] = COLOR[x][0]
-    u.props['firstwordcolor'] = COLOR[x][1]
-    u.props['arabicfontcolor'] = COLOR[x][2]
-    u.props['fontcolor'] = COLOR[x][3]
+    u.props['backgroundcolor'] = os.environ['BACKGROUNDCOLOR']
 
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(qdata, u, noPage)')
@@ -141,7 +144,13 @@ def quranHuruf(qdata, u, index):
     u.props['print'] = int(os.environ.get('PRINT'))
     u.props['firstword'] = int(os.environ.get('FIRSTWORD'))
 
+    u.props['backgroundcolor'] = os.environ.get('BACKGROUNDCOLOR')
+    u.props['firstwordcolor'] = os.environ.get('FIRSTWORDCOLOR')
+    u.props['fontcolor'] = os.environ.get('FONTCOLOR')
     u.props['align'] = 'right'
+
+    u.style('body',{'background-color': u.props['backgroundcolor']})
+
 
     quran = q.huruf
     if u.props['print']:
@@ -157,14 +166,13 @@ def quranHuruf(qdata, u, index):
     if u.props['view'] == 1:
         u.props['firstword'] = 0
 
-    u.render('<table style="padding: 10px; background-color :'+u.props['backgroundcolor']+';width: 100%;"><tr><td>')
+    u.render('<table style="padding: 10px ;width: 100%;"><tr><td>')
     q.barisBaru(u)
     reset = True
 
-
     for x in quran[0:]:
 
-        u.props['arabicfontcolor'] = '#000000'
+        u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
         if x[u.props['mode']] == index:
             u.props['index'] = index
@@ -246,12 +254,12 @@ def quranHuruf(qdata, u, index):
 
             # non ayat
             if x[4] == '0':
-                u.props['arabicfontcolor'] = '#000000'
+                u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
             # Black
             if u.props['print'] != 1:
                 if x[7] == '1758' or  x[7] == '1769':
-                    u.props['arabicfontcolor'] = '#000000'
+                    u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
             # use font QCF
             if u.props['print'] == 1:
@@ -265,7 +273,7 @@ def quranHuruf(qdata, u, index):
                 if x[7] in PAGES:
                     u.props['arabicfont'] = 'Harmattan'
                     u.props['arabicfontsize'] = '30px'
-                    u.props['arabicfontcolor'] = '#000000'
+                    u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
                 # component, unicode huruf
                 q.mushafHuruf(u, x[7])

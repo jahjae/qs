@@ -80,6 +80,12 @@ if __name__ == "__main__":
     u.props['tafsir'] = 0 # 1 = True,
     u.props['word'] = 0 # 1 = True, 0 = False
 
+    u.props['thema'] = 0
+    u.props['backgroundcolor'] = COLOR[0][0]
+    u.props['firstwordcolor'] = COLOR[0][1]
+    u.props['arabicfontcolor'] = COLOR[0][2]
+    u.props['fontcolor'] = COLOR[0][3]
+
     os.environ['MODE'] = str(u.props['mode'])
     os.environ['VIEW'] = str(u.props['view'])
     os.environ['INDEX'] = str(u.props['index'])
@@ -88,6 +94,11 @@ if __name__ == "__main__":
     os.environ['TAFSIR'] = str(u.props['tafsir'])
     os.environ['PRINT'] = str(u.props['print'])
     os.environ['FIRSTWORD'] = str(u.props['firstword'])
+    os.environ['BACKGROUNDCOLOR'] = u.props['backgroundcolor']
+    os.environ['FIRSTWORDCOLOR'] = u.props['firstwordcolor']
+    os.environ['ARABICFONTCOLOR'] = u.props['arabicfontcolor']
+    os.environ['FONTCOLOR'] = u.props['fontcolor']
+
 
 
     http1 = make_server('', 8000, main)
