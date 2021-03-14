@@ -14,13 +14,7 @@ def Info(qdata, u, index):
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> SURA: '+ str(qdata.surat[u.props['surat']][1]) + '</p>')
 
 def Menu(qdata, u, index):
-    noPage = str(u.props['index'])
-    exec(ADDRESS['/']+'(qdata, u, noPage)')
-
-    u.render('<div style="background-color: #ffffff ;top: 0; width: 100%; left: 0; right: 0;">')
     Info(qdata, u, index)
-    u.render('</div>')
-
 
 def quranHuruf(qdata, u, index):
     q = qdata
