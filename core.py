@@ -5,17 +5,43 @@ import os
 def Info(qdata, u, index):
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/mushaf">MUSHAF</a>: '+ MUSHAFT[u.props['mushaf']]+'</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/pertama">FIRST WORD</a>: '+ LOGICALT[u.props['firstword']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> MODE: '+ MODET[u.props['mode']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/mode">MODE</a>: '+ MODET[u.props['mode']] +'</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/view">VIEW</a>: '+ VIEWT[u.props['view']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/tafsir">TRANSLATION</a>: '+ LOGICALT[u.props['tafsir']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/translation">TRANSLATION</a>: '+ LOGICALT[u.props['tafsir']] +'</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/kata">WORD BY WORD</a>: '+ LOGICALT[u.props['word']] +'</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> PAGE: '+ str(u.props['page']) +' / 604</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> JUZ: '+ str(u.props['juz']) +' / 30</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> SURA: '+ str(qdata.surat[u.props['surat']][1]) + ' ' + qdata.surat[u.props['surat']][0] + '</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> SURA: '+ str(u.props['surat'])+' / 114 - ' +str(qdata.surat[u.props['surat']][1]) + ' ' + qdata.surat[u.props['surat']][0]+'</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/theme">THEME</a>: '+ THEMET[u.props['theme']]+'</p>')
 
 def Menu(qdata, u, index):
-    Info(qdata, u, index)
+    os.environ['INDEX'] = str(u.props['index'])
+
+    if u.props['menu'] == 1:
+        u.props['menu'] = 0
+
+        noPage = str(u.props['index'])
+        exec(ADDRESS['/']+'(qdata, u, noPage)')
+    else:
+        u.props['menu'] = 1
+        Info(qdata, u, index)
+
+
+def Mode(qdata, u, index):
+    u.props['menu'] = 0
+    if u.props['mode'] == len(MODET)-1:
+        u.props['mode'] = 0
+    else:
+        u.props['mode'] = u.props['mode'] + 1
+
+    if u.props['mode'] == 1:
+        u.props['mode'] = 2
+
+    os.environ['MODE'] = str(u.props['mode'])
+    os.environ['INDEX'] = str(u.props['index'])
+
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 def quranHuruf(qdata, u, index):
     q = qdata
@@ -173,6 +199,7 @@ def quranHuruf(qdata, u, index):
     return u
 
 def Theme(qdata, u, index):
+    u.props['menu'] = 0
     if u.props['theme'] == len(COLOR)-1:
         u.props['theme'] = 0
     else:
@@ -195,7 +222,8 @@ def Theme(qdata, u, index):
 
 
 def View(qdata, u, index):
-    if u.props['view'] == 2:
+    u.props['menu'] = 0
+    if u.props['view'] == len(VIEWT)-1:
         u.props['view'] = 0
     else:
         u.props['view'] = u.props['view'] + 1
@@ -207,6 +235,7 @@ def View(qdata, u, index):
     exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 def Pertama(qdata, u, index):
+    u.props['menu'] = 0
     if u.props['firstword'] == 1:
         u.props['firstword'] = 0
     else:
@@ -220,6 +249,7 @@ def Pertama(qdata, u, index):
 
 
 def Quran(qdata, u, index):
+    u.props['menu'] = 0
     if u.props['print'] == 1:
         u.props['print'] = 0
     else:
@@ -232,7 +262,8 @@ def Quran(qdata, u, index):
     exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 
-def Tafsir(qdata, u, index):
+def Translation(qdata, u, index):
+    u.props['menu'] = 0
     if u.props['tafsir'] == 1:
         u.props['tafsir'] = 0
     else:
@@ -246,6 +277,7 @@ def Tafsir(qdata, u, index):
 
 
 def Kata(qdata, u, index):
+    u.props['menu'] = 0
     if u.props['word'] == 1:
         u.props['word'] = 0
     else:
@@ -259,6 +291,7 @@ def Kata(qdata, u, index):
 
 
 def Mushaf(qdata, u, index):
+    u.props['menu'] = 0
     if u.props['mushaf'] == 1:
         u.props['mushaf'] = 0
     else:
@@ -267,33 +300,5 @@ def Mushaf(qdata, u, index):
     os.environ['MUSHAF'] = str(u.props['mushaf'])
     os.environ['INDEX'] = str(u.props['index'])
 
-    noPage = str(u.props['index'])
-    exec(ADDRESS['/']+'(qdata, u, noPage)')
-
-
-def Halaman(qdata, u, index):
-    u.props['mode'] = '0'
-    os.environ['MODE'] = u.props['mode']
-    os.environ['INDEX'] = str(u.props['index'])
-
-    u.render('<title>'+u.props['title']+' | ' +MODET[int(u.props['mode'])]+'</title>')
-    noPage = str(u.props['index'])
-    exec(ADDRESS['/']+'(qdata, u, noPage)')
-
-    u.props['mode'] = '2'
-def Juz(qdata, u, index):
-    os.environ['MODE'] = u.props['mode']
-    os.environ['INDEX'] = str(u.props['index'])
-
-    u.render('<title>'+u.props['title']+' | ' +MODET[int(u.props['mode'])]+'</title>')
-    noPage = str(u.props['index'])
-    exec(ADDRESS['/']+'(qdata, u, noPage)')
-
-def Surat(qdata, u, index):
-    u.props['mode'] = '3'
-    os.environ['MODE'] = u.props['mode']
-    os.environ['INDEX'] = str(u.props['index'])
-
-    u.render('<title>'+u.props['title']+' | ' +MODET[int(u.props['mode'])]+'</title>')
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(qdata, u, noPage)')

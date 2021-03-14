@@ -22,7 +22,7 @@ def main(environ, start_response):
     u.render('<html lang="EN">')
     u.render('<head>')
     u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
-    u.render('<title>'+u.props['title']+' | ' +MODET[u.props['mode']]+ '</title>')
+    u.render('<title>'+u.props['title']+'</title>')
     u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Amiri&family=Harmattan&family=Lateef&family=Montserrat&family=Open+Sans&family=Scheherazade&display=swap");</style>')
     u.render('</head>')
     u.render('<body style="font-family: '+ u.props['font']+ ';">')
@@ -30,7 +30,6 @@ def main(environ, start_response):
     error = True
     path = environ['PATH_INFO']
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
-
 
     if path in ADDRESS:
         error = False
@@ -59,8 +58,7 @@ def main(environ, start_response):
         noPage = str(u.props['index'])
         exec(ADDRESS['/']+'(q, u, noPage)')
 
-    u.render('</body>')
-    u.render('</html>')
+    u.render('</body></html>')
     body = ''.join(u.component)
     return [body.encode('utf-8')]
 
@@ -83,6 +81,7 @@ if __name__ == "__main__":
     u.props['word'] = 0 # 1 = True, 0 = False
 
     u.props['theme'] = 0
+    u.props['menu'] = 0
     u.props['backgroundcolor'] = COLOR[0][0]
     u.props['firstwordcolor'] = COLOR[0][1]
     u.props['arabicfontcolor'] = COLOR[0][2]

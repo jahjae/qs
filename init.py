@@ -20,8 +20,8 @@ VIEWT = {
 }
 
 MUSHAFT = {
-    0:  'ON',
-    1:  'OFF'
+    0:  'Hide',
+    1:  'Show'
 }
 
 COLOR = [
@@ -97,18 +97,16 @@ PAGENUMBER = {
 
 ADDRESS = {
     '/'             : 'quranHuruf',
-    '/halaman'      : 'Halaman',
-    '/juz'          : 'Juz',
-    '/surat'        : 'Surat',
     '/mushaf'       : 'Mushaf',
     '/kata'         : 'Kata',
-    '/tafsir'       : 'Tafsir',
+    '/translation'  : 'Translation',
     '/quran'        : 'Quran',
     '/view'         : 'View',
     '/info'         : 'Info',
     '/pertama'      : 'Pertama',
     '/theme'        : 'Theme',
-    '/menu'         : 'Menu'
+    '/menu'         : 'Menu',
+    '/mode'         : 'Mode',
 }
 
 HIGHLIGHT = {
