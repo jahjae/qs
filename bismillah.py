@@ -29,7 +29,6 @@ def main(environ, start_response):
 
     error = True
     path = environ['PATH_INFO']
-    u.render('<header><a href="/menu">'+'>'+'</a></header>')
 
     if path in ADDRESS:
         error = False
@@ -75,6 +74,7 @@ if __name__ == "__main__":
     u.props['view'] = 0
     u.props['index'] = 1
     u.props['print'] = 0 # 1 = True, 0 = False
+    u.props['selected'] = MODET[u.props['mode']]
 
     u.props['mushaf'] = 0 # 1 = True, 0 = False
     u.props['tafsir'] = 0 # 1 = True,
@@ -99,7 +99,6 @@ if __name__ == "__main__":
     os.environ['FIRSTWORDCOLOR'] = u.props['firstwordcolor']
     os.environ['ARABICFONTCOLOR'] = u.props['arabicfontcolor']
     os.environ['FONTCOLOR'] = u.props['fontcolor']
-
 
 
     http1 = make_server('', 8000, main)

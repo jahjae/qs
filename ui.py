@@ -36,7 +36,8 @@ class C:
                 'kata'              : 1,
                 'title'             : 'QURAN',
                 'theme'             : 0,
-                'menu'              : 0,
+                'menu'              : 0,\
+                'selected'          : '',
             }
 
     def render(self, text):

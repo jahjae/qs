@@ -37,6 +37,8 @@ def Mode(qdata, u, index):
     if u.props['mode'] == 1:
         u.props['mode'] = 2
 
+    u.props['selected'] = MODET[u.props['mode']]
+
     os.environ['MODE'] = str(u.props['mode'])
     os.environ['INDEX'] = str(u.props['index'])
 
@@ -59,7 +61,8 @@ def quranHuruf(qdata, u, index):
     u.props['align'] = 'right'
 
     u.style('body',{'background-color': u.props['backgroundcolor']})
-    u.render('<title>'+u.props['title']+' | ' +MODET[u.props['mode']]+'</title>')
+    u.render('<title>'+u.props['title']+'</title>')
+    u.render('<header><a href="/menu">'+'>'+'</a>'+' '+u.props['selected'].upper()+'</header>')
 
 
     quran = q.huruf
@@ -81,7 +84,7 @@ def quranHuruf(qdata, u, index):
     q.barisBaru(u)
     reset = True
 
-    for x in quran[1:]:
+    for x in quran[0:]:
 
         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
