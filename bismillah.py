@@ -25,11 +25,12 @@ def main(environ, start_response):
     u.render('<title>'+u.props['title']+' | ' +MODET[u.props['mode']]+ '</title>')
     u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Amiri&family=Harmattan&family=Lateef&family=Montserrat&family=Open+Sans&family=Scheherazade&display=swap");</style>')
     u.render('</head>')
-    u.render('<body style="font-family: '+ u.props['arabicfont']+ ';">')
-    u.render('</body>')
+    u.render('<body style="font-family: '+ u.props['font']+ ';">')
 
     error = True
     path = environ['PATH_INFO']
+    u.render('<header><a href="/menu">'+'>'+'</a></header>')
+
 
     if path in ADDRESS:
         error = False
@@ -58,6 +59,7 @@ def main(environ, start_response):
         noPage = str(u.props['index'])
         exec(ADDRESS['/']+'(q, u, noPage)')
 
+    u.render('</body>')
     u.render('</html>')
     body = ''.join(u.component)
     return [body.encode('utf-8')]
@@ -66,9 +68,9 @@ def main(environ, start_response):
 if __name__ == "__main__":
     u = C() # User Interface
     print('Loading Data Source ...')
+    print('Generating Data Lake ...')
     q = Q() # Quran
 
-    print('Generating Data Lake ...')
 
     #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
     u.props['mode'] = 0
@@ -76,7 +78,7 @@ if __name__ == "__main__":
     u.props['index'] = 1
     u.props['print'] = 0 # 1 = True, 0 = False
 
-    u.props['mushaf'] = 1 # 1 = True, 0 = False
+    u.props['mushaf'] = 0 # 1 = True, 0 = False
     u.props['tafsir'] = 0 # 1 = True,
     u.props['word'] = 0 # 1 = True, 0 = False
 

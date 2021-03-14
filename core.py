@@ -2,19 +2,24 @@
 from init import *
 import os
 
+def Info(qdata, u, index):
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/mushaf">MUSHAF</a>: '+ MUSHAFT[u.props['mushaf']]+'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/pertama">FIRST WORD</a>: '+ LOGICALT[u.props['firstword']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> MODE: '+ MODET[u.props['mode']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/view">VIEW</a>: '+ VIEWT[u.props['view']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/tafsir">TAFSIR</a>: '+ LOGICALT[u.props['tafsir']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/kata">WORD BY WORD</a>: '+ LOGICALT[u.props['word']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> PAGE: '+ str(u.props['page']) +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> JUZ: '+ str(u.props['juz']) +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> SURA: '+ str(qdata.surat[u.props['surat']][1]) + '</p>')
+
 def Menu(qdata, u, index):
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(qdata, u, noPage)')
 
-    u.render('<div style="background-color: #ffffff ;bottom: 0; width: 100%; left: 0; right: 0;">')
-    u.render('<table style="background-color: #ffffff ; width: 100%;">')
-    u.render('<tr>')
-    u.render('<td>SEARCH</td>')
-    u.render('<td>MODE</td>')
-    u.render('<td>VIEW</td>')
-    u.render('<td>TAFSIR</td>')
-    u.render('<td>THEME</td>')
-    u.render('</tr></table></div>')
+    u.render('<div style="background-color: #ffffff ;top: 0; width: 100%; left: 0; right: 0;">')
+    Info(qdata, u, index)
+    u.render('</div>')
 
 
 def quranHuruf(qdata, u, index):
@@ -50,6 +55,7 @@ def quranHuruf(qdata, u, index):
     if u.props['view'] == 1:
         u.props['firstword'] = 0
 
+    u.render('<div>')
     u.render('<table style="padding: 10px ;width: 100%;"><tr><td>')
     q.barisBaru(u)
     reset = True
@@ -168,6 +174,7 @@ def quranHuruf(qdata, u, index):
             q.artiAyat(u, suratSebelum, ayatSebelum)
 
     u.render('</td></tr></table>')
+    u.render('</div>')
     return u
 
 def Thema(qdata, u, index):
@@ -278,8 +285,8 @@ def Halaman(qdata, u, index):
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(qdata, u, noPage)')
 
-def Juz(qdata, u, index):
     u.props['mode'] = '2'
+def Juz(qdata, u, index):
     os.environ['MODE'] = u.props['mode']
     os.environ['INDEX'] = str(u.props['index'])
 
@@ -295,14 +302,3 @@ def Surat(qdata, u, index):
     u.render('<title>'+u.props['title']+' | ' +MODET[int(u.props['mode'])]+'</title>')
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(qdata, u, noPage)')
-
-def Info(qdata, u, index):
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> MUSHAF: '+ MUSHAFT[u.props['mushaf']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> FIRST WORD: '+ LOGICALT[u.props['firstword']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> MODE: '+ MODET[u.props['mode']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> VIEW: '+ VIEWT[u.props['view']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> TAFSIR: '+ LOGICALT[u.props['tafsir']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> WORD BY WORD: '+ LOGICALT[u.props['word']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> JUZ: '+ str(u.props['juz']) +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> SURA: '+ str(qdata.surat[u.props['surat']][1]) + '</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> PAGE: '+ str(u.props['page']) +'</p>')
