@@ -35,7 +35,7 @@ class C:
                 'ayat'              : 1,
                 'kata'              : 1,
                 'title'             : 'QURAN',
-                'thema'             : 0,
+                'theme'             : 0,
             }
 
     def render(self, text):

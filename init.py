@@ -20,16 +20,21 @@ VIEWT = {
 }
 
 MUSHAFT = {
-    0:  'OFF',
-    1:  'ON'
+    0:  'ON',
+    1:  'OFF'
 }
 
 COLOR = [
     ['#ffffff','#ff0000','#000000','#000000','#bdb76b'],
-    ['#F5F5DC','#ff0000','#000000','#000000','#bdb76b'],
-    ['#f8f8ff','#ff0000','#000000','#000000','#bdb76b'],
-    ['#ffebff','#ff0000','#000000','#000000','#bdb76b']
+    ['#f0ffff','#ff0000','#000000','#000000','#bdb76b'],
+    ['#fff8dc','#ff0000','#000000','#000000','#bdb76b'],
 ]
+
+THEMET = {
+    0: 'White',
+    1: 'Azure',
+    2: 'Cornsilk',
+}
 
 NUMBER = [
     '0',
@@ -102,7 +107,7 @@ ADDRESS = {
     '/view'         : 'View',
     '/info'         : 'Info',
     '/pertama'      : 'Pertama',
-    '/thema'        : 'Thema',
+    '/theme'        : 'Theme',
     '/menu'         : 'Menu'
 }
 

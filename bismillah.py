@@ -82,7 +82,7 @@ if __name__ == "__main__":
     u.props['tafsir'] = 0 # 1 = True,
     u.props['word'] = 0 # 1 = True, 0 = False
 
-    u.props['thema'] = 0
+    u.props['theme'] = 0
     u.props['backgroundcolor'] = COLOR[0][0]
     u.props['firstwordcolor'] = COLOR[0][1]
     u.props['arabicfontcolor'] = COLOR[0][2]

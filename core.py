@@ -7,11 +7,12 @@ def Info(qdata, u, index):
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/pertama">FIRST WORD</a>: '+ LOGICALT[u.props['firstword']] +'</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> MODE: '+ MODET[u.props['mode']] +'</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/view">VIEW</a>: '+ VIEWT[u.props['view']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/tafsir">TAFSIR</a>: '+ LOGICALT[u.props['tafsir']] +'</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/tafsir">TRANSLATION</a>: '+ LOGICALT[u.props['tafsir']] +'</p>')
     u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/kata">WORD BY WORD</a>: '+ LOGICALT[u.props['word']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> PAGE: '+ str(u.props['page']) +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> JUZ: '+ str(u.props['juz']) +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> SURA: '+ str(qdata.surat[u.props['surat']][1]) + '</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> PAGE: '+ str(u.props['page']) +' / 604</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> JUZ: '+ str(u.props['juz']) +' / 30</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> SURA: '+ str(qdata.surat[u.props['surat']][1]) + ' ' + qdata.surat[u.props['surat']][0] + '</p>')
+    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/theme">THEME</a>: '+ THEMET[u.props['theme']]+'</p>')
 
 def Menu(qdata, u, index):
     Info(qdata, u, index)
@@ -171,20 +172,20 @@ def quranHuruf(qdata, u, index):
     u.render('</div>')
     return u
 
-def Thema(qdata, u, index):
-    if u.props['thema'] == len(COLOR)-1:
-        u.props['thema'] = 0
+def Theme(qdata, u, index):
+    if u.props['theme'] == len(COLOR)-1:
+        u.props['theme'] = 0
     else:
-        u.props['thema'] = u.props['thema'] + 1
+        u.props['theme'] = u.props['theme'] + 1
 
-    x = u.props['thema']
+    x = u.props['theme']
 
     os.environ['BACKGROUNDCOLOR'] = COLOR[x][0]
     os.environ['FIRSTWORDCOLOR'] = COLOR[x][1]
     os.environ['ARABICFONTCOLOR'] = COLOR[x][2]
     os.environ['FONTCOLOR'] = COLOR[x][3]
 
-    os.environ['THEMA'] = str(u.props['thema'])
+    os.environ['THEME'] = str(u.props['theme'])
     os.environ['INDEX'] = str(u.props['index'])
 
     u.props['backgroundcolor'] = os.environ['BACKGROUNDCOLOR']
