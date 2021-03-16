@@ -22,13 +22,13 @@ class Q:
         self.loadCodeKata(DATA['kata'])
 
     def loadCodeKata(self, db):
-        dbContent = self.data(db)
+        dbContent = self.kata
         for x in dbContent:
             key = x[6]
             self.codekata[key] = x[6]
 
     def loadCodeHuruf(self, db):
-        dbContent = self.data(db)
+        dbContent = self.huruf
         for x in dbContent:
             u = int(x[7])
 
@@ -142,7 +142,7 @@ class Q:
 
         u.render('</td></tr>')
         if u.props['tafsir'] == 1:
-            u.render('<tr><td style=" border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+            u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
 
         if u.props['tafsir'] != 1:
             u.render('<tr><td style=" border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
@@ -160,7 +160,7 @@ class Q:
         except KeyError:
             result = ''
 
-        u.render('<a style="font-size:' + u.props['fontsize'] + ';">')
+        u.render('<a style="font-color: '+u.props['fontcolor']+'; font-size:' + u.props['fontsize'] + ';">')
         u.render('['+surat+':'+ayat+ '] '+result+ '</a>')
         return u
 
@@ -176,7 +176,7 @@ class Q:
         except KeyError:
             result = ''
 
-        u.render('<a style="font-size:' + u.props['fontsize'] + ';">')
+        u.render('<a style="font-color: '+u.props['fontcolor']+'; font-size:' + u.props['fontsize'] + ';">')
         u.render(result)
         u.render('</a>')
 

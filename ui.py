@@ -38,6 +38,7 @@ class C:
                 'theme'             : 0,
                 'menu'              : 0,\
                 'selected'          : '',
+                'search'            : 0,
             }
 
     def render(self, text):

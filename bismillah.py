@@ -1,16 +1,15 @@
 from wsgiref.simple_server import make_server
 from multiprocessing import *
-
-from core import *
-from init import *
-
-from ui import *
-from qs import *
-
 import sys
 import os
 import urllib.request
 import random
+
+from core import *
+from init import *
+from ui import *
+from qs import *
+
 
 def main(environ, start_response):
     status = '200 OK'
@@ -23,7 +22,7 @@ def main(environ, start_response):
     u.render('<head>')
     u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
     u.render('<title>'+u.props['title']+'</title>')
-    u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Amiri&family=Harmattan&family=Lateef&family=Montserrat&family=Open+Sans&family=Scheherazade&display=swap");</style>')
+    u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Harmattan&family=Lateef&family=Montserrat&family=Open+Sans&family=Scheherazade&display=swap");</style>')
     u.render('</head>')
     u.render('<body style="font-family: '+ u.props['font']+ ';">')
 
@@ -32,6 +31,7 @@ def main(environ, start_response):
 
     if path in ADDRESS:
         error = False
+        u.props['index'] = int(os.environ['INDEX'])
         noPage = str(u.props['index'])
         exec(ADDRESS[path]+'(q, u, noPage)')
 
@@ -39,18 +39,26 @@ def main(environ, start_response):
         if path[1] in NUMBER:
             error = False
             noPage = path[1]
+            u.props['index'] = int(noPage)
+            os.environ['INDEX'] = str(u.props['index'])
             exec(ADDRESS[path[0]]+'(q, u, noPage)')
 
     if len(path) == 3:
         if path[2] in NUMBER:
             error = False
             noPage = path[1:3]
+            u.props['index'] = int(noPage)
+            os.environ['INDEX'] = str(u.props['index'])
+
             exec(ADDRESS[path[0]]+'(q, u, noPage)')
 
     if len(path) == 4:
         if path[3] in NUMBER:
             error = False
             noPage = path[1:4]
+            u.props['index'] = int(noPage)
+            os.environ['INDEX'] = str(u.props['index'])
+
             exec(ADDRESS[path[0]]+'(q, u, noPage)')
 
     if error:
@@ -65,8 +73,6 @@ def main(environ, start_response):
 if __name__ == "__main__":
     u = C() # User Interface
     print('Loading Data Source ...')
-    print('Generating Data Lake ...')
-    q = Q() # Quran
 
 
     #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
@@ -74,11 +80,11 @@ if __name__ == "__main__":
     u.props['view'] = 0
     u.props['index'] = 1
     u.props['print'] = 0 # 1 = True, 0 = False
-    u.props['selected'] = MODET[u.props['mode']]
 
     u.props['mushaf'] = 0 # 1 = True, 0 = False
     u.props['tafsir'] = 0 # 1 = True,
     u.props['word'] = 0 # 1 = True, 0 = False
+    u.props['font'] = 'Harmattan'
 
     u.props['theme'] = 0
     u.props['menu'] = 0
@@ -100,6 +106,12 @@ if __name__ == "__main__":
     os.environ['ARABICFONTCOLOR'] = u.props['arabicfontcolor']
     os.environ['FONTCOLOR'] = u.props['fontcolor']
 
+    u.props['selected'] = MODET[u.props['mode']]
+
+    print('Generating Data Lake ...')
+    q = Q() # Quran
+
+    u.style('a', {'text-decoration': 'none'})
 
     http1 = make_server('', 8000, main)
     print("Serving ..."  )
