@@ -160,7 +160,7 @@ class Q:
         except KeyError:
             result = ''
 
-        u.render('<a style="font-color: '+u.props['fontcolor']+'; font-size:' + u.props['fontsize'] + ';">')
+        u.render('<a style="font-color: '+u.props['fontcolor']+'; font-size:' + TSIZET[u.props['fontsize']] + ';">')
         u.render('['+surat+':'+ayat+ '] '+result+ '</a>')
         return u
 
@@ -176,7 +176,7 @@ class Q:
         except KeyError:
             result = ''
 
-        u.render('<a style="font-color: '+u.props['fontcolor']+'; font-size:' + u.props['fontsize'] + ';">')
+        u.render('<a style="font-color: '+u.props['fontcolor']+'; font-size:' + TSIZE[u.props['fontsize']] + ';">')
         u.render(result)
         u.render('</a>')
 
@@ -216,12 +216,12 @@ class Q:
         if ayat == '0':
             font = 'QCF_BSML'
 
-        u.render('<a style="font-size: '+ u.props['arabicfontsize'] + '; font-family: ' + font + ';color: '+ u.props['arabicfontcolor'] +';">')
+        u.render('<a style="font-size: '+ ASIZET[u.props['arabicfontsize']] + '; font-family: ' + font + ';color: '+ u.props['arabicfontcolor'] +';">')
         u.render(chr(int(kata)))
         u.render('</a>')
 
         return u
 
     def mushafHuruf(self, u, huruf):
-        u.render('<a style="text-align: '+ u.props['align']+';font-family: '+ u.props['arabicfont']+ ';font-size: '+ u.props['arabicfontsize'] + ';color: '+ u.props['arabicfontcolor'] +';">' + chr(int(huruf)) + '</a>')
+        u.render('<a style="text-align: '+ u.props['align']+';font-family: '+ u.props['arabicfont']+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
         return u

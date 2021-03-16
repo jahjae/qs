@@ -20,8 +20,8 @@ def main(environ, start_response):
     u.render('<!DOCTYPE html>')
     u.render('<html lang="EN">')
     u.render('<head>')
-    u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
     u.render('<title>'+u.props['title']+'</title>')
+    u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
     u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Harmattan&family=Lateef&family=Montserrat&family=Open+Sans&family=Scheherazade&display=swap");</style>')
     u.render('</head>')
     u.render('<body style="font-family: '+ u.props['font']+ ';">')
@@ -85,6 +85,8 @@ if __name__ == "__main__":
     u.props['tafsir'] = 0 # 1 = True,
     u.props['word'] = 0 # 1 = True, 0 = False
     u.props['font'] = 'Harmattan'
+    u.props['fontsize'] = 1
+    u.props['arabicfontsize'] = 2
 
     u.props['theme'] = 0
     u.props['menu'] = 0
@@ -92,6 +94,9 @@ if __name__ == "__main__":
     u.props['firstwordcolor'] = COLOR[0][1]
     u.props['arabicfontcolor'] = COLOR[0][2]
     u.props['fontcolor'] = COLOR[0][3]
+
+    os.environ['AFONTSIZE'] = str(u.props['arabicfontsize'])
+    os.environ['FONTSIZE'] = str(u.props['fontsize'])
 
     os.environ['MODE'] = str(u.props['mode'])
     os.environ['VIEW'] = str(u.props['view'])

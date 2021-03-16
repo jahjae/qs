@@ -1,5 +1,19 @@
 #
 # Quran Parameter
+
+ASIZET = {
+    1: '30px',
+    2: '50px',
+    3: '70px',
+    4: '90px',
+}
+
+TSIZET = {
+    1: '20px',
+    2: '25px',
+    3: '30px',
+}
+
 MODET = {
     0:  'Page',
     1:  'Row',
@@ -109,6 +123,8 @@ ADDRESS = {
     '/mode'         : 'Mode',
     '/index'        : 'Index',
     '/search'       : 'Search',
+    '/asize'        : 'Asize',
+    '/tsize'        : 'Tsize',
 }
 
 HIGHLIGHT = {

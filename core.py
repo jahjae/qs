@@ -7,18 +7,30 @@ def Index(q, u, index):
 
     if u.props['mode'] == 0:
         u.props['page'] = u.props['page'] + 1
+        if u.props['page'] == 605:
+            u.props['page'] = 1
+
         u.props['index'] = u.props['page']
 
     if u.props['mode'] == 1:
         u.props['page'] = u.props['page'] + 1
+        if u.props['juz'] == 31:
+            u.props['juz'] = 1
+
         u.props['index'] = u.props['page']
 
     if u.props['mode'] == 2:
         u.props['juz'] = u.props['juz'] + 1
+        if u.props['juz'] == 31:
+            u.props['juz'] = 1
+
         u.props['index'] = u.props['juz']
 
     if u.props['mode'] == 3:
         u.props['surat'] = u.props['surat'] + 1
+        if u.props['surat'] == 115:
+            u.props['surat'] = 1
+
         u.props['index'] = u.props['surat']
 
 
@@ -32,12 +44,11 @@ def Search(q,  u, index):
     u.render('<div>')
     u.render('<table style="padding: 10px ;width: 100%;"><tr><td>')
 
-    u.props['arabicfontsize'] = '50px'
     u.props['arabicfont'] = 'Scheherazade'
 
     for x in range(82):
         q.barisBaru(u)
-        u.render('<a style="font-size: '+u.props['arabicfontsize']+ '; text-decoration: none; font-family: '+ u.props['arabicfont']+';" href="/select/">' +chr(CHAR[x])+ '</a>')
+        u.render('<a style="font-size: '+ASIZET[u.props['arabicfontsize']]+ '; text-decoration: none; font-family: '+ u.props['arabicfont']+';" href="/select/">' +chr(CHAR[x])+ '</a>')
 
     u.render('</td></tr></table></div>')
 
@@ -45,18 +56,20 @@ def Search(q,  u, index):
 def Info(qdata, u, index):
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
 
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/mushaf">MUSHAF</a>: '+ MUSHAFT[u.props['mushaf']]+'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/pertama">FIRST WORD</a>: '+ LOGICALT[u.props['firstword']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/mode">MODE</a>: '+ MODET[u.props['mode']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/index">INDEX</a>: '+ str(u.props['index'])+'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/view">VIEW</a>: '+ VIEWT[u.props['view']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/translation">TRANSLATION</a>: '+ LOGICALT[u.props['tafsir']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/kata">WORD BY WORD</a>: '+ LOGICALT[u.props['word']] +'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/theme">THEME</a>: '+ THEMET[u.props['theme']]+'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> PAGE: '+ str(u.props['page']) +' / 604</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> JUZ: '+ str(u.props['juz']) +' / 30</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> SURA: '+ str(u.props['surat'])+' / 114 - ' +str(qdata.surat[u.props['surat']][1]) + ' ' + qdata.surat[u.props['surat']][0]+'</p>')
-    u.render('<p style="font-size:' + u.props['fontsize'] + ';"> <a href="/search">SEARCH</a></p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/mushaf">MUSHAF</a>: '+ MUSHAFT[u.props['mushaf']]+'</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/asize">MUSHAF SIZE</a>: '+ ASIZET[u.props['arabicfontsize']]+'</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/pertama">FIRST WORD</a>: '+ LOGICALT[u.props['firstword']] +'</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/mode">MODE</a>: '+ MODET[u.props['mode']] +'</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/index">INDEX</a>: '+ str(u.props['index'])+'</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/view">VIEW</a>: '+ VIEWT[u.props['view']] +'</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/translation">TRANSLATION</a>: '+ LOGICALT[u.props['tafsir']] +'</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/tsize">TRANSLATION SIZE</a>: '+ TSIZET[u.props['fontsize']]+'</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/kata">WORD BY WORD</a>: '+ LOGICALT[u.props['word']] +'</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/theme">THEME</a>: '+ THEMET[u.props['theme']]+'</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> PAGE: '+ str(u.props['page']) +' / 604</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> JUZ: '+ str(u.props['juz']) +' / 30</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> SURA: '+ str(u.props['surat'])+' / 114 - ' +str(qdata.surat[u.props['surat']][1]) + ' ' + qdata.surat[u.props['surat']][0]+'</p>')
+    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/search">SEARCH</a></p>')
 
 def Menu(qdata, u, index):
     os.environ['INDEX'] = str(u.props['index'])
@@ -106,6 +119,9 @@ def quranHuruf(q, u, index):
     u.props['print'] = int(os.environ.get('PRINT'))
     u.props['firstword'] = int(os.environ.get('FIRSTWORD'))
     u.props['index'] = int(os.environ.get('INDEX'))
+
+    u.props['arabicfontsize'] = int(os.environ.get('AFONTSIZE'))
+    u.props['fontsize'] = int(os.environ.get('FONTSIZE'))
 
     u.props['backgroundcolor'] = os.environ.get('BACKGROUNDCOLOR')
     u.props['firstwordcolor'] = os.environ.get('FIRSTWORDCOLOR')
@@ -232,11 +248,11 @@ def quranHuruf(q, u, index):
 
 #           use font Scheherazade and Harmattan for Numberd
             if u.props['print'] != 1:
-                u.props['arabicfontsize'] = '50px'
+                u.props['arabicfontsize'] = int(os.environ.get('AFONTSIZE'))
                 u.props['arabicfont'] = 'Scheherazade'
                 if x[7] in PAGES:
                     u.props['arabicfont'] = 'Harmattan'
-                    u.props['arabicfontsize'] = '30px'
+                    u.props['arabicfontsize'] = 1
                     u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
                 # component, unicode huruf
@@ -249,6 +265,34 @@ def quranHuruf(q, u, index):
 
     u.render('</td></tr></table></div>')
     return u
+
+def Asize(qdata, u, index):
+    u.props['menu'] = 0
+
+    u.props['arabicfontsize'] = u.props['arabicfontsize'] + 1
+
+    if u.props['arabicfontsize'] == len(ASIZET)+1:
+        u.props['arabicfontsize'] = 1
+
+    os.environ['AFONTSIZE'] = str(u.props['arabicfontsize'])
+    os.environ['INDEX'] = str(u.props['index'])
+
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
+
+def Tsize(qdata, u, index):
+    u.props['menu'] = 0
+
+    u.props['fontsize'] = u.props['fontsize'] + 1
+
+    if u.props['fontsize'] == len(TSIZET)+1:
+        u.props['fontsize'] = 1
+
+    os.environ['FONTSIZE'] = str(u.props['fontsize'])
+    os.environ['INDEX'] = str(u.props['index'])
+
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 def Theme(qdata, u, index):
     u.props['menu'] = 0
