@@ -23,13 +23,13 @@ class Q:
 
     def loadCodeKata(self, db):
         dbContent = self.kata
-        for x in dbContent:
+        for x in dbContent[0:]:
             key = x[6]
             self.codekata[key] = x[6]
 
     def loadCodeHuruf(self, db):
         dbContent = self.huruf
-        for x in dbContent:
+        for x in dbContent[0:]:
             u = int(x[7])
 
             try:

@@ -16,7 +16,7 @@ class C:
                 'word'              : 1,
                 'tajweed'           : False,
                 'random'            : False,
-                'print'             : 0, # True: Mushaf Madina, False: Mushaf Usmani
+                'print'             : 0,        # True: Mushaf Madina, False: Mushaf Usmani
                 'mushaf'            : 0,
                 'firstword'         : 1,
                 'firstwordcolor'    : '',
