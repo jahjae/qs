@@ -53,38 +53,39 @@ def Search(q,  u, index):
     u.render('</td></tr></table></div>')
 
 
-def Info(qdata, u, index):
+def Info(q, u, index):
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
+    u.style('p', {'font-size': TSIZET[1]})
 
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/mushaf">MUSHAF</a>: '+ MUSHAFT[u.props['mushaf']]+'</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/asize">MUSHAF SIZE</a>: '+ ASIZET[u.props['arabicfontsize']]+'</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/pertama">FIRST WORD</a>: '+ LOGICALT[u.props['firstword']] +'</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/mode">MODE</a>: '+ MODET[u.props['mode']] +'</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/index">INDEX</a>: '+ str(u.props['index'])+'</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/view">VIEW</a>: '+ VIEWT[u.props['view']] +'</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/translation">TRANSLATION</a>: '+ LOGICALT[u.props['tafsir']] +'</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/tsize">TRANSLATION SIZE</a>: '+ TSIZET[u.props['fontsize']]+'</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/kata">WORD BY WORD</a>: '+ LOGICALT[u.props['word']] +'</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/theme">THEME</a>: '+ THEMET[u.props['theme']]+'</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> PAGE: '+ str(u.props['page']) +' / 604</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> JUZ: '+ str(u.props['juz']) +' / 30</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> SURA: '+ str(u.props['surat'])+' / 114 - ' +str(qdata.surat[u.props['surat']][1]) + ' ' + qdata.surat[u.props['surat']][0]+'</p>')
-    u.render('<p style="font-size:' + TSIZET[u.props['fontsize']] + ';"> <a href="/search">SEARCH</a></p>')
+    u.render('<p> <a href="/mushaf">MUSHAF</a>: '           +MUSHAFT[u.props['mushaf']]+'</p>')
+    u.render('<p> <a href="/asize">MUSHAF SIZE</a>: '       +ASIZET[u.props['arabicfontsize']]+'</p>')
+    u.render('<p> <a href="/pertama">FIRST WORD</a>: '      +LOGICALT[u.props['firstword']] +'</p>')
+    u.render('<p> <a href="/mode">MODE</a>: '               +MODET[u.props['mode']] +'</p>')
+    u.render('<p> <a href="/index">INDEX</a>: '             +str(u.props['index'])+'</p>')
+    u.render('<p> <a href="/view">VIEW</a>: '               +VIEWT[u.props['view']] +'</p>')
+    u.render('<p> <a href="/translation">TRANSLATION</a>: ' +LOGICALT[u.props['tafsir']] +'</p>')
+    u.render('<p> <a href="/tsize">TRANSLATION SIZE</a>: '  +TSIZET[u.props['fontsize']]+'</p>')
+    u.render('<p> <a href="/kata">WORD BY WORD</a>: '       +LOGICALT[u.props['word']] +'</p>')
+    u.render('<p> <a href="/theme">THEME</a>: '             +THEMET[u.props['theme']]+'</p>')
+    u.render('<p> PAGE: '   +str(u.props['page'])           +' / 604</p>')
+    u.render('<p> JUZ: '    +str(u.props['juz'])            +' / 30</p>')
+    u.render('<p> SURA: '   +str(u.props['surat'])          +' / 114 - ' +str(q.surat[u.props['surat']][1]) + ' ' + q.surat[u.props['surat']][0]+'</p>')
+    u.render('<p> <a href="/search">SEARCH</a></p>')
 
-def Menu(qdata, u, index):
+def Menu(q, u, index):
     os.environ['INDEX'] = str(u.props['index'])
 
     if u.props['menu'] == 1:
         u.props['menu'] = 0
 
         noPage = str(u.props['index'])
-        exec(ADDRESS['/']+'(qdata, u, noPage)')
+        exec(ADDRESS['/']+'(q, u, noPage)')
     else:
         u.props['menu'] = 1
-        Info(qdata, u, index)
+        Info(q, u, index)
 
 
-def Mode(qdata, u, index):
+def Mode(q, u, index):
     u.props['menu'] = 0
     if u.props['mode'] == len(MODET)-1:
         u.props['mode'] = 0
@@ -108,7 +109,7 @@ def Mode(qdata, u, index):
     os.environ['INDEX'] = str(u.props['index'])
 
     noPage = str(u.props['index'])
-    exec(ADDRESS['/']+'(qdata, u, noPage)')
+    exec(ADDRESS['/']+'(q, u, noPage)')
 
 def quranHuruf(q, u, index):
     u.props['mode'] = int(os.environ.get('MODE'))
