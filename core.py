@@ -5,12 +5,13 @@ import random
 
 
 def Daily(q, u, index):
+    u.props['menu'] = 0
+    
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
     u.style('p', {'font-size': TSIZET[2],'text-align': 'center','line-height': '1',})
 
-    u.props['menu'] = 0
-    s = random.randint(0, 114)
-    a = random.randint(0, int(q.surat[s][0]))
+    s = random.randint(1, 114)
+    a = random.randint(1, int(q.surat[s][0]))
     u.render('<p><a>'+q.artiayat[s][a]+'</a></p>')
     u.render('<p>'+q.surat[s][1]+' '+str(s)+':'+str(a)+ '/'+q.surat[s][0]+'</p>')
 
