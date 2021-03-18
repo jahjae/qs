@@ -16,8 +16,8 @@ def Daily(q, u, index):
     a = random.randint(1, int(q.surat[s][0]))
 
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
-    u.render('<table style="width: 100%;"><tr><td style="text-align: center; line-height: 1.2">')
     u.render('<p></p>')
+    u.render('<table style="padding: 10px; width: 100%;"><tr><td style="text-align: center; line-height: 1.2">')
     kataSebelum = ''
     for x in q.huruf[0:]:
         if x[3] == str(s):
@@ -37,8 +37,8 @@ def Daily(q, u, index):
                 if u.props['firstword'] == 1 and x[5] == '1':
                     u.props['arabicfontcolor'] = u.props['firstwordcolor']
 
-                u.props['arabicfontsize'] = 2
-                u.props['arabicfont'] = 'Scheherazade'
+                u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
+                u.props['arabicfont'] = os.environ.get('ARABICFONT')
                 if x[7] in PAGES:
                     u.props['arabicfontsize'] = 1
                     u.props['arabicfont'] = 'Harmattan'
@@ -50,11 +50,15 @@ def Daily(q, u, index):
     u.props['index'] = s
     u.props['mode'] = 3
 
+    u.props['fontsize'] = int(os.environ.get('FONTSIZE'))
     os.environ['MODE'] = str(u.props['mode'])
     os.environ['INDEX'] = str(u.props['index'])
 
-    u.style('p', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1',})
-    u.render('<p><a>'+q.artiayat[s][a]+'</a></p>')
+
+    u.style('p', {'padding': '10px','font-size': TSIZET[u.props['fontsize']],'text-align': 'center','line-height': '1',})
+    u.render('<p>'+q.artiayat[s][a]+'</p>')
+
+    u.style('p', {'padding': '0px','font-size': TSIZET[u.props['fontsize']],'text-align': 'center','line-height': '1',})
     u.render('<p>'+q.surat[s][1]+' '+str(s)+':'+str(a)+'</p>')
 
 
@@ -181,7 +185,7 @@ def quranHuruf(q, u, index):
     u.props['firstword'] = int(os.environ.get('FIRSTWORD'))
     u.props['index'] = int(os.environ.get('INDEX'))
 
-    u.props['arabicfontsize'] = int(os.environ.get('AFONTSIZE'))
+    u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
     u.props['fontsize'] = int(os.environ.get('FONTSIZE'))
 
     u.props['backgroundcolor'] = os.environ.get('BACKGROUNDCOLOR')
@@ -308,8 +312,8 @@ def quranHuruf(q, u, index):
 
 #           use font Scheherazade and Harmattan for Numberd
             if u.props['print'] != 1:
-                u.props['arabicfontsize'] = int(os.environ.get('AFONTSIZE'))
-                u.props['arabicfont'] = 'Scheherazade'
+                u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
+                u.props['arabicfont'] = os.environ.get('ARABICFONT')
                 if x[7] in PAGES:
                     u.props['arabicfont'] = 'Harmattan'
                     u.props['arabicfontsize'] = 1
@@ -334,7 +338,7 @@ def Asize(qdata, u, index):
     if u.props['arabicfontsize'] == len(ASIZET)+1:
         u.props['arabicfontsize'] = 1
 
-    os.environ['AFONTSIZE'] = str(u.props['arabicfontsize'])
+    os.environ['ARABICFONTSIZE'] = str(u.props['arabicfontsize'])
     os.environ['INDEX'] = str(u.props['index'])
 
     noPage = str(u.props['index'])

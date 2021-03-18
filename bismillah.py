@@ -87,6 +87,7 @@ if __name__ == "__main__":
     u.props['word'] = 0 # 1 = True, 0 = False
     u.props['font'] = 'Harmattan'
     u.props['fontsize'] = 1
+    u.props['arabicfont'] = 'Scheherazade'
     u.props['arabicfontsize'] = 2
 
     u.props['theme'] = 0
@@ -96,7 +97,9 @@ if __name__ == "__main__":
     u.props['arabicfontcolor'] = COLOR[0][2]
     u.props['fontcolor'] = COLOR[0][3]
 
-    os.environ['AFONTSIZE'] = str(u.props['arabicfontsize'])
+    os.environ['ARABICFONT'] = str(u.props['arabicfont'])
+    os.environ['ARABICFONTSIZE'] = str(u.props['arabicfontsize'])
+    os.environ['FONT'] = str(u.props['font'])
     os.environ['FONTSIZE'] = str(u.props['fontsize'])
 
     os.environ['MODE'] = str(u.props['mode'])
