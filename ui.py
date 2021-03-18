@@ -34,7 +34,7 @@ class C:
                 'surat'             : 1,
                 'ayat'              : 1,
                 'kata'              : 1,
-                'title'             : 'QURAN',
+                'title'             : 'AL QURAN',
                 'theme'             : 0,
                 'menu'              : 0,\
                 'selected'          : '',

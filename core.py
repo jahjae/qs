@@ -7,7 +7,6 @@ import random
 def Daily(q, u, index):
     u.props['menu'] = 1
 
-    u.render('<header><a href="/menu">'+'>'+'</a></header>')
     u.style('a', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1',})
     u.style('p', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1',})
 
@@ -16,8 +15,9 @@ def Daily(q, u, index):
     s = random.randint(1, 114)
     a = random.randint(1, int(q.surat[s][0]))
 
-    u.style('p', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1.2',})
-    u.render('<p>')
+    u.render('<header><a href="/menu">'+'>'+'</a></header>')
+    u.render('<table style="width: 100%;"><tr><td style="text-align: center; line-height: 1.2">')
+    u.render('<p></p>')
     kataSebelum = ''
     for x in q.huruf[0:]:
         if x[3] == str(s):
@@ -45,7 +45,7 @@ def Daily(q, u, index):
 
                 q.mushafHuruf(u, x[7])
 
-    u.render('</p>')
+    u.render('</td></tr></table>')
 
     u.props['index'] = s
     u.props['mode'] = 3
@@ -55,7 +55,7 @@ def Daily(q, u, index):
 
     u.style('p', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1',})
     u.render('<p><a>'+q.artiayat[s][a]+'</a></p>')
-    u.render('<p>'+q.surat[s][1]+' '+str(s)+':'+str(a)+ ' / JUZ : '+j+'  PAGE: '+p+'  ROW: '+r+'</p>')
+    u.render('<p>'+q.surat[s][1]+' '+str(s)+':'+str(a)+'</p>')
 
 
 def Dictio(q, u, index):
@@ -191,7 +191,6 @@ def quranHuruf(q, u, index):
 
     u.style('body',{'background-color': u.props['backgroundcolor']})
     u.render('<header><a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index'])+'</header>')
-
 
     quran = q.huruf
     if u.props['print']:
