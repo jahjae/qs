@@ -121,10 +121,11 @@ ADDRESS = {
     '/theme'        : 'Theme',
     '/menu'         : 'Menu',
     '/mode'         : 'Mode',
-    '/index'        : 'Index',
+    '/goto'         : 'Goto',
     '/search'       : 'Search',
     '/asize'        : 'Asize',
     '/tsize'        : 'Tsize',
+    '/daily'        : 'Daily',
 }
 
 HIGHLIGHT = {

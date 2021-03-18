@@ -1,8 +1,24 @@
 
 from init import *
 import os
+import random
 
-def Index(q, u, index):
+
+def Daily(q, u, index):
+    u.render('<header><a href="/menu">'+'>'+'</a></header>')
+    u.style('p', {'font-size': TSIZET[1], 'text-align': 'center'})
+
+    u.props['menu'] = 0
+    s = random.randint(0, 114)
+    a = random.randint(0, int(q.surat[s][0]))
+    u.render('<p><a>'+q.artiayat[s][a]+'</a></p>')
+    u.render('<p>'+q.surat[s][1]+' '+str(s)+':'+str(a)+ '/'+q.surat[s][0]+'</p>')
+
+
+def Dictio(q, u, index):
+    pass
+
+def Goto(q, u, index):
     u.props['menu'] = 0
 
     if u.props['mode'] == 0:
@@ -61,9 +77,10 @@ def Info(q, u, index):
     u.render('<p> <a href="/asize">MUSHAF SIZE</a>: '       +ASIZET[u.props['arabicfontsize']]+'</p>')
     u.render('<p> <a href="/pertama">FIRST WORD</a>: '      +LOGICALT[u.props['firstword']] +'</p>')
     u.render('<p> <a href="/mode">MODE</a>: '               +MODET[u.props['mode']] +'</p>')
-    u.render('<p> <a href="/index">INDEX</a>: '             +str(u.props['index'])+'</p>')
+    u.render('<p> <a href="/goto">GOTO</a>: '             +str(u.props['index'])+'</p>')
     u.render('<p> <a href="/view">VIEW</a>: '               +VIEWT[u.props['view']] +'</p>')
     u.render('<p> <a href="/translation">TRANSLATION</a>: ' +LOGICALT[u.props['tafsir']] +'</p>')
+    u.render('<p> <a href="/daily">DAILY AYAT</a></p>')
     u.render('<p> <a href="/tsize">TRANSLATION SIZE</a>: '  +TSIZET[u.props['fontsize']]+'</p>')
     u.render('<p> <a href="/kata">WORD BY WORD</a>: '       +LOGICALT[u.props['word']] +'</p>')
     u.render('<p> <a href="/theme">THEME</a>: '             +THEMET[u.props['theme']]+'</p>')
