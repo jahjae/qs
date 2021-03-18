@@ -5,15 +5,57 @@ import random
 
 
 def Daily(q, u, index):
-    u.props['menu'] = 0
-    
+    u.props['menu'] = 1
+
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
-    u.style('p', {'font-size': TSIZET[2],'text-align': 'center','line-height': '1',})
+    u.style('a', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1',})
+    u.style('p', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1',})
+
+    u.props['arabicfontsize'] = 2
 
     s = random.randint(1, 114)
     a = random.randint(1, int(q.surat[s][0]))
+
+    u.style('p', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1.2',})
+    u.render('<p>')
+    kataSebelum = ''
+    for x in q.huruf[0:]:
+        if x[3] == str(s):
+            if x[4] == str(a):
+                p = x[0]
+                r = x[1]
+                j = x[2]
+                kataBerikut = q.compare(x[5], kataSebelum)
+
+                if kataBerikut:
+                    kataSebelum = x[5]
+                    q.spasiBaru(u)
+
+                u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+
+                # first word
+                if u.props['firstword'] == 1 and x[5] == '1':
+                    u.props['arabicfontcolor'] = u.props['firstwordcolor']
+
+                u.props['arabicfontsize'] = 2
+                u.props['arabicfont'] = 'Scheherazade'
+                if x[7] in PAGES:
+                    u.props['arabicfontsize'] = 1
+                    u.props['arabicfont'] = 'Harmattan'
+
+                q.mushafHuruf(u, x[7])
+
+    u.render('</p>')
+
+    u.props['index'] = s
+    u.props['mode'] = 3
+
+    os.environ['MODE'] = str(u.props['mode'])
+    os.environ['INDEX'] = str(u.props['index'])
+
+    u.style('p', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1',})
     u.render('<p><a>'+q.artiayat[s][a]+'</a></p>')
-    u.render('<p>'+q.surat[s][1]+' '+str(s)+':'+str(a)+ '/'+q.surat[s][0]+'</p>')
+    u.render('<p>'+q.surat[s][1]+' '+str(s)+':'+str(a)+ ' / JUZ : '+j+'  PAGE: '+p+'  ROW: '+r+'</p>')
 
 
 def Dictio(q, u, index):
@@ -148,7 +190,7 @@ def quranHuruf(q, u, index):
     u.props['align'] = 'right'
 
     u.style('body',{'background-color': u.props['backgroundcolor']})
-    u.render('<header><a href="/menu">'+'>'+'</a>'+' '+u.props['selected'].upper()+' '+str(u.props['index'])+'</header>')
+    u.render('<header><a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index'])+'</header>')
 
 
     quran = q.huruf

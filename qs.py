@@ -18,18 +18,17 @@ class Q:
         self.loadHalaman(DATA['halaman'])
         self.loadArtiAyat(DATA['artiayat'])
         self.loadArtiKata(DATA['artikata'])
-        self.loadCodeHuruf(DATA['huruf'])
-        self.loadCodeKata(DATA['kata'])
+        self.loadCodeHuruf()
+        self.loadCodeKata()
 
-    def loadCodeKata(self, db):
+    def loadCodeKata(self):
         dbContent = self.kata
-        for x in dbContent[0:]:
+        for x in self.kata[0:]:
             key = x[6]
             self.codekata[key] = x[6]
 
-    def loadCodeHuruf(self, db):
-        dbContent = self.huruf
-        for x in dbContent[0:]:
+    def loadCodeHuruf(self):
+        for x in self.huruf[0:]:
             u = int(x[7])
 
             try:
@@ -176,7 +175,7 @@ class Q:
         except KeyError:
             result = ''
 
-        u.render('<a style="font-color: '+u.props['fontcolor']+'; font-size:' + TSIZE[u.props['fontsize']] + ';">')
+        u.render('<a style="font-color: '+u.props['fontcolor']+'; font-size:' + TSIZET[u.props['fontsize']] + ';">')
         u.render(result)
         u.render('</a>')
 
