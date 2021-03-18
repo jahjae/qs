@@ -6,7 +6,7 @@ import random
 
 def Daily(q, u, index):
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
-    u.style('p', {'font-size': TSIZET[1], 'text-align': 'center'})
+    u.style('p', {'font-size': TSIZET[2],'text-align': 'center','line-height': '1',})
 
     u.props['menu'] = 0
     s = random.randint(0, 114)
@@ -77,7 +77,7 @@ def Info(q, u, index):
     u.render('<p> <a href="/asize">MUSHAF SIZE</a>: '       +ASIZET[u.props['arabicfontsize']]+'</p>')
     u.render('<p> <a href="/pertama">FIRST WORD</a>: '      +LOGICALT[u.props['firstword']] +'</p>')
     u.render('<p> <a href="/mode">MODE</a>: '               +MODET[u.props['mode']] +'</p>')
-    u.render('<p> <a href="/goto">GOTO</a>: '             +str(u.props['index'])+'</p>')
+    u.render('<p> <a href="/goto">GOTO</a>: '               +str(u.props['index'])+'</p>')
     u.render('<p> <a href="/view">VIEW</a>: '               +VIEWT[u.props['view']] +'</p>')
     u.render('<p> <a href="/translation">TRANSLATION</a>: ' +LOGICALT[u.props['tafsir']] +'</p>')
     u.render('<p> <a href="/daily">DAILY AYAT</a></p>')
