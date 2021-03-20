@@ -43,7 +43,7 @@ class Q:
         dbContent = self.data(db)
         for x in dbContent:
             key = int(x[0])
-            self.surat[key] = [x[1],x[3]]
+            self.surat[key] = [x[1],x[3],x[4],x[5],x[6]]
 
     def loadJuz(self, db):
         dbContent = self.data(db)
@@ -101,7 +101,9 @@ class Q:
             return False
 
     def spasiBaru(self, u):
-        u.render(' ')
+        u.render(chr(32))
+        u.render(chr(32))
+        u.render(chr(32))
         return u
 
     def kataBaru(self, u):
@@ -202,7 +204,6 @@ class Q:
         return rows
 
     def mushafKata(self, u, halaman, ayat, kata):
-
         if len(halaman) == 1:
             font = 'QCF_P00' + halaman
 
@@ -222,5 +223,5 @@ class Q:
         return u
 
     def mushafHuruf(self, u, huruf):
-        u.render('<a style="text-align: '+ u.props['align']+';font-family: '+ u.props['arabicfont']+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+        u.render('<a style="line-height: 1.2; ext-align: '+ u.props['align']+';font-family: '+ u.props['arabicfont']+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
         return u

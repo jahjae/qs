@@ -3,6 +3,16 @@ from init import *
 import os
 import random
 
+def Surat(q, u, index):
+    u.props['menu'] = 1
+    u.render('<header><a href="/menu">'+'>'+'</a></header>')
+
+    u.style('p', {'padding':'10px','font-size': TSIZET[u.props['fontsize']],'text-align': 'left','line-height': '1',})
+
+    for x in q.surat:
+        u.render('<p>'+str(x)+'. '+q.surat[x][1]+', '+q.surat[x][0]+', '+q.surat[x][2]+', '+q.surat[x][4]+'</p>')
+
+
 
 def Daily(q, u, index):
     u.props['menu'] = 1
@@ -10,7 +20,7 @@ def Daily(q, u, index):
     u.style('a', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1',})
     u.style('p', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1',})
 
-    u.props['arabicfontsize'] = 2
+    u.props['arabicfontsize'] = os.environ.get('ARABICFONTSIZE')
 
     s = random.randint(1, 114)
     a = random.randint(1, int(q.surat[s][0]))
@@ -40,7 +50,7 @@ def Daily(q, u, index):
                 u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
                 u.props['arabicfont'] = os.environ.get('ARABICFONT')
                 if x[7] in PAGES:
-                    u.props['arabicfontsize'] = 1
+                    u.props['arabicfontsize'] = u.props['arabicfontsize'] - 1
                     u.props['arabicfont'] = 'Harmattan'
 
                 q.mushafHuruf(u, x[7])
@@ -55,11 +65,13 @@ def Daily(q, u, index):
     os.environ['INDEX'] = str(u.props['index'])
 
 
-    u.style('p', {'padding': '10px','font-size': TSIZET[u.props['fontsize']],'text-align': 'center','line-height': '1',})
+    u.style('p', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'center','line-height': '1',})
     u.render('<p>'+q.artiayat[s][a]+'</p>')
 
-    u.style('p', {'padding': '0px','font-size': TSIZET[u.props['fontsize']],'text-align': 'center','line-height': '1',})
+    u.style('p', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'center','line-height': '1',})
     u.render('<p>'+q.surat[s][1]+' '+str(s)+':'+str(a)+'</p>')
+
+    u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
 
 
 def Dictio(q, u, index):
@@ -119,7 +131,9 @@ def Search(q,  u, index):
 def Info(q, u, index):
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
     u.style('p', {'font-size': TSIZET[1]})
+    u.style('a', {'text-decoration': 'none'})
 
+    u.render('<p> <a href="/daily">DAILY AYAT</a></p>')
     u.render('<p> <a href="/mushaf">MUSHAF</a>: '           +MUSHAFT[u.props['mushaf']]+'</p>')
     u.render('<p> <a href="/asize">MUSHAF SIZE</a>: '       +ASIZET[u.props['arabicfontsize']]+'</p>')
     u.render('<p> <a href="/pertama">FIRST WORD</a>: '      +LOGICALT[u.props['firstword']] +'</p>')
@@ -127,13 +141,12 @@ def Info(q, u, index):
     u.render('<p> <a href="/goto">GOTO</a>: '               +str(u.props['index'])+'</p>')
     u.render('<p> <a href="/view">VIEW</a>: '               +VIEWT[u.props['view']] +'</p>')
     u.render('<p> <a href="/translation">TRANSLATION</a>: ' +LOGICALT[u.props['tafsir']] +'</p>')
-    u.render('<p> <a href="/daily">DAILY AYAT</a></p>')
     u.render('<p> <a href="/tsize">TRANSLATION SIZE</a>: '  +TSIZET[u.props['fontsize']]+'</p>')
     u.render('<p> <a href="/kata">WORD BY WORD</a>: '       +LOGICALT[u.props['word']] +'</p>')
     u.render('<p> <a href="/theme">THEME</a>: '             +THEMET[u.props['theme']]+'</p>')
-    u.render('<p> PAGE: '   +str(u.props['page'])           +' / 604</p>')
-    u.render('<p> JUZ: '    +str(u.props['juz'])            +' / 30</p>')
-    u.render('<p> SURA: '   +str(u.props['surat'])          +' / 114 - ' +str(q.surat[u.props['surat']][1]) + ' ' + q.surat[u.props['surat']][0]+'</p>')
+    u.render('<p> <a href="/halaman">PAGE</a>: '              +str(u.props['page'])           +' / 604</p>')
+    u.render('<p> <a href="/juz">JUZ</a>: '               +str(u.props['juz'])            +' / 30</p>')
+    u.render('<p> <a href="/surat">SURA</a>: '              +str(u.props['surat'])          +' / 114 - ' +str(q.surat[u.props['surat']][1]) + ' ' + q.surat[u.props['surat']][0]+'</p>')
     u.render('<p> <a href="/search">SEARCH</a></p>')
 
 def Menu(q, u, index):
@@ -194,13 +207,16 @@ def quranHuruf(q, u, index):
     u.props['align'] = 'right'
 
     u.style('body',{'background-color': u.props['backgroundcolor']})
-    u.render('<header><a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index'])+'</header>')
+
+    if u.props['mode'] == 3:
+        u.render('<header><a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index'])+' / 114 - '+ q.surat[u.props['index']][1] +'</header>')
+
+    if u.props['mode'] != 3:
+        u.render('<header><a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index'])+'</header>')
+
 
     quran = q.huruf
-    if u.props['print']:
-        u.props['mushaf'] = 1
-        u.props['mode'] = 0
-        u.props['view'] = 0
+    if u.props['print'] == 1:
         quran = q.kata
 
     if u.props['mushaf'] == 1:
@@ -314,13 +330,16 @@ def quranHuruf(q, u, index):
             if u.props['print'] != 1:
                 u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
                 u.props['arabicfont'] = os.environ.get('ARABICFONT')
+
+
                 if x[7] in PAGES:
                     u.props['arabicfont'] = 'Harmattan'
-                    u.props['arabicfontsize'] = 1
+                    u.props['arabicfontsize'] = u.props['arabicfontsize'] - 1
                     u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
                 # component, unicode huruf
                 q.mushafHuruf(u, x[7])
+
 
     if u.props['mushaf'] != 1:
         if u.props['tafsir'] and ayatSebelum  != '0':
@@ -328,23 +347,25 @@ def quranHuruf(q, u, index):
             q.artiAyat(u, suratSebelum, ayatSebelum)
 
     u.render('</td></tr></table></div>')
+    u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
     return u
 
-def Asize(qdata, u, index):
+def Asize(q, u, index):
     u.props['menu'] = 0
 
     u.props['arabicfontsize'] = u.props['arabicfontsize'] + 1
 
-    if u.props['arabicfontsize'] == len(ASIZET)+1:
+    if u.props['arabicfontsize'] == len(ASIZET):
         u.props['arabicfontsize'] = 1
 
     os.environ['ARABICFONTSIZE'] = str(u.props['arabicfontsize'])
     os.environ['INDEX'] = str(u.props['index'])
 
+    print(u.props['arabicfontsize'])
     noPage = str(u.props['index'])
-    exec(ADDRESS['/']+'(qdata, u, noPage)')
+    exec(ADDRESS['/']+'(q, u, noPage)')
 
-def Tsize(qdata, u, index):
+def Tsize(q, u, index):
     u.props['menu'] = 0
 
     u.props['fontsize'] = u.props['fontsize'] + 1
@@ -355,8 +376,10 @@ def Tsize(qdata, u, index):
     os.environ['FONTSIZE'] = str(u.props['fontsize'])
     os.environ['INDEX'] = str(u.props['index'])
 
+
+    print(u.props['fontsize'])
     noPage = str(u.props['index'])
-    exec(ADDRESS['/']+'(qdata, u, noPage)')
+    exec(ADDRESS['/']+'(q, u, noPage)')
 
 def Theme(qdata, u, index):
     u.props['menu'] = 0
@@ -408,7 +431,7 @@ def Pertama(qdata, u, index):
     exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 
-def Quran(qdata, u, index):
+def Quran(q, u, index):
     u.props['menu'] = 0
     if u.props['print'] == 1:
         u.props['print'] = 0
@@ -419,7 +442,7 @@ def Quran(qdata, u, index):
     os.environ['INDEX'] = str(u.props['index'])
 
     noPage = str(u.props['index'])
-    exec(ADDRESS['/']+'(qdata, u, noPage)')
+    exec(ADDRESS['/']+'(q, u, noPage)')
 
 
 def Translation(qdata, u, index):

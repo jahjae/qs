@@ -21,7 +21,7 @@ class C:
                 'firstword'         : 1,
                 'firstwordcolor'    : '',
                 'align'             : 'right',
-                'arabicfont'        : 'Scheherazade',
+                'arabicfont'        : 'Lateef',
                 'arabicfontcolor'   : '',
                 'arabicfontsize'    : 1,
                 'font'              : 'Harmattan',

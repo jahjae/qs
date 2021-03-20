@@ -2,16 +2,19 @@
 # Quran Parameter
 
 ASIZET = {
+    0: '20px',
     1: '30px',
     2: '50px',
     3: '70px',
     4: '90px',
+    5: '110px',
 }
 
 TSIZET = {
-    1: '20px',
-    2: '25px',
-    3: '30px',
+    1: '15px',
+    2: '20px',
+    3: '25px',
+    4: '30px',
 }
 
 MODET = {
@@ -34,8 +37,8 @@ VIEWT = {
 }
 
 MUSHAFT = {
-    0:  'Hide',
-    1:  'Show'
+    0:  'Ayah',
+    1:  'Row'
 }
 
 COLOR = [
@@ -126,6 +129,9 @@ ADDRESS = {
     '/asize'        : 'Asize',
     '/tsize'        : 'Tsize',
     '/daily'        : 'Daily',
+    '/surat'        : 'Surat',
+    '/page'         : 'Page',
+    '/juz'          : 'Juz',
 }
 
 HIGHLIGHT = {
