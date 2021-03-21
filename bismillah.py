@@ -75,13 +75,11 @@ if __name__ == "__main__":
     u = C() # User Interface
     print('Loading Data Source ...')
 
-
-    #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
-    u.props['mode'] = 0
+    # set property
+    u.props['mode'] = 0 #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
     u.props['view'] = 0
     u.props['index'] = 1
-    u.props['print'] = 0 # 1 = True, 0 = False
-
+    u.props['print'] = 1 # 1 = True, 0 = False
     u.props['mushaf'] = 0 # 1 = True, 0 = False
     u.props['tafsir'] = 0 # 1 = True,
     u.props['word'] = 0 # 1 = True, 0 = False
@@ -89,19 +87,22 @@ if __name__ == "__main__":
     u.props['fontsize'] = 1
     u.props['arabicfont'] = 'Scheherazade'
     u.props['arabicfontsize'] = 2
-
     u.props['theme'] = 0
     u.props['menu'] = 0
     u.props['backgroundcolor'] = COLOR[0][0]
     u.props['firstwordcolor'] = COLOR[0][1]
     u.props['arabicfontcolor'] = COLOR[0][2]
     u.props['fontcolor'] = COLOR[0][3]
+    u.props['selected'] = MODET[u.props['mode']]
+
+    # call function
+    u.style('a', {'text-decoration': 'none'})
+    u.fonts()
 
     os.environ['ARABICFONT'] = str(u.props['arabicfont'])
     os.environ['ARABICFONTSIZE'] = str(u.props['arabicfontsize'])
     os.environ['FONT'] = str(u.props['font'])
     os.environ['FONTSIZE'] = str(u.props['fontsize'])
-
     os.environ['MODE'] = str(u.props['mode'])
     os.environ['VIEW'] = str(u.props['view'])
     os.environ['INDEX'] = str(u.props['index'])
@@ -115,12 +116,8 @@ if __name__ == "__main__":
     os.environ['ARABICFONTCOLOR'] = u.props['arabicfontcolor']
     os.environ['FONTCOLOR'] = u.props['fontcolor']
 
-    u.props['selected'] = MODET[u.props['mode']]
-
     print('Generating Data Lake ...')
     q = Q() # Quran
-
-    u.style('a', {'text-decoration': 'none'})
 
     http1 = make_server('', 8000, main)
     print("Serving ..."  )

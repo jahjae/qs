@@ -19,6 +19,7 @@ def Daily(q, u, index):
 
     u.style('a', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1',})
     u.style('p', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1',})
+    u.style('body',{'background-color': u.props['backgroundcolor']})
 
     u.props['arabicfontsize'] = os.environ.get('ARABICFONTSIZE')
 
