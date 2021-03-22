@@ -68,17 +68,17 @@ NUMBER = [
     '9'
 ]
 DATA = {
-    'huruf'     : './data/alfaazha.db',
-    'kata'      : './data/mushaf.db',
-    'juz'       : './data/juz.db',
-    'surat'     : './data/surat.db',
-    'halaman'	: './data/halaman.db',
-    'hizb'      : './data/hizb.db',
-    'rukuq'     : './data/rukuq.db',
-    'sajadah'   : './data/sajadah.db',
-    'artiayat'  : './data/depag.db',
-    'tafsir'    : './data/jalalayn.db',
-    'artikata'  : './data/kata.db',
+    'huruf'     : './data/db/alfaazha.db',
+    'kata'      : './data/db/mushaf.db',
+    'juz'       : './data/db/juz.db',
+    'surat'     : './data/db/surat.db',
+    'halaman'	: './data/db/halaman.db',
+    'hizb'      : './data/db/hizb.db',
+    'rukuq'     : './data/db/rukuq.db',
+    'sajadah'   : './data/db/sajadah.db',
+    'artiayat'  : './data/db/depag.db',
+    'tafsir'    : './data/db/jalalayn.db',
+    'artikata'  : './data/db/kata.db',
 }
 
 SYMBOL = [
