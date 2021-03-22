@@ -21,8 +21,8 @@ def main(environ, start_response):
     u.render('<html lang="EN">')
     u.render('<head>')
     u.render('<title>'+u.props['title']+'</title>')
-    u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
-    u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Harmattan:wght@400;700&family=Lateef&family=Amiri&family=Montserrat&family=Open+Sans&family=Scheherazade:wght@400;700&display=swap");</style>')
+    u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">')
+    u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Calibri&family=Harmattan:wght@400;700&family=Lateef&family=Amiri&family=Montserrat&family=Open+Sans&family=Scheherazade:wght@400;700&display=swap");</style>')
     u.render('<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">')
     u.render('</head>')
     u.render('<body style="font-family: '+ u.props['font']+ ';">')
@@ -85,7 +85,7 @@ if __name__ == "__main__":
     u.props['word'] = 0 # 1 = True, 0 = False
     u.props['font'] = 'Harmattan'
     u.props['fontsize'] = 1
-    u.props['arabicfont'] = 'Scheherazade'
+    u.props['arabicfont'] = 1
     u.props['arabicfontsize'] = 2
     u.props['theme'] = 0
     u.props['menu'] = 0

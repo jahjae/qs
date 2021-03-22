@@ -1,6 +1,13 @@
 #
 # Quran Parameter
 
+
+FONTS = {
+    2:  'Scheherazade',
+    1:  'Scheherazade',
+    0:  'Harmattan',
+}
+
 ASIZET = {
     0: '20px',
     1: '30px',
@@ -129,11 +136,12 @@ ADDRESS = {
     '/goto'         : 'Goto',
     '/search'       : 'Search',
     '/asize'        : 'Asize',
-    '/tsize'        : 'Tsize',
+    '/fontsize'     : 'Fontsize',
     '/daily'        : 'Daily',
     '/surat'        : 'Surat',
     '/page'         : 'Page',
     '/juz'          : 'Juz',
+    '/fontname'     : 'Fontname',
 }
 
 HIGHLIGHT = {
