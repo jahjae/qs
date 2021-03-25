@@ -1,8 +1,6 @@
 from wsgiref.simple_server import make_server
 from multiprocessing import *
 
-from PIL import *
-
 import sys
 import os
 import urllib.request
