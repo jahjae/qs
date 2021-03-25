@@ -4,7 +4,7 @@
 
 FONTS = {
     2:  'Scheherazade',
-    1:  'Scheherazade',
+    1:  'Microsoft Uighur',
     0:  'Harmattan',
 }
 

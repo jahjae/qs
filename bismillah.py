@@ -24,7 +24,7 @@ def main(environ, start_response):
     u.render('<head>')
     u.render('<title>'+u.props['title']+'</title>')
     u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
-    u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Calibri&family=Harmattan:wght@400;700&family=Lateef&family=Amiri&family=Montserrat&family=Open+Sans&family=Scheherazade:wght@400;700&display=swap");</style>')
+    u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Microsoft Uighur&family=Calibri&family=Harmattan:wght@400;700&family=Lateef&family=Amiri&family=Montserrat&family=Open+Sans&family=Scheherazade:wght@400;700&display=swap");</style>')
     u.render('<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">')
     u.render('</head>')
     u.render('<body style="font-family: '+ u.props['font']+ ';">')
