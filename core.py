@@ -3,6 +3,20 @@ from init import *
 import os
 import random
 
+def TextFormat(q, u, index):
+    u.style('a', {'text-decoration': 'none'})
+    u.props['menu'] = 0
+
+    u.props['text'] = u.props['text'] + 1
+
+    if u.props['text'] == len(FORMAT):
+        u.props['text'] = 0
+
+    os.environ['INDEX'] = str(u.props['index'])
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(q, u, noPage)')
+
+
 def Surat(q, u, index):
     u.props['menu'] = 1
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
@@ -15,6 +29,7 @@ def Surat(q, u, index):
 
 
 def Daily(q, u, index):
+    u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 1
 
     u.style('a', {'font-size': TSIZET[1],'text-align': 'center','line-height': '1',})
@@ -81,6 +96,7 @@ def Dictio(q, u, index):
     pass
 
 def Goto(q, u, index):
+    u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
 
     if u.props['mode'] == 0:
@@ -117,6 +133,8 @@ def Goto(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 def Search(q,  u, index):
+    u.style('a', {'text-decoration': 'none'})
+
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
 
     u.render('<div>')
@@ -138,6 +156,7 @@ def Info(q, u, index):
 
     u.render('<p> <a href="/daily">DAILY AYAT</a></p>')
     u.render('<p> <a href="/mushaf">MUSHAF</a>: '               +MUSHAFT[u.props['mushaf']]+'</p>')
+    u.render('<p> <a href="/text">TEXT</a>: '                 +FORMAT[u.props['text']]+'</p>')
     u.render('<p> <a href="/asize">MUSHAF SIZE</a>: '           +ASIZET[u.props['arabicfontsize']]+'</p>')
     u.render('<p> <a href="/pertama">FIRST WORD</a>: '          +LOGICALT[u.props['firstword']] +'</p>')
     u.render('<p> <a href="/mode">MODE</a>: '                   +MODET[u.props['mode']] +'</p>')
@@ -344,8 +363,14 @@ def quranHuruf(q, u, index):
                     u.props['arabicfontsize'] = u.props['arabicfontsize'] - 1
                     u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
-                # component, unicode huruf
-                q.mushafHuruf(u, x[7])
+
+                if u.props['text'] != 0:
+                    if u.props['text'] == 1 and CLEAN[x[7]]:
+                        # component, unicode huruf
+                        q.mushafHuruf(u, x[7])
+                else:
+                    q.mushafHuruf(u, x[7])
+
 
 
     if u.props['mushaf'] != 1:

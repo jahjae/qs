@@ -40,6 +40,7 @@ class C:
                 'menu'              : 0,\
                 'selected'          : '',
                 'search'            : 0,
+                'text'            : 0,
             }
 
     def render(self, text):
