@@ -228,5 +228,10 @@ class Q:
         if u.props['mushaf'] == 1:
             u.props['arabicfontsize'] = 1
 
-        u.render('<a style="line-height: 1.2; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+        if u.props['text'] != 0 and CLEAN[huruf]:
+            u.render('<a style="line-height: 1.2; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+
+        if u.props['text'] == 0:
+            u.render('<a style="line-height: 1.2; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+
         return u

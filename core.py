@@ -363,13 +363,7 @@ def quranHuruf(q, u, index):
                     u.props['arabicfontsize'] = u.props['arabicfontsize'] - 1
                     u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
-
-                if u.props['text'] != 0:
-                    if u.props['text'] == 1 and CLEAN[x[7]]:
-                        # component, unicode huruf
-                        q.mushafHuruf(u, x[7])
-                else:
-                    q.mushafHuruf(u, x[7])
+                q.mushafHuruf(u, x[7])
 
 
 
