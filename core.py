@@ -28,7 +28,7 @@ def Daily(q, u, index):
 
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
     u.render('<p></p>')
-    u.render('<table style="padding: 10px; height: auto; width: auto;"><tr><td style="text-align: center; line-height: 1.2">')
+    u.render('<table style="padding: 10px; height: auto; width: 100%;"><tr><td style="text-align: center; line-height: 1.2">')
     kataSebelum = ''
     for x in q.huruf[0:]:
         if x[3] == str(s):
@@ -68,7 +68,7 @@ def Daily(q, u, index):
     os.environ['INDEX'] = str(u.props['index'])
 
 
-    u.style('p', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'center','line-height': '1',})
+    u.style('p', {'margin': '10px', 'font-size': TSIZET[u.props['fontsize']],'text-align': 'center','line-height': '1',})
     u.render('<p>'+q.artiayat[s][a]+'</p>')
 
     u.style('p', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'center','line-height': '1',})
@@ -120,7 +120,7 @@ def Search(q,  u, index):
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
 
     u.render('<div>')
-    u.render('<table style="padding: 10px ;width: 100%;"><tr><td>')
+    u.render('<table style="padding: 10px ;width: 100%;"><tr style="width: 100%;"><td>')
 
     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
 
@@ -153,6 +153,7 @@ def Info(q, u, index):
     u.render('<p> <a href="/search">SEARCH</a></p>')
 
 def Menu(q, u, index):
+    u.style('a', {'text-decoration': 'none'})
     os.environ['INDEX'] = str(u.props['index'])
 
     if u.props['menu'] == 1:
@@ -166,6 +167,7 @@ def Menu(q, u, index):
 
 
 def Mode(q, u, index):
+    u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
     if u.props['mode'] == len(MODET)-1:
         u.props['mode'] = 0
@@ -192,6 +194,9 @@ def Mode(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 def quranHuruf(q, u, index):
+    u.style('a', {'text-decoration': 'none'})
+    u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
+
     u.props['mode'] = int(os.environ.get('MODE'))
     u.props['view'] = int(os.environ.get('VIEW'))
     u.props['mushaf'] = int(os.environ.get('MUSHAF'))
@@ -229,11 +234,11 @@ def quranHuruf(q, u, index):
     if u.props['view'] == 1:
         u.props['firstword'] = 0
 
-    u.render('<div style="width: 100%">')
-    u.render('<table style="padding: 10px; margin-left: 0 auto; margin-right: 0 auto; height: auto; width: 100%;"><tr style="padding: 5px; width: 100%"><td>')
+    u.render('<table style="padding: 10px; height: 100%; width: 100%"><tr><td>')
     q.barisBaru(u)
     reset = True
 
+    u.imagePage()
     for x in quran[0:]:
 
         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
@@ -342,6 +347,7 @@ def quranHuruf(q, u, index):
 
                 # component, unicode huruf
                 q.mushafHuruf(u, x[7])
+                u.fillPage(int(x[1]), 'u'+chr(int(x[7])))
 
 
     if u.props['mushaf'] != 1:
@@ -349,13 +355,14 @@ def quranHuruf(q, u, index):
             q.artiBaru(u)
             q.artiAyat(u, suratSebelum, ayatSebelum)
 
-    u.render('</td></tr></table></div>')
+    u.render('</td></tr></table>')
     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
     return u
 
 def Asize(q, u, index):
     u.props['menu'] = 0
+    u.style('a', {'text-decoration': 'none'})
 
     u.props['arabicfontsize'] = u.props['arabicfontsize'] + 1
 
@@ -371,6 +378,7 @@ def Asize(q, u, index):
 
 def Fontname(q, u, index):
     u.props['menu'] = 0
+    u.style('a', {'text-decoration': 'none'})
 
     u.props['arabicfont'] = u.props['arabicfont'] + 1
 
@@ -385,6 +393,7 @@ def Fontname(q, u, index):
 
 def Fontsize(q, u, index):
     u.props['menu'] = 0
+    u.style('a', {'text-decoration': 'none'})
 
     u.props['fontsize'] = u.props['fontsize'] + 1
 
@@ -399,6 +408,8 @@ def Fontsize(q, u, index):
 
 def Theme(qdata, u, index):
     u.props['menu'] = 0
+    u.style('a', {'text-decoration': 'none'})
+
     if u.props['theme'] == len(COLOR)-1:
         u.props['theme'] = 0
     else:
@@ -422,6 +433,8 @@ def Theme(qdata, u, index):
 
 def View(qdata, u, index):
     u.props['menu'] = 0
+    u.style('a', {'text-decoration': 'none'})
+
     if u.props['view'] == len(VIEWT)-1:
         u.props['view'] = 0
     else:
@@ -435,6 +448,8 @@ def View(qdata, u, index):
 
 def Pertama(qdata, u, index):
     u.props['menu'] = 0
+    u.style('a', {'text-decoration': 'none'})
+
     if u.props['firstword'] == 1:
         u.props['firstword'] = 0
     else:
@@ -449,6 +464,8 @@ def Pertama(qdata, u, index):
 
 def Quran(q, u, index):
     u.props['menu'] = 0
+    u.style('a', {'text-decoration': 'none'})
+
     if u.props['print'] == 1:
         u.props['print'] = 0
     else:
@@ -463,6 +480,8 @@ def Quran(q, u, index):
 
 def Translation(qdata, u, index):
     u.props['menu'] = 0
+    u.style('a', {'text-decoration': 'none'})
+
     if u.props['tafsir'] == 1:
         u.props['tafsir'] = 0
     else:
@@ -477,6 +496,8 @@ def Translation(qdata, u, index):
 
 def Kata(qdata, u, index):
     u.props['menu'] = 0
+    u.style('a', {'text-decoration': 'none'})
+
     if u.props['word'] == 1:
         u.props['word'] = 0
     else:
@@ -491,6 +512,8 @@ def Kata(qdata, u, index):
 
 def Mushaf(qdata, u, index):
     u.props['menu'] = 0
+    u.style('a', {'text-decoration': 'none'})
+
     if u.props['mushaf'] == 1:
         u.props['mushaf'] = 0
     else:

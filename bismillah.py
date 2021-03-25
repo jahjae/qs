@@ -1,5 +1,8 @@
 from wsgiref.simple_server import make_server
 from multiprocessing import *
+
+from PIL import *
+
 import sys
 import os
 import urllib.request
@@ -9,6 +12,7 @@ from core import *
 from init import *
 from ui import *
 from qs import *
+
 
 
 def main(environ, start_response):
@@ -21,7 +25,7 @@ def main(environ, start_response):
     u.render('<html lang="EN">')
     u.render('<head>')
     u.render('<title>'+u.props['title']+'</title>')
-    u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">')
+    u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
     u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Calibri&family=Harmattan:wght@400;700&family=Lateef&family=Amiri&family=Montserrat&family=Open+Sans&family=Scheherazade:wght@400;700&display=swap");</style>')
     u.render('<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">')
     u.render('</head>')

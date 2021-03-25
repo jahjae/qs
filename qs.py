@@ -127,12 +127,11 @@ class Q:
             warp = 'nowrap'
 
         u.render('</td></tr>')
-
         if u.props['tafsir'] == 1:
-            u.render('<tr><td style="border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+            u.render('<tr><td style="border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; padding: 5px; line-height: 1.2;">')
 
         if u.props['tafsir'] != 1 :
-            u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+            u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; padding: 5px; line-height: 1.2;">')
 
         return u
 
@@ -143,10 +142,10 @@ class Q:
 
         u.render('</td></tr>')
         if u.props['tafsir'] == 1:
-            u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+            u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; padding: 5px; line-height: 1.2;">')
 
         if u.props['tafsir'] != 1:
-            u.render('<tr><td style=" border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; width=100%; padding: 5px; line-height: 1.2;">')
+            u.render('<tr><td style=" border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; padding: 5px; line-height: 1.2;">')
 
         return u
 
@@ -204,6 +203,9 @@ class Q:
         return rows
 
     def mushafKata(self, u, halaman, ayat, kata):
+        if u.props['mushaf'] == 1:
+            u.props['arabicfontsize'] = 0
+
         if len(halaman) == 1:
             font = 'QCF_P00' + halaman
 
@@ -223,5 +225,8 @@ class Q:
         return u
 
     def mushafHuruf(self, u, huruf):
+        if u.props['mushaf'] == 1:
+            u.props['arabicfontsize'] = 1
+
         u.render('<a style="line-height: 1.2; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
         return u
