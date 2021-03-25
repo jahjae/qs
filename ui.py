@@ -1,6 +1,3 @@
-from PIL import ImageDraw
-from PIL import ImageFont
-from PIL import Image
 
 import os
 import init
@@ -66,11 +63,3 @@ class C:
 
         sty = sty + '}'
         self.render(sty)
-
-    def imagePage(self):
-        self.image = Image.new('RGB', (480, 640), (256,255,255))
-        self.content = ImageDraw.Draw(self.image)
-
-    def fillPage(self, x, xtext):
-        unicode_font = ImageFont.truetype("arial.ttf", 10, encoding="unic")
-        self.content.text((200 * x, 200 * x), xtext, font=unicode_font, fill=(0,0,0))

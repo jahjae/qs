@@ -238,7 +238,6 @@ def quranHuruf(q, u, index):
     q.barisBaru(u)
     reset = True
 
-    u.imagePage()
     for x in quran[0:]:
 
         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
@@ -347,7 +346,6 @@ def quranHuruf(q, u, index):
 
                 # component, unicode huruf
                 q.mushafHuruf(u, x[7])
-                u.fillPage(int(x[1]), 'u'+chr(int(x[7])))
 
 
     if u.props['mushaf'] != 1:
