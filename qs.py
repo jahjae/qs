@@ -100,11 +100,10 @@ class Q:
         else:
             return False
 
-    def spasiBaru(self, u):
-        u.render(chr(32))
-        u.render(chr(32))
-        u.render(chr(32))
+    def spasi(self, u):
+        self.mushafHuruf(u, '32')
         return u
+
 
     def kataBaru(self, u):
         warp = ''
@@ -225,13 +224,10 @@ class Q:
         return u
 
     def mushafHuruf(self, u, huruf):
-        if u.props['mushaf'] == 1:
-            u.props['arabicfontsize'] = 1
-
         if u.props['text'] != 0 and CLEAN[huruf]:
-            u.render('<a style="line-height: 1.2; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+            u.render('<a style="text-justify: inter-word ;line-height: 1.2; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
 
         if u.props['text'] == 0:
-            u.render('<a style="line-height: 1.2; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+            u.render('<a style="text-justify: inter-word ;line-height: 1.2; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
 
         return u

@@ -44,18 +44,31 @@ def Daily(q, u, index):
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
     u.render('<p></p>')
     u.render('<table style="padding: 10px; height: auto; width: 100%;"><tr><td style="text-align: center; line-height: 1.2">')
-    kataSebelum = ''
+
+    reset = True
+
     for x in q.huruf[0:]:
         if x[3] == str(s):
             if x[4] == str(a):
-                p = x[0]
-                r = x[1]
-                j = x[2]
+                u.props['juz'] = int(x[2])
+                u.props['surat'] = int(x[3])
+                u.props['page'] = int(x[0])
+
+                if reset:
+                    reset = False
+                    halamanSebelum = x[0]
+                    barisSebelum = x[1]
+                    juzSebelum = x[2]
+                    suratSebelum = x[3]
+                    ayatSebelum = x[4]
+                    kataSebelum = x[5]
+
                 kataBerikut = q.compare(x[5], kataSebelum)
+
 
                 if kataBerikut:
                     kataSebelum = x[5]
-                    q.spasiBaru(u)
+                    q.spasi(u)
 
                 u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
@@ -241,7 +254,6 @@ def quranHuruf(q, u, index):
     if u.props['mode'] != 3:
         u.render('<header><a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index'])+'</header>')
 
-
     quran = q.huruf
     if u.props['print'] == 1:
         quran = q.kata
@@ -253,10 +265,11 @@ def quranHuruf(q, u, index):
     if u.props['view'] == 1:
         u.props['firstword'] = 0
 
-    u.render('<table style="padding: 10px; height: 100%; width: 100%"><tr><td>')
+    u.render('<table style="padding: 5px; width: 100%"><tr><td>')
     q.barisBaru(u)
     reset = True
 
+    jh = 0
     for x in quran[0:]:
 
         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
@@ -282,7 +295,10 @@ def quranHuruf(q, u, index):
             ayatBerikut = q.compare(x[4], ayatSebelum)
             kataBerikut = q.compare(x[5], kataSebelum)
 
+            jh = jh + 1
             if barisBerikut:
+                print(jh)
+                jh = 0
                 if u.props['mushaf'] == 1:
                     q.barisBaru(u)
 
@@ -317,7 +333,7 @@ def quranHuruf(q, u, index):
 
 #           adding space before next word
             if kataBerikut:
-                q.spasiBaru(u)
+                q.spasi(u)
 
                 if u.props['mushaf'] != 1:
                     if u.props['word'] == 1 and ayatSebelum != '0' and kataSebelum != '0':

@@ -27,7 +27,7 @@ def main(environ, start_response):
     u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Microsoft Uighur&family=Calibri&family=Harmattan:wght@400;700&family=Lateef&family=Amiri&family=Montserrat&family=Open+Sans&family=Scheherazade:wght@400;700&display=swap");</style>')
     u.render('<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">')
     u.render('</head>')
-    u.render('<body style="font-family: '+ u.props['font']+ ';">')
+    u.render('<body style="; margin: 10px 10px 10px 10px; font-family: '+ u.props['font']+ ';">')
 
     error = True
     path = environ['PATH_INFO']
