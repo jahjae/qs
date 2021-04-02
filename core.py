@@ -47,7 +47,7 @@ def Daily(q, u, index):
 
     reset = True
 
-    for x in q.huruf[0:]:
+    for x in q.kata[0:]:
         if x[3] == str(s):
             if x[4] == str(a):
                 u.props['juz'] = int(x[2])
@@ -65,7 +65,6 @@ def Daily(q, u, index):
 
                 kataBerikut = q.compare(x[5], kataSebelum)
 
-
                 if kataBerikut:
                     kataSebelum = x[5]
                     q.spasi(u)
@@ -79,11 +78,19 @@ def Daily(q, u, index):
                 u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
                 u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
 
-                if x[7] in PAGES:
-                    u.props['arabicfontsize'] = u.props['arabicfontsize'] - 1
-                    u.props['arabicfont'] = 0
+                for y in range(int(x[7])):
+                    pos = y + 8
 
-                q.mushafHuruf(u, x[7])
+                    u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
+                    u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
+
+                    if x[pos] in PAGES:
+                        u.props['arabicfont'] = 0
+                        u.props['arabicfontsize'] = 0
+                        u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+
+                    q.mushafHuruf(u, x[pos])
+
 
     u.render('</td></tr></table>')
 
