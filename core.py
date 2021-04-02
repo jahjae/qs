@@ -175,6 +175,7 @@ def Info(q, u, index):
 
     u.render('<p> <a href="/daily">DAILY AYAT</a></p>')
     u.render('<p> <a href="/mushaf">MUSHAF</a>: '               +MUSHAFT[u.props['mushaf']]+'</p>')
+    u.render('<p> <a href="/fontname">FONTS</a>: '              +FONTS[u.props['arabicfont']]+'</p>')
     u.render('<p> <a href="/text">TEXT</a>: '                   +FORMAT[u.props['text']]+'</p>')
     u.render('<p> <a href="/arabicsize">MUSHAF SIZE</a>: '      +ASIZET[u.props['arabicfontsize']]+'</p>')
     u.render('<p> <a href="/pertama">FIRST WORD</a>: '          +LOGICALT[u.props['firstword']] +'</p>')

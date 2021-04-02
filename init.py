@@ -2,8 +2,12 @@
 # Quran Parameter
 
 FONTS = {
-    1:  'Microsoft Uighur',
+    4:  'Microsoft Uighur',
+    3:  'Calibri',
+    2:  'Montserrat',
+    1:  'Open Sans',
     0:  'Harmattan',
+
 }
 
 ASIZET = {
