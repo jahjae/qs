@@ -184,7 +184,7 @@ def Info(q, u, index):
     u.render('<p> <a href="/view">VIEW</a>: '                   +VIEWT[u.props['view']] +'</p>')
     u.render('<p> <a href="/translation">TRANSLATION</a>: '     +LOGICALT[u.props['tafsir']] +'</p>')
     u.render('<p> <a href="/fontsize">TRANSLATION SIZE</a>: '   +TSIZET[u.props['fontsize']]+'</p>')
-    u.render('<p> <a href="/kata">WORD BY WORD</a>: '           +LOGICALT[u.props['word']] +'</p>')
+    u.render('<p> <a href="/word">WORD BY WORD</a>: '           +LOGICALT[u.props['word']] +'</p>')
     u.render('<p> <a href="/theme">THEME</a>: '                 +THEMET[u.props['theme']]+'</p>')
     u.render('<p> <a href="/halaman">PAGE</a>: '                +str(u.props['page'])           +' / 604</p>')
     u.render('<p> <a href="/juz">JUZ</a>: '                     +str(u.props['juz'])            +' / 30</p>')
@@ -532,7 +532,7 @@ def Translation(qdata, u, index):
     exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 
-def Kata(qdata, u, index):
+def Word(qdata, u, index):
     u.props['menu'] = 0
     u.style('a', {'text-decoration': 'none'})
 

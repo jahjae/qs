@@ -126,7 +126,7 @@ PAGENUMBER = {
 ADDRESS = {
     '/'             : 'quranHuruf',
     '/mushaf'       : 'Mushaf',
-    '/kata'         : 'Kata',
+    '/word'         : 'Word',
     '/translation'  : 'Translation',
     '/quran'        : 'Quran',
     '/view'         : 'View',
