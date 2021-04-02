@@ -75,9 +75,6 @@ def Daily(q, u, index):
                 if u.props['firstword'] == 1 and x[5] == '1':
                     u.props['arabicfontcolor'] = u.props['firstwordcolor']
 
-                u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
-                u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
-
                 for y in range(int(x[7])):
                     pos = y + 8
 
