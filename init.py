@@ -2,18 +2,17 @@
 # Quran Parameter
 
 FONTS = {
-    2:  'Scheherazade',
     1:  'Microsoft Uighur',
     0:  'Harmattan',
 }
 
 ASIZET = {
-    0: '160%',
+    0: '100%',
     1: '180%',
-    2: '200%',
-    3: '220%',
-    4: '240%',
-    5: '260%',
+    2: '210%',
+    3: '240%',
+    4: '270%',
+    5: '300%',
 }
 
 TSIZET = {
@@ -134,7 +133,7 @@ ADDRESS = {
     '/mode'         : 'Mode',
     '/goto'         : 'Goto',
     '/search'       : 'Search',
-    '/asize'        : 'Asize',
+    '/arabicsize'   : 'Arabicsize',
     '/fontsize'     : 'Fontsize',
     '/daily'        : 'Daily',
     '/surat'        : 'Surat',

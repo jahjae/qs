@@ -18,8 +18,29 @@ class Q:
         self.loadHalaman(DATA['halaman'])
         self.loadArtiAyat(DATA['artiayat'])
         self.loadArtiKata(DATA['artikata'])
-        self.loadCodeHuruf()
-        self.loadCodeKata()
+        self.loadCode()
+#        self.loadCodeHuruf()
+#        self.loadCodeKata()
+
+
+    def loadCode(self):
+        dbContent = self.kata
+        for x in self.kata[0:]:
+            key = x[6]
+            self.codekata[key] = x[6]
+
+            for y in range(int(x[7])):
+                pos = y + 8
+                u = x[pos]
+
+                try:
+                    a = self.codehuruf[u]
+                except Exception:
+                    a = []
+
+                a.append([x[0],x[1],x[2],x[3],x[4],x[5]])
+                self.codehuruf[u] = a
+
 
     def loadCodeKata(self):
         dbContent = self.kata

@@ -169,8 +169,8 @@ def Info(q, u, index):
 
     u.render('<p> <a href="/daily">DAILY AYAT</a></p>')
     u.render('<p> <a href="/mushaf">MUSHAF</a>: '               +MUSHAFT[u.props['mushaf']]+'</p>')
-    u.render('<p> <a href="/text">TEXT</a>: '                 +FORMAT[u.props['text']]+'</p>')
-    u.render('<p> <a href="/asize">MUSHAF SIZE</a>: '           +ASIZET[u.props['arabicfontsize']]+'</p>')
+    u.render('<p> <a href="/text">TEXT</a>: '                   +FORMAT[u.props['text']]+'</p>')
+    u.render('<p> <a href="/arabicsize">MUSHAF SIZE</a>: '      +ASIZET[u.props['arabicfontsize']]+'</p>')
     u.render('<p> <a href="/pertama">FIRST WORD</a>: '          +LOGICALT[u.props['firstword']] +'</p>')
     u.render('<p> <a href="/mode">MODE</a>: '                   +MODET[u.props['mode']] +'</p>')
     u.render('<p> <a href="/goto">GOTO</a>: '                   +str(u.props['index'])+'</p>')
@@ -254,7 +254,7 @@ def quranHuruf(q, u, index):
     if u.props['mode'] != 3:
         u.render('<header><a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index'])+'</header>')
 
-    quran = q.huruf
+    quran = q.kata
     if u.props['print'] == 1:
         quran = q.kata
 
@@ -269,7 +269,6 @@ def quranHuruf(q, u, index):
     q.barisBaru(u)
     reset = True
 
-    jh = 0
     for x in quran[0:]:
 
         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
@@ -295,10 +294,7 @@ def quranHuruf(q, u, index):
             ayatBerikut = q.compare(x[4], ayatSebelum)
             kataBerikut = q.compare(x[5], kataSebelum)
 
-            jh = jh + 1
             if barisBerikut:
-                print(jh)
-                jh = 0
                 if u.props['mushaf'] == 1:
                     q.barisBaru(u)
 
@@ -358,29 +354,27 @@ def quranHuruf(q, u, index):
             if x[4] == '0':
                 u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
-            # Black
-            if u.props['print'] != 1:
-                if x[7] == '1758' or  x[7] == '1769':
-                    u.props['arabicfontcolor'] = '#bdb76b'
-
             # use font QCF
             if u.props['print'] == 1:
                 # component, halaman, ayat, unicode kata
                 q.mushafKata(u, x[0], x[4], x[6])
 
-#           use font Scheherazade and Harmattan for Numberd
+#           use font Scheherazade and Harmattan for Number
             if u.props['print'] != 1:
-                u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
-                u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
 
+                q.mushafHuruf(u, '32')
+                for y in range(int(x[7])):
+                    pos = y + 8
 
-                if x[7] in PAGES:
-                    u.props['arabicfont'] = 0
-                    u.props['arabicfontsize'] = u.props['arabicfontsize'] - 1
-                    u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+                    u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
+                    u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
 
-                q.mushafHuruf(u, x[7])
+                    if x[pos] in PAGES:
+                        u.props['arabicfont'] = 0
+                        u.props['arabicfontsize'] = 0
+                        u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
+                    q.mushafHuruf(u, x[pos])
 
 
     if u.props['mushaf'] != 1:
@@ -393,7 +387,7 @@ def quranHuruf(q, u, index):
     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
     return u
 
-def Asize(q, u, index):
+def Arabicsize(q, u, index):
     u.props['menu'] = 0
     u.style('a', {'text-decoration': 'none'})
 
