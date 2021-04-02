@@ -102,7 +102,6 @@ def Daily(q, u, index):
     os.environ['MODE'] = str(u.props['mode'])
     os.environ['INDEX'] = str(u.props['index'])
 
-
     u.style('p', {'margin': '10px', 'font-size': TSIZET[u.props['fontsize']],'text-align': 'center','line-height': '1',})
     u.render('<p>'+q.artiayat[s][a]+'</p>')
 
@@ -261,10 +260,6 @@ def quranHuruf(q, u, index):
     if u.props['mode'] != 3:
         u.render('<header><a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index'])+'</header>')
 
-    quran = q.kata
-    if u.props['print'] == 1:
-        quran = q.kata
-
     if u.props['mushaf'] == 1:
         u.props['align'] = 'center'
         u.props['tafsir'] = 0
@@ -274,8 +269,9 @@ def quranHuruf(q, u, index):
 
     u.render('<table style="padding: 5px; width: 100%"><tr><td>')
     q.barisBaru(u)
-    reset = True
 
+    reset = True
+    quran = q.kata
     for x in quran[0:]:
 
         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
@@ -364,17 +360,25 @@ def quranHuruf(q, u, index):
             # use font QCF
             if u.props['print'] == 1:
                 # component, halaman, ayat, unicode kata
+                u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
+
+                if u.props['mushaf'] == 1:
+                    u.props['arabicfontsize'] = 0
+
                 q.mushafKata(u, x[0], x[4], x[6])
 
 #           use font Scheherazade and Harmattan for Number
             if u.props['print'] != 1:
+                q.spasi(u)
 
-                q.mushafHuruf(u, '32')
                 for y in range(int(x[7])):
                     pos = y + 8
 
                     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
                     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
+
+                    if u.props['mushaf'] == 1:
+                        u.props['arabicfontsize'] = 0
 
                     if x[pos] in PAGES:
                         u.props['arabicfont'] = 0

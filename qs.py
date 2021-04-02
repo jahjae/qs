@@ -11,7 +11,6 @@ class Q:
         self.codehuruf  = {}
         self.codekata   = {}
         self.kata       = self.data(DATA['kata'])
-#        self.huruf      = self.data(DATA['huruf'])
         self.tafsir     = self.data(DATA['tafsir'])
         self.loadJuz(DATA['juz'])
         self.loadSurat(DATA['surat'])
@@ -19,9 +18,6 @@ class Q:
         self.loadArtiAyat(DATA['artiayat'])
         self.loadArtiKata(DATA['artikata'])
         self.loadCode()
-#        self.loadCodeHuruf()
-#        self.loadCodeKata()
-
 
     def loadCode(self):
         dbContent = self.kata
@@ -40,25 +36,6 @@ class Q:
 
                 a.append([x[0],x[1],x[2],x[3],x[4],x[5]])
                 self.codehuruf[u] = a
-
-
-    def loadCodeKata(self):
-        dbContent = self.kata
-        for x in self.kata[0:]:
-            key = x[6]
-            self.codekata[key] = x[6]
-
-    def loadCodeHuruf(self):
-        for x in self.huruf[0:]:
-            u = int(x[7])
-
-            try:
-                a = self.codehuruf[u]
-            except Exception:
-                a = []
-
-            a.append([x[0],x[1],x[2],x[3],x[4],x[5]])
-            self.codehuruf[u] = a
 
     def loadSurat(self, db):
         dbContent = self.data(db)
@@ -246,9 +223,9 @@ class Q:
 
     def mushafHuruf(self, u, huruf):
         if u.props['text'] != 0 and CLEAN[huruf]:
-            u.render('<a style="text-justify: inter-word ;line-height: 1.2; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+            u.render('<a style="text-justify: inter-word ;line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
 
         if u.props['text'] == 0:
-            u.render('<a style="text-justify: inter-word ;line-height: 1.2; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+            u.render('<a style="text-justify: inter-word ;line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
 
         return u
