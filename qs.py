@@ -11,7 +11,7 @@ class Q:
         self.codehuruf  = {}
         self.codekata   = {}
         self.kata       = self.data(DATA['kata'])
-        self.huruf      = self.data(DATA['huruf'])
+#        self.huruf      = self.data(DATA['huruf'])
         self.tafsir     = self.data(DATA['tafsir'])
         self.loadJuz(DATA['juz'])
         self.loadSurat(DATA['surat'])
