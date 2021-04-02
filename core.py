@@ -43,7 +43,7 @@ def Daily(q, u, index):
 
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
     u.render('<p></p>')
-    u.render('<table style="padding: 10px; height: auto; width: 100%;"><tr><td style="text-align: center; line-height: 1.2">')
+    u.render('<table style="width: 100%;"><tr><td style="text-align: center; line-height: 1.2">')
 
     reset = True
 
@@ -317,7 +317,6 @@ def quranHuruf(q, u, index):
                     if u.props['tafsir'] == 1 and ayatSebelum  != '0':
                         q.artiBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
-                        q.barisBaru(u)
 
                     q.barisBaru(u)
 
