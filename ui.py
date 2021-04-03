@@ -59,7 +59,7 @@ class C:
         for x in range(604):
             a = str(1000 + x)
             n = 'QCF_P' + a[1:2]
-            sty = sty + 'font-family: "QCF_P'+n+'"; '
+            sty = sty + 'font-family: "'+n+'"; '
             sty = sty + 'src: url("./data/fonts/'+n+'.ttf"); '
 
         sty = sty + '}'

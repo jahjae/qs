@@ -2,8 +2,8 @@
 # Quran Parameter
 
 FONTS = {
-    2:  'Microsoft Uighur',
-    1:  'Calibri',
+    2:  'Calibri',
+    1:  'Microsoft Uighur',
     0:  'Harmattan',
 
 }

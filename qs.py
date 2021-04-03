@@ -10,14 +10,30 @@ class Q:
         self.artikata   = {}
         self.codehuruf  = {}
         self.codekata   = {}
+        self.tafsir     = {}
         self.kata       = self.data(DATA['kata'])
-        self.tafsir     = self.data(DATA['tafsir'])
+        self.loadTafsir(DATA['tafsir'])
         self.loadJuz(DATA['juz'])
         self.loadSurat(DATA['surat'])
         self.loadHalaman(DATA['halaman'])
         self.loadArtiAyat(DATA['artiayat'])
         self.loadArtiKata(DATA['artikata'])
         self.loadCode()
+
+    def loadTafsir(self, db):
+        dbContent = self.data(db)
+        ns = 0
+        for x in dbContent:
+            s = int(x[0])
+            a = int(x[1])
+
+#           new tafsir
+            if ns != s:
+                ns = s
+                ta = {}
+
+            ta[a] = x[2]
+            self.tafsir[s] = ta
 
     def loadCode(self):
         dbContent = self.kata
