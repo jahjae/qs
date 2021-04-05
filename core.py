@@ -21,7 +21,7 @@ def Surat(q, u, index):
     u.props['menu'] = 1
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
 
-    u.style('p', {'padding':'10px','font-size': TSIZET[u.props['fontsize']],'text-align': 'left','line-height': '1',})
+    u.style('p', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'left','line-height': '1',})
 
     for x in q.surat:
         u.render('<p>'+str(x)+'. '+q.surat[x][1]+', '+q.surat[x][0]+', '+q.surat[x][2]+', '+q.surat[x][4]+'</p>')
@@ -265,7 +265,7 @@ def quranHuruf(q, u, index):
     if u.props['view'] == 1:
         u.props['firstword'] = 0
 
-    u.render('<table style="    padding: 5px; width: 100%"><tr><td>')
+    u.render('<table style="width: 100%">')
     q.barisBaru(u)
 
     reset = True

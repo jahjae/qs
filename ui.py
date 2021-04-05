@@ -55,12 +55,12 @@ class C:
         self.render(sty)
 
     def fonts(self):
-        sty = '@font-face { font-family: "QCF_BSML"; src: url("./data/fonts/QCF_BSML.TTF"); '
-        for x in range(604):
+        sty = '<style> @font-face { font-family: QCF_BSML; src: url(/data/fonts/QCF_BSML.TTF)  format("truetype");} '
+        for x in range(605):
             a = str(1000 + x)
-            n = 'QCF_P' + a[1:2]
-            sty = sty + 'font-family: "'+n+'"; '
-            sty = sty + 'src: url("data/fonts/'+n+'.ttf"); '
+            n = 'QCF_P' + a[1:4]
+            sty = sty + '@font-face { font-family: '+n+'; '
+            sty = sty + 'src: url(/data/fonts/'+n+'.ttf) format("truetype"); } '
 
-        sty = sty + '}'
+        sty = sty + ' </style>'
         self.render(sty)
