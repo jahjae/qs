@@ -154,7 +154,7 @@ def Search(q,  u, index):
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
 
     u.render('<div>')
-    u.render('<table style="padding: 10px ;width: 100%;"><tr style="width: 100%;"><td>')
+    u.render('<table style="width: 100%;"><tr style="width: 100%;"><td>')
 
     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
 
@@ -265,7 +265,7 @@ def quranHuruf(q, u, index):
     if u.props['view'] == 1:
         u.props['firstword'] = 0
 
-    u.render('<table style="padding: 5px; width: 100%"><tr><td>')
+    u.render('<table style="    padding: 5px; width: 100%"><tr><td>')
     q.barisBaru(u)
 
     reset = True

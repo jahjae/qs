@@ -35,12 +35,12 @@ class C:
                 'surat'             : 1,
                 'ayat'              : 1,
                 'kata'              : 1,
-                'title'             : 'AL QURAN',
+                'title'             : 'Al Quran',
                 'theme'             : 0,
-                'menu'              : 0,\
+                'menu'              : 0,
                 'selected'          : '',
                 'search'            : 0,
-                'text'            : 0,
+                'text'              : 0,
             }
 
     def render(self, text):
@@ -60,7 +60,7 @@ class C:
             a = str(1000 + x)
             n = 'QCF_P' + a[1:2]
             sty = sty + 'font-family: "'+n+'"; '
-            sty = sty + 'src: url("./data/fonts/'+n+'.ttf"); '
+            sty = sty + 'src: url("data/fonts/'+n+'.ttf"); '
 
         sty = sty + '}'
         self.render(sty)
