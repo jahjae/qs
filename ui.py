@@ -53,14 +53,3 @@ class C:
 
         sty = sty + '}</style>'
         self.render(sty)
-
-    def fonts(self):
-        sty = '<style> @font-face { font-family: QCF_BSML; src: url(/data/fonts/QCF_BSML.TTF)  format("truetype");} '
-        for x in range(605):
-            a = str(1000 + x)
-            n = 'QCF_P' + a[1:4]
-            sty = sty + '@font-face { font-family: '+n+'; '
-            sty = sty + 'src: url(/data/fonts/'+n+'.ttf) format("truetype"); } '
-
-        sty = sty + ' </style>'
-        self.render(sty)

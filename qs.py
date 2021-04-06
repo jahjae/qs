@@ -124,13 +124,15 @@ class Q:
         if u.props['mushaf'] == 1:
             warp = 'nowrap'
 
-        u.render('</td></tr>')
-
+#        u.render('</div></td></tr>')
+        u.render('</div>')
         if u.props['tafsir'] == 1:
-            u.render('<tr><td style="border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 0.5;">')
+#            u.render('<tr><td><div style="border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 0.5;">')
+            u.render('<div style="border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 0.5;">')
 
         if u.props['tafsir'] != 1:
-            u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 0.5;">')
+#            u.render('<tr><td><div style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 0.5;">')
+            u.render('<div style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 0.5;">')
 
         return u
 
@@ -139,11 +141,15 @@ class Q:
         if u.props['mushaf'] == 1:
             warp = 'nowrap'
 
+#        u.render('</div></td></tr>')
+        u.render('</div>')
         if u.props['tafsir'] == 1:
-            u.render('<tr><td style="border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+#            u.render('<tr><td><div style="width: 100%; border: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
 
         if u.props['tafsir'] != 1 :
-            u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+#            u.render('<tr><td><div style="width: 100%; border: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="width: 100%; border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
 
         return u
 
@@ -152,12 +158,15 @@ class Q:
         if u.props['mushaf'] == 1:
             warp = 'nowrap'
 
-        u.render('</td></tr>')
+#        u.render('</div></td></tr>')
+        u.render('</div>')
         if u.props['tafsir'] == 1:
-            u.render('<tr><td style="border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
+#            u.render('<tr><td><div style="width: 100%; border: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="width: 100%; border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
 
         if u.props['tafsir'] != 1:
-            u.render('<tr><td style=" border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
+#            u.render('<tr><td><div style="width: 100%; border: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
 
         return u
 
@@ -237,18 +246,17 @@ class Q:
         return u
 
     def mushafHuruf(self, u, huruf):
-        if u.props['mushaf'] == 1:
-            if u.props['text'] != 0 and CLEAN[huruf]:
-                u.render('<a style="text-justify: inter-word ;line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
-
-            if u.props['text'] == 0:
-                u.render('<a style="text-justify: inter-word ;line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
-
         if u.props['mushaf'] != 1:
-            if u.props['text'] != 0 and CLEAN[huruf]:
-                u.render('<a style="text-justify: inter-word ;line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+            if int(huruf) == 32 or CLEAN[huruf]:
+                if u.props['text'] != 0:
+                        u.render('<a style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
 
             if u.props['text'] == 0:
-                u.render('<a style="text-justify: inter-word ;line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+                u.render('<a style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+
+        if u.props['mushaf'] == 1:
+            if u.props['text'] == 0:
+                u.render('<a style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: 5vw ; color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+
 
         return u
