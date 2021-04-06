@@ -256,7 +256,7 @@ class Q:
 
         if u.props['mushaf'] == 1:
             if u.props['text'] == 0:
-                u.render('<a style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: 5vw ; color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+                u.render('<a style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + '; color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
 
 
         return u

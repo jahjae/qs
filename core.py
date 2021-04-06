@@ -256,6 +256,7 @@ def quranHuruf(q, u, index):
 
     if u.props['mushaf'] == 1:
         u.props['align'] = 'center'
+        u.props['arabicfontsize'] = 0
         u.props['tafsir'] = 0
 
     if u.props['view'] == 1:
@@ -358,6 +359,7 @@ def quranHuruf(q, u, index):
             if x[4] == '0':
                 u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
+
             # use font QCF
             if u.props['print'] == 1:
                 # component, halaman, ayat, unicode kata
@@ -378,6 +380,9 @@ def quranHuruf(q, u, index):
                     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
                     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
 
+                    if u.props['mushaf'] == 1:
+                        u.props['arabicfontsize'] = 0
+                        
                     if x[pos] in PAGES:
                         u.props['arabicfont'] = 0
                         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
