@@ -26,7 +26,7 @@ def main(environ, start_response):
     u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
     u.render('<style>@import url("https://fonts.googleapis.com/css2?family=Brush+Script+MT&family=Microsoft+Uighur&family=Material+Icons&family=Calibri&family=Harmattan:wght@400;700&family=Lateef&family=Amiri&family=Montserrat&family=Open+Sans&family=Scheherazade:wght@400;700&display=swap");</style>')
     u.render('</head>')
-    u.render('<body style="; margin: 10px 10px 10px 10px; font-family: '+ u.props['font']+ ';">')
+    u.render('<body style="margin: 20px; font-family: '+ u.props['font']+ ';">')
 
     error = True
     path = environ['PATH_INFO']

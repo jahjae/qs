@@ -89,7 +89,6 @@ def Daily(q, u, index):
                     q.mushafHuruf(u, x[pos])
 
 
-#    u.render('</td></tr></table>')
     u.render('<div>')
 
     u.props['index'] = s
@@ -151,19 +150,15 @@ def Goto(q, u, index):
 
 def Search(q,  u, index):
     u.style('a', {'text-decoration': 'none'})
-
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
-
-    u.render('<div>')
-    u.render('<table style="width: 100%;"><tr style="width: 100%;"><td>')
-
+    u.render('<div style="width: 100%;">')
     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
 
     for x in range(82):
         q.barisBaru(u)
         u.render('<a style="font-size: '+ASIZET[u.props['arabicfontsize']]+ '; text-decoration: none; font-family: '+ FONTS[u.props['arabicfont']]+';" href="/select/">' +chr(CHAR[x])+ '</a>')
 
-    u.render('</td></tr></table></div>')
+    u.render('</div>')
 
 
 def Info(q, u, index):
@@ -262,15 +257,10 @@ def quranHuruf(q, u, index):
     if u.props['mushaf'] == 1:
         u.props['align'] = 'center'
         u.props['tafsir'] = 0
-        u.style('div', {'text-align': 'justify'})
-
 
     if u.props['view'] == 1:
         u.props['firstword'] = 0
 
-
-
-#    u.render('<table style="width: 100%">')
     u.render('<div style=""width: 100%;">')
     q.barisBaru(u)
 
@@ -301,15 +291,20 @@ def quranHuruf(q, u, index):
             ayatBerikut = q.compare(x[4], ayatSebelum)
             kataBerikut = q.compare(x[5], kataSebelum)
 
+            if halamanBerikut:
+                if u.props['mushaf'] != 1:
+                    if u.props['tafsir'] and ayatSebelum  != '0':
+                        q.artiBaru(u)
+                        q.artiAyat(u, suratSebelum, ayatSebelum)
+
+                halamanSebelum = x[0]
+                u.render('<p>PAGE: '+halamanSebelum+'</p>')
+
 
             if suratBerikut:
                 suratSebelum = x[3]
                 ayatSebelum = '0'
                 kataSebelum = '0'
-
-            if halamanBerikut:
-                halamanSebelum = x[0]
-                u.render('<p>PAGE: '+halamanSebelum+'</p>')
 
             if barisBerikut:
                 if u.props['mushaf'] == 1:
@@ -329,12 +324,10 @@ def quranHuruf(q, u, index):
                     if u.props['tafsir'] == 1 and ayatSebelum  != '0':
                         q.artiBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
-
                     q.barisBaru(u)
 
                 ayatSebelum = x[4]
                 kataSebelum = '0'
-
 
 
 #           adding space before next word
