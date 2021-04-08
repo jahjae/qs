@@ -246,17 +246,7 @@ class Q:
         return u
 
     def mushafHuruf(self, u, huruf):
-        if u.props['mushaf'] != 1:
-            if int(huruf) == 32 or CLEAN[huruf]:
-                if u.props['text'] != 0:
-                        u.render('<a style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
-
-            if u.props['text'] == 0:
-                u.render('<a style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + ';color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
-
-        if u.props['mushaf'] == 1:
-            if u.props['text'] == 0:
-                u.render('<a style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + '; color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+        u.render('<a style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + '; color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
 
 
         return u
