@@ -2,10 +2,8 @@
 # Quran Parameter
 
 FONTS = {
-    4:  'Scheherazade',
-    3:  'Microsoft Uighur',
-    2:  'Calibri',
-    1:  'Brush Script MT',
+    2:  'Scheherazade',
+    1:  'Microsoft Uighur',
     0:  'Harmattan',
 
 }
@@ -140,7 +138,7 @@ ADDRESS = {
     '/arabicsize'   : 'Arabicsize',
     '/fontsize'     : 'Fontsize',
     '/daily'        : 'Daily',
-    '/surat'        : 'Surat',
+    '/number'       : 'Number',
     '/page'         : 'Page',
     '/juz'          : 'Juz',
     '/fontname'     : 'Fontname',

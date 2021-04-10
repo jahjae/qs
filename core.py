@@ -17,15 +17,24 @@ def TextFormat(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 
-def Surat(q, u, index):
-    u.props['menu'] = 1
+def Number(q, u, index):
+    u.style('a', {'text-decoration': 'none'})
+    u.props['menu'] = 0
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
 
     u.style('p', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'left','line-height': '1',})
 
-    for x in q.surat:
-        u.render('<p>'+str(x)+'. '+q.surat[x][1]+', '+q.surat[x][0]+', '+q.surat[x][2]+', '+q.surat[x][4]+'</p>')
+    if u.props['mode'] == 3:
+        for x in q.surat:
+            u.render('<p><a href="/'+str(x)+'">'+str(x)+'. </a>'+q.surat[x][1]+', '+q.surat[x][0]+', '+q.surat[x][2]+', '+q.surat[x][4]+'</p>')
 
+    if u.props['mode'] == 2:
+        for x in q.juz:
+            u.render('<p><a href="/'+str(x)+'">'+str(x)+'. </a>'+q.surat[int(q.juz[x]['surat'])][1]+' / '+q.juz[x]['ayat']+'</p>')
+
+    if u.props['mode'] == 0:
+        for x in q.halaman:
+            u.render('<p><a href="/'+str(x)+'">'+str(x)+'. </a>'+q.surat[int(q.halaman[x]['surat'])][1]+' / '+q.halaman[x]['ayat']+'</p>')
 
 
 def Daily(q, u, index):
@@ -143,7 +152,6 @@ def Goto(q, u, index):
 
         u.props['index'] = u.props['surat']
 
-
     os.environ['INDEX'] = str(u.props['index'])
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
@@ -168,10 +176,16 @@ def Info(q, u, index):
 
     u.render('<p> <a href="/daily">DAILY AYAT</a></p>')
     u.render('<p> <a href="/mode">MODE</a>: '                   +MODET[u.props['mode']] +'</p>')
-    u.render('<p> <a href="/goto">GOTO</a>: '                   +str(u.props['index'])+'</p>')
-    u.render('<p> <a href="/juz">JUZ</a>: '                     +str(u.props['juz'])            +' / 30</p>')
-    u.render('<p> <a href="/surat">SURA</a>: '                  +str(u.props['surat'])          +' / 114 - ' +str(q.surat[u.props['surat']][1]) + ' ' + q.surat[u.props['surat']][0]+'</p>')
-    u.render('<p> <a href="/halaman">PAGE</a>: '                +str(u.props['page'])           +' / 604</p>')
+
+    if u.props['mode'] == 3:
+        u.render('<p> <a href="/goto">GOTO</a>: <a href="/number">'+str(u.props['index'])+'</a> / 114 - '+q.surat[u.props['index']][1]+'</p>')
+
+    if u.props['mode'] == 2:
+        u.render('<p> <a href="/goto">GOTO</a>: <a href="/number">'+str(u.props['index'])+'</a> / 30</p>')
+
+    if u.props['mode'] == 0:
+        u.render('<p> <a href="/goto">GOTO</a>: <a href="/number">'+str(u.props['index'])+'</a> / 604</p>')
+
     u.render('<p> <a href="/mushaf">MUSHAF</a>: '               +MUSHAFT[u.props['mushaf']]+'</p>')
     u.render('<p> <a href="/fontname">FONTS</a>: '              +FONTS[u.props['arabicfont']]+'</p>')
     u.render('<p> <a href="/text">TEXT</a>: '                   +FORMAT[u.props['text']]+'</p>')
@@ -210,6 +224,7 @@ def Mode(q, u, index):
         u.props['mode'] = 2
 
     u.props['selected'] = MODET[u.props['mode']]
+
     if u.props['mode'] == 0:
             u.props['index'] = u.props['page']
 
@@ -382,7 +397,7 @@ def quranHuruf(q, u, index):
 
                     if u.props['mushaf'] == 1:
                         u.props['arabicfontsize'] = 0
-                        
+
                     if x[pos] in PAGES:
                         u.props['arabicfont'] = 0
                         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')

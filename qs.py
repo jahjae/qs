@@ -63,7 +63,7 @@ class Q:
         dbContent = self.data(db)
         for x in dbContent:
             key = str(x[0])
-            self.juz[key] = {'Surat': x[1],'Ayat': x[2]}
+            self.juz[key] = {'surat': x[1],'ayat': x[2]}
 
     def loadHalaman(self, db):
         dbContent = self.data(db)
