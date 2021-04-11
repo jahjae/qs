@@ -25,10 +25,10 @@ TSIZET = {
 }
 
 MODET = {
-    0:  'Page',
-    1:  'Row',
-    2:  'Juz',
-    3:  'Sura',
+    0:  'PAGE',
+    1:  'ROW',
+    2:  'JUZ',
+    3:  'SURA',
 }
 
 LOGICALT = {
@@ -143,6 +143,7 @@ ADDRESS = {
     '/juz'          : 'Juz',
     '/fontname'     : 'Fontname',
     '/text'         : 'TextFormat',
+    '/index'        : 'Index',
 }
 
 FORMAT = {

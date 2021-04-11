@@ -60,9 +60,9 @@ def Daily(q, u, index):
     for x in q.kata[0:]:
         if x[3] == str(s):
             if x[4] == str(a):
+                u.props['page'] = int(x[0])
                 u.props['juz'] = int(x[2])
                 u.props['surat'] = int(x[3])
-                u.props['page'] = int(x[0])
 
                 if reset:
                     reset = False
@@ -117,8 +117,15 @@ def Daily(q, u, index):
     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
 
 
-def Dictio(q, u, index):
-    pass
+def Index(q, u, index):
+    u.style('a', {'text-decoration': 'none'})
+    u.style('p', {'line-height': '0.1'})
+    u.props['menu'] = 0
+
+    for x in q.indexkata:
+        u.render('<p><a href="/'+str(x)+'">'+str(x)+'. </a></p>')
+        u.render(str(q.indexkata[x]))
+
 
 def Goto(q, u, index):
     u.style('a', {'text-decoration': 'none'})
@@ -174,29 +181,35 @@ def Info(q, u, index):
     u.style('p', {'font-size': TSIZET[1]})
     u.style('a', {'text-decoration': 'none'})
 
-    u.render('<p> <a href="/daily">DAILY AYAT</a></p>')
-    u.render('<p> <a href="/mode">MODE</a>: '                   +MODET[u.props['mode']] +'</p>')
+    u.render('<p> <a href="/daily">DAILY</a> > AYAT</p>')
 
     if u.props['mode'] == 3:
-        u.render('<p> <a href="/goto">GOTO</a>: <a href="/number">'+str(u.props['index'])+'</a> / 114 - '+q.surat[u.props['index']][1]+'</p>')
+        u.render('<p> <a href="/mode">MODE</a> > ')
+        u.render('<a href="/goto">'+MODET[u.props['mode']]+'</a> > <a href="/number">'+str(u.props['index'])+'</a> / 114 - '+q.surat[u.props['index']][1]+'</p>')
 
     if u.props['mode'] == 2:
-        u.render('<p> <a href="/goto">GOTO</a>: <a href="/number">'+str(u.props['index'])+'</a> / 30</p>')
+        u.render('<p> <a href="/mode">MODE</a> > ')
+        u.render('<a href="/goto">'+MODET[u.props['mode']] +'</a> > <a href="/number">'+str(u.props['index'])+'</a> / 30</p>')
 
     if u.props['mode'] == 0:
-        u.render('<p> <a href="/goto">GOTO</a>: <a href="/number">'+str(u.props['index'])+'</a> / 604</p>')
+        u.render('<p> <a href="/mode">MODE</a> > ')
+        u.render('<a href="/goto">'+MODET[u.props['mode']] +'</a> > <a href="/number">'+str(u.props['index'])+'</a> / 604</p>')
 
     u.render('<p> <a href="/mushaf">MUSHAF</a>: '               +MUSHAFT[u.props['mushaf']]+'</p>')
-    u.render('<p> <a href="/fontname">FONTS</a>: '              +FONTS[u.props['arabicfont']]+'</p>')
     u.render('<p> <a href="/text">TEXT</a>: '                   +FORMAT[u.props['text']]+'</p>')
     u.render('<p> <a href="/view">VIEW</a>: '                   +VIEWT[u.props['view']] +'</p>')
-    u.render('<p> <a href="/pertama">FIRST WORD</a>: '          +LOGICALT[u.props['firstword']] +'</p>')
-    u.render('<p> <a href="/word">WORD BY WORD</a>: '           +LOGICALT[u.props['word']] +'</p>')
-    u.render('<p> <a href="/translation">TRANSLATION</a>: '     +LOGICALT[u.props['tafsir']] +'</p>')
-    u.render('<p> <a href="/fontsize">TRANSLATION SIZE</a>: '   +TSIZET[u.props['fontsize']]+'</p>')
-    u.render('<p> <a href="/arabicsize">MUSHAF SIZE</a>: '      +ASIZET[u.props['arabicfontsize']]+'</p>')
+    u.render('<p> <a href="/pertama">FIRST</a>: '               +LOGICALT[u.props['firstword']] +'</p>')
+    u.render('<p> <a href="/word">BY WORD</a>: '                +LOGICALT[u.props['word']] +'</p>')
+    u.render('<p> <a href="/translation">TRANSLATION</a>: '     +LOGICALT[u.props['tafsir']] +' / ')
+    u.render('<a href="/fontsize">SIZE</a>: '+TSIZET[u.props['fontsize']]+'</p>')
+
+    u.render('<p> <a href="/fontname">FONTS</a>: '              +FONTS[u.props['arabicfont']]+' / ')
+    u.render('<a href="/arabicsize">SIZE</a>: '+ASIZET[u.props['arabicfontsize']]+'</p>')
+
+    u.render('<p> <a href="/index">INDEX</a></p>')
+    u.render('<p> <a href="/search">DICTIONARY</a></p>')
+
     u.render('<p> <a href="/theme">THEME</a>: '                 +THEMET[u.props['theme']]+'</p>')
-    u.render('<p> <a href="/search">SEARCH</a></p>')
 
 def Menu(q, u, index):
     u.style('a', {'text-decoration': 'none'})

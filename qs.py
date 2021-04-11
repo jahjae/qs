@@ -7,6 +7,7 @@ class Q:
         self.juz        = {}
         self.halaman    = {}
         self.artiayat   = {}
+        self.indexkata  = {}
         self.artikata   = {}
         self.codehuruf  = {}
         self.codekata   = {}
@@ -36,7 +37,6 @@ class Q:
             self.tafsir[s] = ta
 
     def loadCode(self):
-        dbContent = self.kata
         for x in self.kata[0:]:
             key = x[6]
             self.codekata[key] = x[6]
@@ -90,6 +90,19 @@ class Q:
         ns = 0
         na = 0
         for x in dbContent:
+            # Index Kata
+            u = x[4]
+
+            try:
+                a = self.indexkata[u]
+            except Exception:
+                a = []
+
+            a.append([self.surat[int(x[0])][2],x[1],x[2]])
+            self.indexkata[u] = a
+
+
+            # Arti Kata
             s = int(x[0])
             a = int(x[1])
             k = int(x[3])
@@ -106,6 +119,7 @@ class Q:
             tk[k] = x[4]
             ta[a] = tk
             self.artikata[s] = ta
+
 
 
     def compare(self, a, b):
