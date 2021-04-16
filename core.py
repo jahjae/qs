@@ -320,20 +320,8 @@ def quranHuruf(q, u, index):
             ayatBerikut = q.compare(x[4], ayatSebelum)
             kataBerikut = q.compare(x[5], kataSebelum)
 
-            if halamanBerikut:
-                if u.props['mushaf'] != 1:
-                    if u.props['tafsir'] and ayatSebelum  != '0':
-                        q.artiBaru(u)
-                        q.artiAyat(u, suratSebelum, ayatSebelum)
-
-                halamanSebelum = x[0]
-                u.render('<p>PAGE: '+halamanSebelum+'</p>')
 
 
-            if suratBerikut:
-                suratSebelum = x[3]
-                ayatSebelum = '0'
-                kataSebelum = '0'
 
             if barisBerikut:
                 if u.props['mushaf'] == 1:
@@ -353,11 +341,22 @@ def quranHuruf(q, u, index):
                     if u.props['tafsir'] == 1 and ayatSebelum  != '0':
                         q.artiBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
+
                     q.barisBaru(u)
+
+
+                if halamanBerikut:
+                    
+                    halamanSebelum = x[0]
+                    u.render('<p>PAGE: '+halamanSebelum+'</p>')
 
                 ayatSebelum = x[4]
                 kataSebelum = '0'
 
+            if suratBerikut:
+                suratSebelum = x[3]
+                ayatSebelum = '0'
+                kataSebelum = '0'
 
 #           adding space before next word
             if kataBerikut:

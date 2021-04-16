@@ -26,7 +26,7 @@ def main(environ, start_response):
     u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
     u.render('<link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Amiri&family=Harmattan:wght@400;700&family=Lateef&family=Scheherazade:wght@400;700&display=swap" rel="stylesheet">')
     u.render('</head>')
-    u.render('<body style="margin: 20px; font-family: '+ u.props['font']+ ';">')
+    u.render('<body style="margin: 10px; font-family: '+ u.props['font']+ ';">')
 
     error = True
     path = environ['PATH_INFO']

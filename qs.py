@@ -176,11 +176,11 @@ class Q:
         u.render('</div>')
         if u.props['tafsir'] == 1:
 #            u.render('<tr><td><div style="width: 100%; border: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
-            u.render('<div style="width: 100%; border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="paddang: 10px; width: 100%; border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
 
         if u.props['tafsir'] != 1:
 #            u.render('<tr><td><div style="width: 100%; border: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
-            u.render('<div style="width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="padding: 10px; width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
 
         return u
 
