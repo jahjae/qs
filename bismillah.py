@@ -11,8 +11,6 @@ from init import *
 from ui import *
 from qs import *
 
-
-
 def main(environ, start_response):
     status = '200 OK'
     headers = [('Content-type', 'text/html; charset=utf-8')]
@@ -24,9 +22,9 @@ def main(environ, start_response):
     u.render('<head>')
     u.render('<title>'+u.props['title']+'</title>')
     u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
-    u.render('<link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Amiri&family=Harmattan:wght@400;700&family=Lateef&family=Scheherazade:wght@400;700&display=swap" rel="stylesheet">')
+    u.render('<link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Times New Roman&family=Amiri&family=Harmattan:wght@400;700&family=Lateef&family=Scheherazade:wght@400;700&display=swap" rel="stylesheet">')
     u.render('</head>')
-    u.render('<body style="margin: 10px; font-family: '+ u.props['font']+ ';">')
+    u.render('<body style="margin: 20px; font-family: '+ u.props['font']+ ';">')
 
     error = True
     path = environ['PATH_INFO']
@@ -90,6 +88,7 @@ if __name__ == "__main__":
     u.props['arabicfontsize'] = 2
     u.props['theme'] = 0
     u.props['menu'] = 0
+    u.props['match'] = 0 # 0 = None, 1 = Ayah, 2 = Kata
     u.props['backgroundcolor'] = COLOR[0][0]
     u.props['firstwordcolor'] = COLOR[0][1]
     u.props['arabicfontcolor'] = COLOR[0][2]

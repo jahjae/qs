@@ -38,6 +38,7 @@ def Number(q, u, index):
 
 
 def Daily(q, u, index):
+    u.highlight('.d')
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 1
 
@@ -52,7 +53,6 @@ def Daily(q, u, index):
 
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
     u.render('<p></p>')
-#    u.render('<table style="width: 100%;"><tr><td style="text-align: center; line-height: 1.2">')
     u.render('<div style="width: 100%; text-align: center; line-height: 1.2">')
 
     reset = True
@@ -210,6 +210,7 @@ def Info(q, u, index):
     u.render('<p> <a href="/search">DICTIONARY</a></p>')
 
     u.render('<p> <a href="/theme">THEME</a>: '                 +THEMET[u.props['theme']]+'</p>')
+    u.render('<p> <a href="/match">MATCH</a>: '                 +MATCHT[u.props['match']]+'</p>')
 
 def Menu(q, u, index):
     u.style('a', {'text-decoration': 'none'})
@@ -224,6 +225,17 @@ def Menu(q, u, index):
         u.props['menu'] = 1
         Info(q, u, index)
 
+def Match(q, u, index):
+    u.style('a', {'text-decoration': 'none'})
+    u.props['menu'] = 0
+
+    if u.props['match'] == len(MATCHT)-1:
+        u.props['match'] = 0
+    else:
+        u.props['match'] = u.props['match'] + 1
+
+    noPage = str(u.props['index'])
+    exec(ADDRESS['/']+'(q, u, noPage)')
 
 def Mode(q, u, index):
     u.style('a', {'text-decoration': 'none'})
@@ -254,6 +266,7 @@ def Mode(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 def quranHuruf(q, u, index):
+    u.highlight('a.a')
     u.style('a', {'text-decoration': 'none'})
     u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
 
@@ -320,9 +333,6 @@ def quranHuruf(q, u, index):
             ayatBerikut = q.compare(x[4], ayatSebelum)
             kataBerikut = q.compare(x[5], kataSebelum)
 
-
-
-
             if barisBerikut:
                 if u.props['mushaf'] == 1:
                     q.barisBaru(u)
@@ -346,7 +356,7 @@ def quranHuruf(q, u, index):
 
 
                 if halamanBerikut:
-                    
+
                     halamanSebelum = x[0]
                     u.render('<p>PAGE: '+halamanSebelum+'</p>')
 
@@ -361,7 +371,6 @@ def quranHuruf(q, u, index):
 #           adding space before next word
             if kataBerikut:
                 q.spasi(u)
-
                 if u.props['mushaf'] != 1:
                     if u.props['word'] == 1 and ayatSebelum != '0' and kataSebelum != '0':
                         if u.props['tafsir'] == 1:
@@ -372,7 +381,6 @@ def quranHuruf(q, u, index):
                         q.barisBaru(u)
 
                 kataSebelum = x[5]
-
 
             # show or hide
             if u.props['view']  != 0:
@@ -386,6 +394,9 @@ def quranHuruf(q, u, index):
             if x[4] == '0':
                 u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
+            # selected huruf
+            if x[7] == '0':
+                u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
             # use font QCF
             if u.props['print'] == 1:
@@ -423,8 +434,6 @@ def quranHuruf(q, u, index):
             q.artiAyat(u, suratSebelum, ayatSebelum)
 
     u.render('</div>')
-
-#    u.render('</div></td></tr></table>')
 
     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))

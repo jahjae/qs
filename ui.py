@@ -41,15 +41,24 @@ class C:
                 'selected'          : '',
                 'search'            : 0,
                 'text'              : 0,
+                'highlight'         : {},
+                'match'             : 0,
             }
 
     def render(self, text):
         self.component.append(text)
 
-    def style(self, xobj, xstype):
-        sty = '<style>'+xobj+'{'
-        for x in xstype:
-            sty = sty + x +': '+xstype[x]+';'
+    def style(self, xobj, xstyle):
+        sty = '<style>'+xobj+' {'
+        for x in xstyle:
+            sty = sty + x +': '+xstyle[x]+';'
 
         sty = sty + '}</style>'
         self.render(sty)
+
+    def highlight(self, xobj):
+        xstyle = { 'color': '#000000'}
+        self.style(xobj, xstyle)
+
+        xstyle = { 'color': '#0000ff' }
+        self.style(xobj + ':hover', xstyle)

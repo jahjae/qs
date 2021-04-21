@@ -120,8 +120,6 @@ class Q:
             ta[a] = tk
             self.artikata[s] = ta
 
-
-
     def compare(self, a, b):
         if a != b:
             return True
@@ -138,14 +136,11 @@ class Q:
         if u.props['mushaf'] == 1:
             warp = 'nowrap'
 
-#        u.render('</div></td></tr>')
         u.render('</div>')
         if u.props['tafsir'] == 1:
-#            u.render('<tr><td><div style="border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 0.5;">')
             u.render('<div style="border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 0.5;">')
 
         if u.props['tafsir'] != 1:
-#            u.render('<tr><td><div style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 0.5;">')
             u.render('<div style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 0.5;">')
 
         return u
@@ -155,14 +150,11 @@ class Q:
         if u.props['mushaf'] == 1:
             warp = 'nowrap'
 
-#        u.render('</div></td></tr>')
         u.render('</div>')
         if u.props['tafsir'] == 1:
-#            u.render('<tr><td><div style="width: 100%; border: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
-            u.render('<div style="width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="padding: 10px 0 0 0;width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
 
         if u.props['tafsir'] != 1 :
-#            u.render('<tr><td><div style="width: 100%; border: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
             u.render('<div style="width: 100%; border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
 
         return u
@@ -172,15 +164,12 @@ class Q:
         if u.props['mushaf'] == 1:
             warp = 'nowrap'
 
-#        u.render('</div></td></tr>')
         u.render('</div>')
         if u.props['tafsir'] == 1:
-#            u.render('<tr><td><div style="width: 100%; border: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
-            u.render('<div style="paddang: 10px; width: 100%; border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="paddang: 10px 0 0 0; width: 100%; border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
 
         if u.props['tafsir'] != 1:
-#            u.render('<tr><td><div style="width: 100%; border: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
-            u.render('<div style="padding: 10px; width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
 
         return u
 
@@ -256,11 +245,8 @@ class Q:
         u.render('<a style="font-size: '+ ASIZET[u.props['arabicfontsize']] + '; font-family: ' + font + ';color: '+ u.props['arabicfontcolor'] +';">')
         u.render(chr(int(kata)))
         u.render('</a>')
-
         return u
 
     def mushafHuruf(self, u, huruf):
-        u.render('<a style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + '; color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
-
-
+        u.render('<a class="a" style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + '; color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
         return u
