@@ -82,12 +82,27 @@ def Daily(q, u, index):
 
                 u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
-                # first word
-                if u.props['firstword'] == 1 and x[5] == '1':
-                    u.props['arabicfontcolor'] = u.props['firstwordcolor']
-
                 for y in range(int(x[7])):
                     pos = y + 8
+                    pos1 = y + 9
+                    pos2 = y + 10
+                    pos3 = y + 11
+
+                    if x[pos1] == '1614' and x[pos2] == '1648':
+                        u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
+                    else:
+                        if x[pos1] == '1614' and x[pos2] == '1675' and x[pos3] == '1619':
+                            u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
+                        else:
+                            if x[pos1] == '1619':
+                                u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
+                            else:
+                                u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+
+
+                    # first word
+                    if u.props['firstword'] == 1 and x[5] == '1':
+                        u.props['arabicfontcolor'] = u.props['firstwordcolor']
 
                     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
                     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
@@ -173,9 +188,9 @@ def Search(q,  u, index):
 
     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
 
-    for x in range(82):
+    for x in q.huruf:
         q.barisBaru(u)
-        u.render('<a style="font-size: 50vw; text-decoration: none; font-family: '+ FONTS[u.props['arabicfont']]+';" href="/select/">' +chr(CHAR[x])+ '</a>')
+        u.render('<a class ="a" style="font-size: 50vw; color: '+q.huruf[x]['color']+';font-family: '+ FONTS[u.props['arabicfont']]+';" href="/select/">' +chr(int(x))+ '</a>')
 
     u.render('</div>')
 
@@ -395,22 +410,6 @@ def quranHuruf(q, u, index):
 
                 kataSebelum = x[5]
 
-            # show or hide
-            if u.props['view']  != 0:
-                u.props['arabicfontcolor'] = u.props['backgroundcolor']
-
-            # first word
-            if u.props['firstword'] == 1 and x[5] == '1':
-                u.props['arabicfontcolor'] = u.props['firstwordcolor']
-
-            # non ayat
-            if x[4] == '0':
-                u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
-
-            # selected huruf
-            if x[7] == '0':
-                u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
-
             # use font QCF
             if u.props['print'] == 1:
                 # component, halaman, ayat, unicode kata
@@ -421,19 +420,47 @@ def quranHuruf(q, u, index):
 
                 q.mushafKata(u, x[0], x[4], x[6])
 
-#           use font Scheherazade and Harmattan for Number
+
             if u.props['print'] != 1:
                 q.spasi(u)
 
+                u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
+                u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
+
+                if u.props['mushaf'] == 1:
+                    u.props['arabicfontsize'] = 0
+
                 for y in range(int(x[7])):
                     pos = y + 8
+                    pos1 = y + 9
+                    pos2 = y + 10
+                    pos3 = y + 11
 
-                    u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
-                    u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
 
-                    if u.props['mushaf'] == 1:
-                        u.props['arabicfontsize'] = 0
+                    if x[pos1] == '1614' and x[pos2] == '1648':
+                        u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
+                    else:
+                        if x[pos1] == '1614' and x[pos2] == '1675' and x[pos3] == '1619':
+                            u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
+                        else:
+                            if x[pos1] == '1619':
+                                u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
+                            else:
+                                u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
+                    # show or hide
+                    if u.props['view']  != 0:
+                        u.props['arabicfontcolor'] = u.props['backgroundcolor']
+
+                    # first word
+                    if u.props['firstword'] == 1 and x[5] == '1':
+                        u.props['arabicfontcolor'] = u.props['firstwordcolor']
+
+                    # non ayat
+                    if x[4] == '0':
+                        u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+
+                    # use font for Number
                     if x[pos] in PAGES:
                         u.props['arabicfont'] = 0
                         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')

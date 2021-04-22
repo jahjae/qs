@@ -1,9 +1,11 @@
 import csv
+import random
 from init import *
 
 class Q:
     def __init__(self):
         self.surat      = {}
+        self.huruf      = {}
         self.juz        = {}
         self.halaman    = {}
         self.artiayat   = {}
@@ -41,9 +43,11 @@ class Q:
             key = x[6]
             self.codekata[key] = x[6]
 
+
             for y in range(int(x[7])):
                 pos = y + 8
                 u = x[pos]
+                self.huruf[u] = {'color': 'rgb('+str(random.randint(1,200))+','+str(random.randint(1,200))+','+ str(random.randint(1,200))+')'}
 
                 try:
                     a = self.codehuruf[u]

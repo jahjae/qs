@@ -160,9 +160,6 @@ FORMAT = {
     1:  'CLEAN',
 }
 
-HIGHLIGHT = {
-    '1619'  : '#ff0000',
-}
 
 PLAIN = {
     '1600' : False,
