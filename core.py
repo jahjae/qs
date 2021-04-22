@@ -4,6 +4,7 @@ import os
 import random
 
 def TextFormat(q, u, index):
+    u.style('header', {'position': 'sticky', 'top': '0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
 
@@ -164,22 +165,27 @@ def Goto(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 def Search(q,  u, index):
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
+
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
     u.render('<div style="width: 100%;">')
+
     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
 
     for x in range(82):
         q.barisBaru(u)
-        u.render('<a style="font-size: '+ASIZET[u.props['arabicfontsize']]+ '; text-decoration: none; font-family: '+ FONTS[u.props['arabicfont']]+';" href="/select/">' +chr(CHAR[x])+ '</a>')
+        u.render('<a style="font-size: 50vw; text-decoration: none; font-family: '+ FONTS[u.props['arabicfont']]+';" href="/select/">' +chr(CHAR[x])+ '</a>')
 
     u.render('</div>')
 
 
 def Info(q, u, index):
-    u.render('<header><a href="/menu">'+'>'+'</a></header>')
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('p', {'font-size': TSIZET[1]})
     u.style('a', {'text-decoration': 'none'})
+
+    u.render('<header><a href="/menu">'+'>'+'</a></header>')
 
     u.render('<p> <a href="/daily">DAILY</a> > AYAT</p>')
 
@@ -213,7 +219,9 @@ def Info(q, u, index):
     u.render('<p> <a href="/match">MATCH</a>: '                 +MATCHT[u.props['match']]+'</p>')
 
 def Menu(q, u, index):
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
+
     os.environ['INDEX'] = str(u.props['index'])
 
     if u.props['menu'] == 1:
@@ -226,7 +234,9 @@ def Menu(q, u, index):
         Info(q, u, index)
 
 def Match(q, u, index):
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
+
     u.props['menu'] = 0
 
     if u.props['match'] == len(MATCHT)-1:
@@ -238,6 +248,7 @@ def Match(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 def Mode(q, u, index):
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
     if u.props['mode'] == len(MODET)-1:
@@ -266,7 +277,9 @@ def Mode(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 def quranHuruf(q, u, index):
-    u.highlight('a.a')
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
+    u.style('p.page', {'position': 'sticky', 'top': '0', 'padding': '10px 0 0 0'})
+
     u.style('a', {'text-decoration': 'none'})
     u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
 
@@ -358,7 +371,7 @@ def quranHuruf(q, u, index):
                 if halamanBerikut:
 
                     halamanSebelum = x[0]
-                    u.render('<p>PAGE: '+halamanSebelum+'</p>')
+                    u.render('<p class="page">PAGE: '+halamanSebelum+'</p>')
 
                 ayatSebelum = x[4]
                 kataSebelum = '0'
@@ -440,8 +453,9 @@ def quranHuruf(q, u, index):
     return u
 
 def Arabicsize(q, u, index):
-    u.props['menu'] = 0
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
+    u.props['menu'] = 0
 
     u.props['arabicfontsize'] = u.props['arabicfontsize'] + 1
 
@@ -456,8 +470,9 @@ def Arabicsize(q, u, index):
 
 
 def Fontname(q, u, index):
-    u.props['menu'] = 0
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
+    u.props['menu'] = 0
 
     u.props['arabicfont'] = u.props['arabicfont'] + 1
 
@@ -471,8 +486,9 @@ def Fontname(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 def Fontsize(q, u, index):
-    u.props['menu'] = 0
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
+    u.props['menu'] = 0
 
     u.props['fontsize'] = u.props['fontsize'] + 1
 
@@ -486,6 +502,7 @@ def Fontsize(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 def Theme(qdata, u, index):
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.props['menu'] = 0
     u.style('a', {'text-decoration': 'none'})
 
@@ -511,8 +528,9 @@ def Theme(qdata, u, index):
 
 
 def View(qdata, u, index):
-    u.props['menu'] = 0
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
+    u.props['menu'] = 0
 
     if u.props['view'] == len(VIEWT)-1:
         u.props['view'] = 0
@@ -526,8 +544,9 @@ def View(qdata, u, index):
     exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 def Pertama(qdata, u, index):
-    u.props['menu'] = 0
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
+    u.props['menu'] = 0
 
     if u.props['firstword'] == 1:
         u.props['firstword'] = 0
@@ -542,8 +561,9 @@ def Pertama(qdata, u, index):
 
 
 def Quran(q, u, index):
-    u.props['menu'] = 0
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
+    u.props['menu'] = 0
 
     if u.props['print'] == 1:
         u.props['print'] = 0
@@ -558,8 +578,9 @@ def Quran(q, u, index):
 
 
 def Translation(qdata, u, index):
-    u.props['menu'] = 0
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
+    u.props['menu'] = 0
 
     if u.props['tafsir'] == 1:
         u.props['tafsir'] = 0
@@ -574,8 +595,9 @@ def Translation(qdata, u, index):
 
 
 def Word(qdata, u, index):
-    u.props['menu'] = 0
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
+    u.props['menu'] = 0
 
     if u.props['word'] == 1:
         u.props['word'] = 0
@@ -590,8 +612,9 @@ def Word(qdata, u, index):
 
 
 def Mushaf(qdata, u, index):
-    u.props['menu'] = 0
+    u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
+    u.props['menu'] = 0
 
     if u.props['mushaf'] == 1:
         u.props['mushaf'] = 0
