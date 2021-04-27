@@ -8,6 +8,7 @@ import random
 
 from core import *
 from init import *
+from apps import *
 from ui import *
 from qs import *
 
