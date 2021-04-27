@@ -102,7 +102,7 @@ class Q:
             except Exception:
                 a = []
 
-            a.append([self.surat[int(x[0])][2],x[1],x[2]])
+            a.append([self.surat[int(x[0])][2],x[0],x[1],x[2]])
             self.indexkata[u] = a
 
 
@@ -154,7 +154,13 @@ class Q:
         if u.props['mushaf'] == 1:
             warp = 'nowrap'
 
-        u.render('<div style="padding: 10px 0 0 0;width: 100%; border-bottom: 0px '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+        u.render('</div>')
+        if u.props['tafsir'] == 1:
+            u.render('<div style="padding: 10px 0 0 0;width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+
+        if u.props['tafsir'] != 1 :
+            u.render('<div class="m" style="width: 100%; border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+
         return u
 
     def barisBaru(self, u):
@@ -164,10 +170,10 @@ class Q:
 
         u.render('</div>')
         if u.props['tafsir'] == 1:
-            u.render('<div style="padding: 10px 0 0 0;width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="padding: 10px 0 10px 0;width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
 
         if u.props['tafsir'] != 1 :
-            u.render('<div class="m" style="width: 100%; border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div class="m" style="width: 100%; border-bottom: 1px solid #eee; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
 
         return u
 
@@ -178,7 +184,7 @@ class Q:
 
         u.render('</div>')
         if u.props['tafsir'] == 1:
-            u.render('<div style="paddang: 10px 0 0 0; width: 100%; border-bottom: 1px solid #ddd; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="padding: 10px 0 10px 0; width: 100%; border-bottom: 1px solid #eee; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
 
         if u.props['tafsir'] != 1:
             u.render('<div style="width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
