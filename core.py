@@ -54,7 +54,7 @@ def Daily(q, u, index):
 
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
     u.render('<p></p>')
-    u.render('<div style="width: 100%; text-align: center; line-height: 1.2">')
+    u.render('<div class="m" style="width: 100%; text-align: center; line-height: 1.2">')
 
     reset = True
 
@@ -115,6 +115,8 @@ def Daily(q, u, index):
 
 
     u.render('<div>')
+
+    u.style("m", {'align': "center"})
 
     u.props['index'] = s
     u.props['mode'] = 3
@@ -331,11 +333,12 @@ def quranHuruf(q, u, index):
     if u.props['view'] == 1:
         u.props['firstword'] = 0
 
-    u.render('<div style=""width: 100%;">')
-    q.barisBaru(u)
 
     reset = True
     quran = q.kata
+
+    u.render('<div class="m" style="width: 100%;">')
+    q.barisBaru(u)
     for x in quran[0:]:
 
         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
@@ -384,8 +387,8 @@ def quranHuruf(q, u, index):
 
 
                 if halamanBerikut:
-
                     halamanSebelum = x[0]
+                    u.render('<div style="border-bottom: 5px solid #dddddd"></div>')
                     u.render('<p class="page">PAGE: '+halamanSebelum+'</p>')
 
                 ayatSebelum = x[4]
@@ -435,18 +438,14 @@ def quranHuruf(q, u, index):
                     pos1 = y + 9
                     pos2 = y + 10
                     pos3 = y + 11
+                    pos4 = y + 12
 
 
-                    if x[pos1] == '1614' and x[pos2] == '1648':
-                        u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
+                    # mad 4 harakat
+                    if x[pos1] == '1619' or x[pos2] == '1619' or x[pos3] == '1619' or x[pos4] == '1619':
+                        u.props['arabicfontcolor'] = "#0000ff"
                     else:
-                        if x[pos1] == '1614' and x[pos2] == '1675' and x[pos3] == '1619':
-                            u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
-                        else:
-                            if x[pos1] == '1619':
-                                u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
-                            else:
-                                u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+                        u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
                     # show or hide
                     if u.props['view']  != 0:
@@ -463,6 +462,7 @@ def quranHuruf(q, u, index):
                     # use font for Number
                     if x[pos] in PAGES:
                         u.props['arabicfont'] = 0
+                        u.props['arabicfontsize'] = 0
                         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
                     q.mushafHuruf(u, x[pos])
@@ -474,6 +474,8 @@ def quranHuruf(q, u, index):
             q.artiAyat(u, suratSebelum, ayatSebelum)
 
     u.render('</div>')
+    u.style("m", {'align': "center"})
+
 
     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
