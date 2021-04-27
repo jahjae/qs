@@ -89,10 +89,10 @@ def Daily(q, u, index):
                     pos3 = y + 11
 
 
-                    if x[pos1] == '1619' or x[pos2] == '1619':
+                    if x[pos1] == '1619':
                         u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
                     else:
-                        if x[pos1] == '1648' or x[pos2] == '1648':
+                        if x[pos1] == '1648':
                             u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
                         else:
                             u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
@@ -386,8 +386,9 @@ def quranHuruf(q, u, index):
 
                 if halamanBerikut:
                     halamanSebelum = x[0]
-                    q.tambahBaris(u)
+                    q.barisBaru(u)
 
+                    u.render('<p class="page"></p>')
                     u.render('<div style="border-bottom: 10px solid #dddddd"></div>')
                     u.render('<p class="page">PAGE: '+halamanSebelum+'</p>')
 
@@ -441,10 +442,10 @@ def quranHuruf(q, u, index):
                     pos4 = y + 12
 
 
-                    if x[pos1] == '1619' or x[pos2] == '1619':
+                    if x[pos1] == '1619':
                         u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
                     else:
-                        if x[pos1] == '1648' or x[pos2] == '1648':
+                        if x[pos1] == '1648':
                             u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
                         else:
                             u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
