@@ -88,16 +88,14 @@ def Daily(q, u, index):
                     pos2 = y + 10
                     pos3 = y + 11
 
-                    if x[pos1] == '1614' and x[pos2] == '1648':
+
+                    if x[pos1] == '1619' or x[pos2] == '1619':
                         u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
                     else:
-                        if x[pos1] == '1614' and x[pos2] == '1675' and x[pos3] == '1619':
+                        if x[pos1] == '1648' or x[pos2] == '1648':
                             u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
                         else:
-                            if x[pos1] == '1619':
-                                u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
-                            else:
-                                u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+                            u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
 
                     # first word
@@ -383,12 +381,14 @@ def quranHuruf(q, u, index):
                         q.artiBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
 
-                    q.barisBaru(u)
-
+                    if not halamanBerikut:
+                        q.barisBaru(u)
 
                 if halamanBerikut:
                     halamanSebelum = x[0]
-                    u.render('<div style="border-bottom: 5px solid #dddddd"></div>')
+                    q.tambahBaris(u)
+
+                    u.render('<div style="border-bottom: 10px solid #dddddd"></div>')
                     u.render('<p class="page">PAGE: '+halamanSebelum+'</p>')
 
                 ayatSebelum = x[4]
@@ -441,11 +441,14 @@ def quranHuruf(q, u, index):
                     pos4 = y + 12
 
 
-                    # mad 4 harakat
-                    if x[pos1] == '1619' or x[pos2] == '1619' or x[pos3] == '1619' or x[pos4] == '1619':
-                        u.props['arabicfontcolor'] = "#0000ff"
+                    if x[pos1] == '1619' or x[pos2] == '1619':
+                        u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
                     else:
-                        u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+                        if x[pos1] == '1648' or x[pos2] == '1648':
+                            u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
+                        else:
+                            u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+
 
                     # show or hide
                     if u.props['view']  != 0:

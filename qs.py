@@ -149,6 +149,14 @@ class Q:
 
         return u
 
+    def tambahBaris(self, u):
+        warp = ''
+        if u.props['mushaf'] == 1:
+            warp = 'nowrap'
+
+        u.render('<div style="padding: 10px 0 0 0;width: 100%; border-bottom: 0px '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+        return u
+
     def barisBaru(self, u):
         warp = ''
         if u.props['mushaf'] == 1:
