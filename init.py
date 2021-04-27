@@ -2,10 +2,10 @@
 # Quran Parameter
 
 FONTS = {
-    4:  'Quran Standard',
-    3:  'Scheherazade',
-    2:  'Calibri',
-    1:  'Microsoft Uighur',
+    4:  'Calibri',
+    3:  'Microsoft Uighur',
+    2:  'Quran Standard',
+    1:  'Scheherazade',
     0:  'Harmattan',
 
 }
