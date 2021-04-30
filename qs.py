@@ -134,7 +134,6 @@ class Q:
         self.mushafHuruf(u, '32')
         return u
 
-
     def kataBaru(self, u):
         warp = ''
         if u.props['mushaf'] == 1:

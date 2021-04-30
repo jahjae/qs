@@ -65,17 +65,37 @@ def quranAyat(q, u, s, a):
 
                 for y in range(int(x[7])):
                     pos = y + 8
+
                     pos1 = y + 9
                     pos2 = y + 10
                     pos3 = y + 11
 
+                    # 1619
                     if x[pos1] == '1619':
-                        u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
+                        u.props['arabicfontcolor'] = '#0000ff'
                     else:
-                        if x[pos1] == '1648':
-                            u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
+                        # 1614 & 1648
+                        if x[pos1] == '1614' and x[pos2] == '1648':
+                            u.props['arabicfontcolor'] = '#0000ff'
                         else:
-                            u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+
+                            # 1614 & 1575 = A
+                            if x[pos1] == '1614' and x[pos2] == '1575':
+                                u.props['arabicfontcolor'] = '#0000ff'
+                            else:
+
+                                # 1616	1610 = I
+                                if x[pos1] == '1616' and x[pos2] == '1610':
+                                    u.props['arabicfontcolor'] = '#0000ff'
+                                else:
+
+                                    # 1615	1608 = U
+                                    if x[pos1] == '1615' and x[pos2] == '1608':
+                                        u.props['arabicfontcolor'] = '#0000ff'
+                                    else:
+                                        u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+
+
 
 
                     # first word
@@ -461,13 +481,30 @@ def quranKata(q, u, x):
         pos3 = y + 11
         pos4 = y + 12
 
+        # 1619
         if x[pos1] == '1619':
-            u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
+            u.props['arabicfontcolor'] = '#0000ff'
         else:
-            if x[pos1] == '1648':
-                u.props['arabicfontcolor'] = q.huruf[x[pos]]['color']
+            # 1614 & 1648
+            if x[pos1] == '1614' and x[pos2] == '1648':
+                u.props['arabicfontcolor'] = '#0000ff'
             else:
-                u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+
+                # 1614 & 1575 = A
+                if x[pos1] == '1614' and x[pos2] == '1575':
+                    u.props['arabicfontcolor'] = '#0000ff'
+                else:
+
+                    # 1616	1610 = I
+                    if x[pos1] == '1616' and x[pos2] == '1610':
+                        u.props['arabicfontcolor'] = '#0000ff'
+                    else:
+
+                        # 1615	1608 = U
+                        if x[pos1] == '1615' and x[pos2] == '1608':
+                            u.props['arabicfontcolor'] = '#0000ff'
+                        else:
+                            u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
 
         # show or hide

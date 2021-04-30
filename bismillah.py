@@ -3,12 +3,14 @@ from multiprocessing import *
 
 import sys
 import os
-import urllib.request
 import random
+import urllib.request
+
+from apps import *
+from nets import *
 
 from core import *
 from init import *
-from apps import *
 from ui import *
 from qs import *
 

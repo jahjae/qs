@@ -56,6 +56,10 @@ class C:
         sty = sty + '}</style>'
         self.render(sty)
 
+    def svg(self, x, y, xobj):
+        sty = '<svg>'+xobj+'</svg>'
+        self.render(sty)
+
     def highlight(self, xobj):
         xstyle = { 'color': '#000000'}
         self.style(xobj, xstyle)
