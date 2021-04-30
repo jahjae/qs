@@ -62,7 +62,6 @@ def quranAyat(q, u, s, a):
                     q.spasi(u)
 
                 kataBerikut = q.compare(x[5], kataSebelum)
-
                 if u.props['print'] == 1:
                     # component, halaman, ayat, unicode kata
                     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))

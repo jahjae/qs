@@ -151,7 +151,18 @@ ADDRESS = {
     '/fontname'     : 'Fontname',
     '/text'         : 'TextFormat',
     '/index'        : 'Index',
-    '/match'        : 'Match',
+    '/nimu'         : 'Nimu',
+    '/human'        : 'Human',
+    '/universe'     : 'Universe',
+    '/businnes'     : 'Businnes',
+    '/office'       : 'Office',
+}
+
+HUBO = {
+    0: 'Human',
+    1: 'Universe',
+    2: 'Businnes',
+    3: 'Office',
 }
 
 FORMAT = {

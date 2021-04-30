@@ -43,6 +43,7 @@ class C:
                 'text'              : 0,
                 'highlight'         : {},
                 'match'             : 0,
+                'hubo'              : 0,
             }
 
     def render(self, text):
