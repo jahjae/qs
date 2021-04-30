@@ -2,6 +2,7 @@
 # Quran Parameter
 
 FONTS = {
+    3:  'Scheherazade',
     2:  'Calibri',
     1:  'Microsoft Uighur',
     0:  'Harmattan',
@@ -9,7 +10,7 @@ FONTS = {
 }
 
 ASIZET = {
-    0: '4.5vw',
+    0: '4vw',
     1: '180%',
     2: '210%',
     3: '240%',

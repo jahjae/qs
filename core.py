@@ -55,61 +55,72 @@ def quranAyat(q, u, s, a):
                     ayatSebelum = x[4]
                     kataSebelum = x[5]
 
-                kataBerikut = q.compare(x[5], kataSebelum)
-
                 u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
                 if kataBerikut:
                     kataSebelum = x[5]
                     q.spasi(u)
 
-                for y in range(int(x[7])):
-                    pos = y + 8
+                kataBerikut = q.compare(x[5], kataSebelum)
 
-                    pos1 = y + 9
-                    pos2 = y + 10
-                    pos3 = y + 11
+                if u.props['print'] == 1:
+                    # component, halaman, ayat, unicode kata
+                    u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
 
-                    # 1619
-                    if x[pos1] == '1619':
-                        u.props['arabicfontcolor'] = '#0000ff'
-                    else:
-                        # 1614 & 1648
-                        if x[pos1] == '1614' and x[pos2] == '1648':
+                    if u.props['mushaf'] == 1:
+                        u.props['arabicfontsize'] = 0
+
+                    q.mushafKata(u, x[0], x[4], x[6])
+
+
+                if u.props['print'] != 1:
+                    for y in range(int(x[7])):
+                        pos = y + 8
+
+                        pos1 = y + 9
+                        pos2 = y + 10
+                        pos3 = y + 11
+
+                        # 1619
+                        if x[pos1] == '1619':
                             u.props['arabicfontcolor'] = '#0000ff'
                         else:
-
-                            # 1614 & 1575 = A
-                            if x[pos1] == '1614' and x[pos2] == '1575':
+                            # 1614 & 1648
+                            if x[pos1] == '1614' and x[pos2] == '1648':
                                 u.props['arabicfontcolor'] = '#0000ff'
                             else:
 
-                                # 1616	1610 = I
-                                if x[pos1] == '1616' and x[pos2] == '1610':
+                                # 1614 & 1575 = A
+                                if x[pos1] == '1614' and x[pos2] == '1575':
                                     u.props['arabicfontcolor'] = '#0000ff'
                                 else:
 
-                                    # 1615	1608 = U
-                                    if x[pos1] == '1615' and x[pos2] == '1608':
+                                    # 1616	1610 = I
+                                    if x[pos1] == '1616' and x[pos2] == '1610':
                                         u.props['arabicfontcolor'] = '#0000ff'
                                     else:
-                                        u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+
+                                        # 1615	1608 = U
+                                        if x[pos1] == '1615' and x[pos2] == '1608':
+                                            u.props['arabicfontcolor'] = '#0000ff'
+                                        else:
+                                            u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
 
 
 
-                    # first word
-                    if u.props['firstword'] == 1 and x[5] == '1':
-                        u.props['arabicfontcolor'] = u.props['firstwordcolor']
+                        # first word
+                        if u.props['firstword'] == 1 and x[5] == '1':
+                            u.props['arabicfontcolor'] = u.props['firstwordcolor']
 
-                    u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
-                    u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
+                        u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
+                        u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
 
-                    if x[pos] in PAGES:
-                        u.props['arabicfont'] = 0
-                        u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+                        if x[pos] in PAGES:
+                            u.props['arabicfont'] = 0
+                            u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
-                    q.mushafHuruf(u, x[pos])
+                        q.mushafHuruf(u, x[pos])
 
 
 def Daily(q, u, index):
@@ -240,6 +251,7 @@ def Info(q, u, index):
         u.render('<a href="/goto">'+MODET[u.props['mode']] +'</a> > <a href="/number">'+str(u.props['index'])+'</a> / 604</p>')
 
     u.render('<p> <a href="/mushaf">MUSHAF</a>: '               +MUSHAFT[u.props['mushaf']]+'</p>')
+    u.render('<p> <a href="/quran">QURAN</a>: '                 +LOGICALT[u.props['print']] +'</p>')
     u.render('<p> <a href="/text">TEXT</a>: '                   +FORMAT[u.props['text']]+'</p>')
     u.render('<p> <a href="/view">VIEW</a>: '                   +VIEWT[u.props['view']] +'</p>')
     u.render('<p> <a href="/pertama">FIRST</a>: '               +LOGICALT[u.props['firstword']] +'</p>')
@@ -410,6 +422,8 @@ def quranHuruf(q, u, index):
                 if halamanBerikut:
                     halamanSebelum = x[0]
                     q.barisBaru(u)
+
+                    u.style("m", {'align': "center"})
 
                     u.render('<p class="page"></p>')
                     u.render('<div style="border-bottom: 10px solid #dddddd"></div>')
