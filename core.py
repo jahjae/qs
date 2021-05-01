@@ -55,13 +55,15 @@ def quranAyat(q, u, s, a):
                     ayatSebelum = x[4]
                     kataSebelum = x[5]
 
-                u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+
+                kataBerikut = q.compare(x[5], kataSebelum)
 
                 if kataBerikut:
                     kataSebelum = x[5]
                     q.spasi(u)
 
-                kataBerikut = q.compare(x[5], kataSebelum)
+                u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
+
                 if u.props['print'] == 1:
                     # component, halaman, ayat, unicode kata
                     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
@@ -266,6 +268,7 @@ def Info(q, u, index):
 
     u.render('<p> <a href="/theme">THEME</a>: '                 +THEMET[u.props['theme']]+'</p>')
     u.render('<p> <a href="/match">MATCH</a>: '                 +MATCHT[u.props['match']]+'</p>')
+    u.render('<p> <a href="/dan">DAN</a></p>')
 
 def Menu(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})

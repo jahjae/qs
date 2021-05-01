@@ -1,6 +1,15 @@
 #
 # Quran Parameter
 
+ROLES = {
+    0: 'Administrator',
+    1: 'Director',
+    2: 'Manager',
+    3: 'Supervisor',
+    4: 'Coordinator',
+    4: 'Operator',
+}
+
 FONTS = {
     3:  'Scheherazade',
     2:  'Calibri',
@@ -152,18 +161,12 @@ ADDRESS = {
     '/text'         : 'TextFormat',
     '/index'        : 'Index',
     '/nimu'         : 'Nimu',
-    '/human'        : 'Human',
-    '/universe'     : 'Universe',
-    '/businnes'     : 'Businnes',
-    '/office'       : 'Office',
+    '/role'         : 'Role',
+    '/item'         : 'Item',
+    '/action'       : 'Action',
+    '/dan'          : 'Dan',
 }
 
-HUBO = {
-    0: 'Human',
-    1: 'Universe',
-    2: 'Businnes',
-    3: 'Office',
-}
 
 FORMAT = {
     0:  'UTHMANI',

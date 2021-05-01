@@ -91,6 +91,7 @@ if __name__ == "__main__":
     u.props['arabicfontsize'] = 2
     u.props['theme'] = 0
     u.props['color'] = 1
+    u.props['nimu'] = 0
     u.props['menu'] = 0
     u.props['highlight'] = [1618, 1648]
     u.props['match'] = 0 # 0 = None, 1 = Ayah, 2 = Kata
