@@ -10,6 +10,12 @@ ROLES = {
     4: 'Operator',
 }
 
+HIGHLIGH = {
+    0: 'OFF',
+    1: 'FIRST WORD',
+    2: 'MAD',
+}
+
 FONTS = {
     3:  'Scheherazade',
     2:  'Calibri',
@@ -42,9 +48,10 @@ MATCHT = {
 
 MODET = {
     0:  'PAGE',
-    1:  'ROW',
+    1:  'AYAH',
     2:  'JUZ',
     3:  'SURA',
+    4:  'AYAT',
 }
 
 LOGICALT = {
@@ -164,7 +171,7 @@ ADDRESS = {
     '/role'         : 'Role',
     '/item'         : 'Item',
     '/action'       : 'Action',
-    '/dan'          : 'Dan',
+    '/note'         : 'Note',
 }
 
 
