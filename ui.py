@@ -19,6 +19,7 @@ class C:
                 'random'            : False,
                 'print'             : 0,        # True: Mushaf Madina, False: Mushaf Usmani
                 'mushaf'            : 0,
+                'perayat'           : 0,
                 'firstword'         : 1,
                 'firstwordcolor'    : '',
                 'align'             : 'right',

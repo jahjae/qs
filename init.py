@@ -48,7 +48,7 @@ MATCHT = {
 
 MODET = {
     0:  'PAGE',
-    1:  'AYAH',
+    1:  'ROW',
     2:  'JUZ',
     3:  'SURA',
     4:  'AYAT',

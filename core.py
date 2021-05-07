@@ -25,11 +25,18 @@ def Number(q, u, index):
     u.style('p.ayat', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'right','line-height': '1',})
 
 
+    if u.props['mode'] == 4:
+        for x in q.surat:
+            u.render('<p class="surat"><a href="/'+str(x)+'">'+str(x)+'. </a>'+q.surat[x][1]+', '+q.surat[x][0]+', '+q.surat[x][2]+', '+q.surat[x][4]+'</p>')
+            u.render('<p class="ayat">')
+            # quranAyat(q, u, str(x), str(0))
+            u.render('</p>')
+
     if u.props['mode'] == 3:
         for x in q.surat:
             u.render('<p class="surat"><a href="/'+str(x)+'">'+str(x)+'. </a>'+q.surat[x][1]+', '+q.surat[x][0]+', '+q.surat[x][2]+', '+q.surat[x][4]+'</p>')
             u.render('<p class="ayat">')
-            quranAyat(q, u, str(x), str(1))
+            # quranAyat(q, u, str(x), str(0))
             u.render('</p>')
 
 
@@ -89,6 +96,7 @@ def quranAyat(q, u, s, a):
 
 
 def quranKata(q, u, x):
+
     for y in range(int(x[7])):
         pos = y + 8
         pos1 = y + 9
@@ -176,7 +184,7 @@ def quranHuruf(q, u, index):
 
     if u.props['mode'] != 3:
         if u.props['mode'] == 4:
-            u.render('<header><a href="/menu">'+'>'+'</a>'+' '+q.surat[u.props['surat']][1]+' '+str(u.props['index'])+':'+q.surat[u.props['surat']][0]+'</header>')
+            u.render('<header><a href="/menu">'+'>'+'</a>'+' '+q.surat[u.props['surat']][1]+' '+str(u.props['surat'])+':'+str(u.props['ayat'])+'</header>')
         else:
             u.render('<header><a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index'])+'</header>')
 
@@ -199,11 +207,24 @@ def quranHuruf(q, u, index):
 
         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
+        modeon = False
         if x[u.props['mode']] == index:
+            if u.props['mode'] == 4:
+                if x[3] == str(u.props['surat']):
+                    modeon = True
+                else:
+                    modeon = False
+
+            if u.props['mode'] != 4:
+                modeon = True
+
+
+        if modeon:
             u.props['page'] = int(x[0])
             u.props['row'] = int(x[1])
             u.props['juz'] = int(x[2])
             u.props['surat'] = int(x[3])
+            u.props['ayat'] = int(x[4])
 
             if reset:
                 reset = False
@@ -399,18 +420,26 @@ def Goto(q, u, index):
         if u.props['surat'] == 115:
             u.props['surat'] = 1
 
+        u.props['index'] = u.props['surat']
+
     if u.props['mode'] == 4:
         u.props['ayat'] = u.props['ayat'] + 1
-        if u.props['ayat'] == int(q.surat[u.props['surat']][0]):
+
+        if u.props['ayat'] == int(q.surat[u.props['surat']][0]) + 1:
+            u.props['ayat'] = 1
+
             u.props['surat'] = u.props['surat'] + 1
             if u.props['surat'] == 115:
                 u.props['surat'] = 1
 
-            u.props['ayat'] = 1
-
         u.props['index'] = u.props['ayat']
 
+        print(q.surat[u.props['surat']][0])
+        print(u.props['surat'])
+        print(u.props['ayat'])
+
     os.environ['INDEX'] = str(u.props['index'])
+
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
 
@@ -441,7 +470,7 @@ def Info(q, u, index):
 
     if u.props['mode'] == 4:
         u.render('<p> <a href="/mode">MODE</a> > ')
-        u.render('<a href="/goto">'+MODET[u.props['mode']]+'</a> > <a href="/number">'+q.surat[u.props['index']][1]+'</a> '+str(u.props['index'])+'</p>')
+        u.render('<a href="/goto">'+MODET[u.props['mode']]+'</a> > <a href="/number">'+str(u.props['surat'])+'</a>:'+str(u.props['ayat'])+'</p>')
 
     if u.props['mode'] == 3:
         u.render('<p> <a href="/mode">MODE</a> > ')
@@ -533,6 +562,10 @@ def Mode(q, u, index):
 
     if u.props['mode'] == 3:
             u.props['index'] = u.props['surat']
+
+    if u.props['mode'] == 4:
+            u.props['ayat'] = 1
+            u.props['index'] = u.props['ayat']
 
     os.environ['MODE'] = str(u.props['mode'])
     os.environ['INDEX'] = str(u.props['index'])
