@@ -18,6 +18,7 @@ def TextFormat(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 def Number(q, u, index):
+
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
