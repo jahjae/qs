@@ -2,6 +2,7 @@
 from init import *
 import os
 import random
+import googletrans as gt
 
 def TextFormat(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0'})
@@ -471,7 +472,7 @@ def Info(q, u, index):
 
     if u.props['mode'] == 4:
         u.render('<p> <a href="/mode">MODE</a> > ')
-        u.render('<a href="/goto">'+MODET[u.props['mode']]+'</a> > <a href="/number">'+str(u.props['surat'])+'</a>:'+str(u.props['ayat'])+'</p>')
+        u.render('<a href="/goto">'+MODET[u.props['mode']]+'</a> > '+str(u.props['surat'])+':'+str(u.props['ayat'])+'</p>')
 
     if u.props['mode'] == 3:
         u.render('<p> <a href="/mode">MODE</a> > ')
@@ -490,7 +491,7 @@ def Info(q, u, index):
         u.render('<a href="/goto">'+MODET[u.props['mode']] +'</a> > <a href="/number">'+str(u.props['index'])+'</a> / 604</p>')
 
     u.render('<p> <a href="/mushaf">MUSHAF</a>: '               +MUSHAFT[u.props['mushaf']]+'</p>')
-    u.render('<p> <a href="/quran">QURAN</a>: '                 +LOGICALT[u.props['print']] +'</p>')
+    u.render('<p> <a href="/quran">READING</a>: '               +LOGICALT[u.props['print']] +'</p>')
     u.render('<p> <a href="/text">TEXT</a>: '                   +FORMAT[u.props['text']]+'</p>')
     u.render('<p> <a href="/view">VIEW</a>: '                   +VIEWT[u.props['view']] +'</p>')
     u.render('<p> <a href="/pertama">HIGHLIGH</a>: '            +HIGHLIGH[u.props['firstword']] +'</p>')
