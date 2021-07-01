@@ -124,6 +124,6 @@ if __name__ == "__main__":
     print('Distributing ...')
     q = Q() # Quran
 
-    http1 = make_server('', 8000, main)
+    httpd = make_server('', 8000, main)
     print("Serving ..."  )
-    http1.serve_forever()
+    httpd.serve_forever()
