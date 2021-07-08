@@ -90,8 +90,6 @@ class Q:
             self.artiayat[s] = ta
 
     def loadArtiKata(self, db):
-        logging.info("Arti ...")
- 
         dbContent = self.data(db)
 
         ns = 0
