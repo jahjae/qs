@@ -14,6 +14,12 @@ from init import *
 from ui import *
 from qs import *
 
+import logging
+
+format = "%(asctime)s: %(message)s"
+logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")
+
+
 def main(environ, start_response):
     status = '200 OK'
     headers = [('Content-type', 'text/html; charset=utf-8')]
@@ -75,7 +81,7 @@ def main(environ, start_response):
 
 if __name__ == "__main__":
     u = C() # User Interface
-    print('Loading ...')
+    logging.info('Loading ...')
 
     # set property
     u.props['mode'] = 0 #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
@@ -121,9 +127,9 @@ if __name__ == "__main__":
     os.environ['ARABICFONTCOLOR'] = u.props['arabicfontcolor']
     os.environ['FONTCOLOR'] = u.props['fontcolor']
 
-    print('Distributing ...')
+    logging.info('Distributing ...')
     q = Q() # Quran
 
     httpd = make_server('', 8000, main)
-    print("Serving ..."  )
+    logging.info("Serving ...")
     httpd.serve_forever()
