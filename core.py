@@ -2,6 +2,7 @@
 from init import *
 import os
 import random
+import logging
 import googletrans as gt
 
 def TextFormat(q, u, index):
