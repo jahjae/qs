@@ -132,4 +132,5 @@ if __name__ == "__main__":
 
     httpd = make_server('', 8000, main)
     logging.info("Serving ...")
+    logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")
     httpd.serve_forever()
