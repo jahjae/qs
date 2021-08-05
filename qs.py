@@ -1,7 +1,8 @@
+from init import *
+
 import csv
 import random
-import logging
-from init import *
+import threading
 
 class Q:
     def __init__(self):
@@ -16,6 +17,7 @@ class Q:
         self.codekata   = {}
         self.tafsir     = {}
         self.kata       = self.data(DATA['kata'])
+
         self.loadTafsir(DATA['tafsir'])
         self.loadJuz(DATA['juz'])
         self.loadSurat(DATA['surat'])
