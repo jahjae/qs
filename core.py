@@ -1,8 +1,7 @@
-
 from init import *
+
 import os
 import random
-import googletrans as gt
 
 def TextFormat(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0'})
@@ -23,31 +22,47 @@ def Number(q, u, index):
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
-    u.style('p.surat', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'left','line-height': '1',})
-    u.style('p.ayat', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'right','line-height': '1',})
+    u.style('p.surat', {'font-size': TSIZET[u.props['fontsize']],
+        'text-align': 'left','line-height': '1',})
+    u.style('p.ayat', {'font-size': TSIZET[u.props['fontsize']],
+        'text-align': 'right', 'line-height': '1',})
 
 
     if u.props['mode'] == 4:
         for x in q.surat:
-            u.render('<p class="surat"><a href="/'+str(x)+'">'+str(x)+'. </a>'+q.surat[x][1]+', '+q.surat[x][0]+', '+q.surat[x][2]+', '+q.surat[x][4]+'</p>')
+            u.render('<p class="surat"><a href="/'+str(x)+'">'+str(x)+'. 
+                    </a>'+q.surat[x][1]+', '
+                    +q.surat[x][0]+', '
+                    +q.surat[x][2]+', '
+                    +q.surat[x][4]+'</p>')
             u.render('<p class="ayat">')
             # quranAyat(q, u, str(x), str(0))
             u.render('</p>')
 
     if u.props['mode'] == 3:
         for x in q.surat:
-            u.render('<p class="surat"><a href="/'+str(x)+'">'+str(x)+'. </a>'+q.surat[x][1]+', '+q.surat[x][0]+', '+q.surat[x][2]+', '+q.surat[x][4]+'</p>')
+            u.render('<p class="surat"><a href="/'+str(x)+'">'
+                    +str(x)+'. </a>'
+                    +q.surat[x][1]+', '
+                    +q.surat[x][0]+', '
+                    +q.surat[x][2]+', '
+                    +q.surat[x][4]+'</p>')
             u.render('<p class="ayat">')
             # quranAyat(q, u, str(x), str(0))
             u.render('</p>')
 
 
     if u.props['mode'] == 2:
-        u.style('p.surat', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'left','line-height': '1',})
-        u.style('p.ayat', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'right','line-height': '1',})
+        u.style('p.surat', {'font-size': TSIZET[u.props['fontsize']],
+            'text-align': 'left', 'line-height': '1',})
+        u.style('p.ayat', {'font-size': TSIZET[u.props['fontsize']],
+            'text-align': 'right', 'line-height': '1',})
 
         for x in q.juz:
-            u.render('<p><a href="/'+str(x)+'">'+str(x)+'. </a>'+q.surat[int(q.juz[x]['surat'])][1]+' / '+q.juz[x]['ayat']+'</p>')
+            u.render('<p><a href="/'+str(x)+'">'
+                    +str(x)+'. </a>'
+                    +q.surat[int(q.juz[x]['surat'])][1]
+                    +' / '+q.juz[x]['ayat']+'</p>')
             u.render('<p class="ayat">')
             quranAyat(q, u, q.juz[x]['surat'], q.juz[x]['ayat'])
             u.render('</p>')
@@ -55,7 +70,9 @@ def Number(q, u, index):
 
     if u.props['mode'] == 0:
         for x in q.halaman:
-            u.render('<p><a href="/'+str(x)+'">'+str(x)+'. </a>'+q.surat[int(q.halaman[x]['surat'])][1]+' / '+q.halaman[x]['ayat']+'</p>')
+            u.render('<p><a href="/'+str(x)+'">'+str(x)
+                    +'. </a>'+q.surat[int(q.halaman[x]['surat'])][1]
+                    +' / '+q.halaman[x]['ayat']+'</p>')
 
 def quranAyat(q, u, s, a):
     reset = True
@@ -366,12 +383,12 @@ def Daily(q, u, index):
     os.environ['MODE'] = str(u.props['mode'])
     os.environ['INDEX'] = str(u.props['index'])
 
-    u.style('p', {'margin': '10px', 'font-size': TSIZET[u.props['fontsize']],'text-align': 'center','line-height': '1',})
+    u.style('p', {'margin': '10px', 'font-size': TSIZET[u.props['fontsize']],
+        'text-align': 'center','line-height': '1',})
     u.render('<p>'+q.artiayat[s][a]+'</p>')
-
-    u.style('p', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'center','line-height': '1',})
+    u.style('p', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'center',
+        'line-height': '1',})
     u.render('<p>'+q.surat[s][1]+' '+str(s)+':'+str(a)+'</p>')
-
     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
 
 
