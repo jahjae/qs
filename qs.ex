@@ -1,4 +1,4 @@
-defmodule Qs do
+defmodule Q do
   def kode do
 
   end
