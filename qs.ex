@@ -1,23 +1,25 @@
 defmodule Q do
-  def tafsir do
+  def huruf do
 
   end
+  def kata do
+
+  end
+  def ayat do
+
   def surat do
 
   end
   def juz do
 
   end
-  def halaman do
+  def page do
 
   end
-  def arti do
+end
 
-  end
-  def huruf do
-
-  end
-  def kata do
+defmodule U do
+  def mushaf do
 
   end
 
