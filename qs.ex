@@ -1,7 +1,4 @@
 defmodule Q do
-  def kode do
-
-  end
   def tafsir do
 
   end
