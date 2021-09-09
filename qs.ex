@@ -1,26 +1,6 @@
 defmodule Q do
-  def huruf do
-
-  end
-  def kata do
-
-  end
-  def ayat do
-
-  def surat do
-
-  end
-  def juz do
-
-  end
-  def page do
-
-  end
-end
-
-defmodule U do
+  defstruct unicode: 0, juz:0, sura: 0,ayah: 0, kata: 0, huruf: 0,
   def mushaf do
 
   end
-
 end
