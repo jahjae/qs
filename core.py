@@ -30,8 +30,7 @@ def Number(q, u, index):
 
     if u.props['mode'] == 4:
         for x in q.surat:
-            u.render('<p class="surat"><a href="/'+str(x)+'">'+str(x)+'. 
-                    </a>'+q.surat[x][1]+', '
+            u.render('<p class="surat"><a href="/'+str(x)+'">'+str(x)+'</a>'+q.surat[x][1]+', '
                     +q.surat[x][0]+', '
                     +q.surat[x][2]+', '
                     +q.surat[x][4]+'</p>')
