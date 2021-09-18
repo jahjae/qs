@@ -9,5 +9,5 @@ message(Sid)->
   Sid ! {self(), page},
   receive
     {page}->
-      io:format("Done ~n"),
+      io:format("Done ~n")
   end.
