@@ -1,15 +1,17 @@
 defmodule Mushaf do
   def read() do
     receive do
-      {cid, :page, x} -> send(cid, {:page, x})
-      {cid, :sura, x} -> send(cid, {:sura, x})
+      {cid, :halaman, x} -> send(cid, {:halaman, x})
+      {cid, :juz, x} -> send(cid, {:juz, x})
+      {cid, :surat, x} -> send(cid, {:surat, x})
+      {cid, :ayat, x} -> send(cid, {:ayat, x})
     end
 
   end
 
   def load() do
-    kode = File.read!("data/db/mushaf.db") |> String.split("\r\n")
-    unicode(kode)
+    huruf = File.read!("data/db/mushaf.db") |> String.split("\r\n")
+    unicode(huruf)
   end
 
   def unicode([]) do
@@ -17,9 +19,9 @@ defmodule Mushaf do
   end
 
   def unicode(x) do
-    [head | tail] = x
-    IO.puts(head)
-    unicode(tail)
+    [first | next] = x
+    IO.puts(first)
+    unicode(next)
   end
 
 end
