@@ -1,6 +1,4 @@
 defmodule Mushaf do
-
-
   def read() do
     receive do
       {cid, :page, x} -> send(cid, {:page, x})
@@ -17,6 +15,7 @@ defmodule Mushaf do
   def unicode([]) do
     :ok
   end
+
   def unicode(x) do
     [head | tail] = x
     IO.puts(head)
