@@ -1,14 +1,8 @@
 defmodule Mushaf do
-  def load do
-    File.read('data/mushaf.db')
-
-  end
   def read do
     receive do
       {cid, :page, x} -> send(cid, {:page, x})
-      {:juz, x} -> x
-      {:sura, x} -> x
-      {:ayah, x} -> x
+      {cid, :sura, x} -> send(cid, {:sura, x})
     end
 
   end
