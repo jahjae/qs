@@ -6,12 +6,8 @@ start()->
 
 mushaf()->
     receive
-        {Cid, juz}->
-            Cid ! {juz};
-        {Cid, page}->
-            Cid ! {page};
-        {Cid, ayah}->
-            Cid ! {ayah};
-        {Cid, word}->
-            Cid ! {word}
+        {Cid, surah, X, 0} ->
+            Cid ! {surah, X};
+        {Cid, surah, X, Y} ->
+            Cid ! {surah, X, Y}
     end.

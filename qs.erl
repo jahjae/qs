@@ -1,13 +1,15 @@
 -module(qs).
--export([start/0, message/1]).
+-export([surah/2, message/3]).
 
-start()->
+surah(X, Y)->
   Sid = spawn(core, mushaf, []),
-  spawn(qs, message, [Sid]).
+  spawn(qs, message, [Sid, X,Y]).
 
-message(Sid)->
-  Sid ! {self(), page},
+message(Sid, X, Y)->
+  Sid ! {self(), surah, X, Y},
   receive
-    {page}->
-      io:format("Done ~n")
+    {surah, X}->
+      io:format("Surah ~p", [X]);
+    {surah, X, Y}->
+      io:format("QS ~p:~p", [X, Y])
   end.
