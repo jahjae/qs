@@ -1,11 +1,11 @@
 -module(qs).
--export([surah/1, surah/2, message/3]).
+-export([page/1, message/2]).
 
 page(X)->
-  Mid = spawn(core, mushaf, []),
-  spawn(qs, message, [Mid, X]).
+  Sid = spawn(mushaf, open, []),
+  spawn(qs, message, [Sid, X]).
 
-message(Mid, X)->
+message(Sid, X)->
   Sid ! {self(), page, X},
   receive
     {page, X}->
