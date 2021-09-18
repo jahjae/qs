@@ -1,15 +1,11 @@
 -module(qs).
--export([start/0, message/1, display/2]).
+-export([start/0, message/1]).
 
 start()->
-  Sid = spawn(qs, mushaf, []).
+  Sid = spawn(core, mushaf, []).
   spawn(qs, display, [Sid])
 
-mushaf(Sid)->
+message(Sid)->
+  Sid ! {self(), page},
   receive
-    { Cid, Format, Number }->
-      Cid ! {display, [Format, Number]}
-  end
-
-display(Format, Number)->
-  ok.
+  end.
