@@ -1,7 +1,8 @@
 -module(mushaf).
+-export([open/0]).
 
-surah()->
-    ok.
-
-ayah()->
-    ok.    
+open()->
+    receive
+        {Cid, page, X} ->
+            Cid ! {page, X}
+    end.
