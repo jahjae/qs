@@ -4,5 +4,5 @@
 mushaf()->
     receive
         {Cid, page}->
-            Cid ! {page}
+            Cid ! {page},
     end.
