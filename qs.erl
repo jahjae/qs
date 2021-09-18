@@ -4,7 +4,6 @@
 surah(X)->
   Sid = spawn(core, mushaf, []),
   spawn(qs, message, [Sid, X,0]).
-  surah(X+1)
   
 surah(X, Y)->
   Sid = spawn(core, mushaf, []),
@@ -13,8 +12,8 @@ surah(X, Y)->
 message(Sid, X, Y)->
   Sid ! {self(), surah, X, Y},
   receive
-    {surah, X, 0}->
+    {surah, X}->
       io:format("Surah ~p", [X]);
-    {surah, X, Y}->
+    {ayah, X, Y}->
       io:format("QS ~p:~p", [X, Y])
   end.

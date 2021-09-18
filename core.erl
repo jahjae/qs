@@ -7,7 +7,7 @@ load()->
 mushaf()->
     receive
         {Cid, surah, X, 0} ->
-            Cid ! {surah, X, 0};
+            Cid ! {surah, X};
         {Cid, surah, X, Y} ->
-            Cid ! {surah, X, Y}
+            Cid ! {ayah, X, Y}
     end.
