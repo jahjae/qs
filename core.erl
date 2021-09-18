@@ -1,13 +1,13 @@
 -module(core).
--export([mushaf/0, start/0]).
+-export([mushaf/0, load/0]).
 
-start()->
+load()->
     ok.
 
 mushaf()->
     receive
         {Cid, surah, X, 0} ->
-            Cid ! {surah, X};
+            Cid ! {surah, X, 0};
         {Cid, surah, X, Y} ->
             Cid ! {surah, X, Y}
     end.
