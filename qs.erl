@@ -1,13 +1,21 @@
 -module(qs).
--export([page/1, message/2]).
+-export([page/1, sura/1,read/3]).
 
 page(X)->
-  Sid = spawn(mushaf, open, []),
-  spawn(qs, message, [Sid, X]).
+  Sid = spawn(mushaf, read, []),
+  spawn(qs, read, [Sid, halaman, X]).
 
-message(Sid, X)->
-  Sid ! {self(), page, X},
+sura(X)->
+  Sid = spawn(mushaf, read, []),
+  spawn(qs, read, [Sid, surat, X]).
+
+read(I, S, X)->
+  I ! {self(), S, X},
   receive
-    {page, X}->
-      io:format("Page ~p~n", [X])
+    {halaman, X}->
+      io:format("Halaman ~p~n", [X]);
+    {juz, X}->
+      io:format("Juz ~p~n", [X]);
+    {surat, X}->
+      io:format("Sura ~p~n", [X])
   end.

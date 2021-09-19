@@ -6,7 +6,6 @@ defmodule Mushaf do
       {cid, :surat, x} -> send(cid, {:surat, x})
       {cid, :ayat, x} -> send(cid, {:ayat, x})
     end
-
   end
 
   def load() do
@@ -24,4 +23,7 @@ defmodule Mushaf do
     unicode(next)
   end
 
+  def transform() do
+
+  end
 end
