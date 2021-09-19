@@ -1,23 +1,23 @@
 -module(mushaf).
--export([read/0, load/0]).
+-export([read/0, load/0, unicode/1]).
 
 read()->
   receive
-    {Cid, halaman, x} -> Cid ! {:halaman, x}
-    {Cid, juz, x} ->  Cid ! {:juz, x}
-    {Cid, surat, x} ->  Cid ! {:surat, x}
-    {Cid, ayat, x} ->  Cid ! {:ayat, x}
+    {Cid, halaman, X} -> Cid ! {halaman, X};
+    {Cid, juz, X} ->  Cid ! {juz, X};
+    {Cid, surat, X} ->  Cid ! {surat, X};
+    {Cid, ayat, X} ->  Cid ! {ayat, X}
   end.
 
 load()->
-  Huruf = File.read!("data/db/mushaf.db") |> String.split("\r\n")
-  unicode(Huruf).
+  File = file:open("data/db/mushaf.db",[read]),
+  io:format("~w~n", [File]),
+  unicode(File).
 
 unicode([])->
-  ok,
-unicode(x)->
-    [First | Next] = x
-    IO.puts(First)
-    unicode(Next).
-
+  ok;
+unicode(X)->
+  [Head|Tail] = X,
+  io:format("~p", [Head]),
+  unicode(Tail).
 
