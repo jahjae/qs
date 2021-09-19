@@ -10,14 +10,14 @@ read()->
   end.
 
 load()->
-  File = file:open("data/db/mushaf.db",[read]),
-  io:format("~w~n", [File]),
-  unicode(File).
+  {ok, File} = file:read_file("data/db/mushaf.db"),
+  Huruf = re:split(File, "\r\n<<>>"),
+  unicode(Huruf).
 
 unicode([])->
   ok;
 unicode(X)->
   [Head|Tail] = X,
-  io:format("~p", [Head]),
+  io:format("~p~n", [Head]),
   unicode(Tail).
 
