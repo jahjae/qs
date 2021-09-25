@@ -1,9 +1,9 @@
 -module(mushaf).
--export([surat/1, ayat/2]).
+-export([halaman/1, baris/2]).
 
-surat(X)->
+halaman(X)->
         X.
 
-ayat(X, Y)->
+baris(X, Y)->
         X,
         Y.

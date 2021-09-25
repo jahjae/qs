@@ -1,8 +1,14 @@
 -module(qs).
--export([page/1, juz/1]).
+-export([surat/1, ayat/1, kata/1, huruf/1]).
 
-page(X) ->
+surat(X) ->
         X.
 
-juz(X)->
+ayat(X)->
+        X.
+
+kata(X)->
+        X.
+
+huruf(X)->
         X.
