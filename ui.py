@@ -58,6 +58,14 @@ class C:
         sty = sty + '}</style>'
         self.render(sty)
 
+    def div(self, xobj):
+        sty = '<div>'+xobj+'</div>'
+        self.render(sty)
+
+    def line(self, xobj):
+        sty = '<line>'+xobj+'</line>'
+        self.render(sty)
+ 
     def svg(self, x, y, xobj):
         sty = '<svg>'+xobj+'</svg>'
         self.render(sty)
