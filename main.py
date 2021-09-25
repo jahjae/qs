@@ -1,11 +1,7 @@
 from wsgiref.simple_server import make_server
 from multiprocessing import *
 
-import sys
 import os
-import random
-import urllib.request
-
 
 from apps import *
 from nets import *
