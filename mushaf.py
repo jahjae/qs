@@ -79,7 +79,7 @@ def Number(q, u, index):
                     +' / '+q.halaman[x]['ayat']+'</p>')
 
 def quranAyat(q, u, s, a):
-    logging.info('quranAyat '+s+a)
+    logging.info('QS '+str(s)+':'+str(a))
     reset = True
     for x in q.kata[0:]:
         if x[3] == str(s):
@@ -357,7 +357,6 @@ def quranHuruf(q, u, index):
 
 
 def Daily(q, u, index):
-    logging.info('Daily ...')
     u.highlight('.d')
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 1
@@ -372,7 +371,7 @@ def Daily(q, u, index):
     a = random.randint(1, int(q.surat[s][0]))
 
     u.header('<a href="/menu">'+'>'+'</a>')
-    u.render('<p></p>')
+    u.p('')
     u.render('<div class="m" style="width: 100%; text-align: center; line-height: 1.2">')
 
     quranAyat(q, u, s, a)
@@ -415,7 +414,6 @@ def Index(q, u, index):
 
 
 def Goto(q, u, index):
-    logging.info('Goto ...')
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
 
@@ -458,9 +456,7 @@ def Goto(q, u, index):
                 u.props['surat'] = 1
 
         u.props['index'] = u.props['ayat']
-
-        logging.info('Surat .. '+u.props['surat'])
-        logging.info('Ayat ... '+u.props['ayat'])
+        logging.info('QS '+str(u.props['surat'])+':'+str(u.props['ayat']))
 
     os.environ['INDEX'] = str(u.props['index'])
 
