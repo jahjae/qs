@@ -8,7 +8,5 @@ logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")
 
 
 def parallel(_func):
-    Process(target=_func, args='')
-    start()
-    join()
+    Process(target=_func, args='').start()
 
