@@ -6,10 +6,8 @@ import os
 from apps import *
 from nets import *
 
-from core import *
+from mushaf import *
 from init import *
-from ui import *
-from qs import *
 
 import logging
 
