@@ -9,7 +9,7 @@ class C:
         self.props = {
                 'mode'              : 0,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
                 'view'              : 0,        #0: Show All, 1: Hide All, 2, firstword
-                'çolor'             : True,
+                'color'             : True,
                 'backgroundcolor'   : '',
                 'arabic'            : True,
                 'tafsir'            : 1,
@@ -56,6 +56,10 @@ class C:
             sty = sty + x +': '+xstyle[x]+';'
 
         sty = sty + '}</style>'
+        self.render(sty)
+
+    def p(self, xobj):
+        sty = '<p>'+xobj+'</p>'
         self.render(sty)
 
     def div(self, xobj):

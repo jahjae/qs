@@ -484,7 +484,7 @@ def Info(q, u, index):
 
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
 
-    u.render('<p> <a href="/daily">DAILY</a> > AYAT</p>')
+    u.p('<a href="/daily">DAILY</a> > AYAT')
 
     if u.props['mode'] == 4:
         u.render('<p> <a href="/mode">MODE</a> > ')
@@ -511,19 +511,19 @@ def Info(q, u, index):
     u.render('<p> <a href="/text">TEXT</a>: '                   +FORMAT[u.props['text']]+'</p>')
     u.render('<p> <a href="/view">VIEW</a>: '                   +VIEWT[u.props['view']] +'</p>')
     u.render('<p> <a href="/pertama">HIGHLIGH</a>: '            +HIGHLIGH[u.props['firstword']] +'</p>')
-    u.render('<p> <a href="/word">BY WORD</a>: '                +LOGICALT[u.props['word']] +'</p>')
+    u.p('<a href="/word">BY WORD</a>: '                +LOGICALT[u.props['word']])
     u.render('<p> <a href="/translation">TRANSLATION</a>: '     +LOGICALT[u.props['tafsir']] +' / ')
     u.render('<a href="/fontsize">SIZE</a>: '+TSIZET[u.props['fontsize']]+'</p>')
 
     u.render('<p> <a href="/fontname">FONTS</a>: '              +FONTS[u.props['arabicfont']]+' / ')
     u.render('<a href="/arabicsize">SIZE</a>: '+ASIZET[u.props['arabicfontsize']]+'</p>')
 
-    u.render('<p> <a href="/index">INDEX</a></p>')
-    u.render('<p> <a href="/search">DICTIONARY</a></p>')
+    u.p('<a href="/index">INDEX</a>')
+    u.p('<a href="/search">DICTIONARY</a>')
 
-    u.render('<p> <a href="/theme">THEME</a>: '                 +THEMET[u.props['theme']]+'</p>')
-    u.render('<p> <a href="/match">MATCH</a>: '                 +MATCHT[u.props['match']]+'</p>')
-    u.render('<p> <a href="/note">NOTE</a></p>')
+    u.p('<a href="/theme">THEME</a>: '                 +THEMET[u.props['theme']])
+    u.p('<a href="/match">MATCH</a>: '                 +MATCHT[u.props['match']])
+    u.p('<a href="/note">NOTE</a>')
 
 def Menu(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
