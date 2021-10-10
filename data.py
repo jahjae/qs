@@ -1,5 +1,6 @@
 from init import *
 
+import apps
 import csv
 import random
 import threading
@@ -23,7 +24,7 @@ class Q:
         self.tafsir     = {}
         self.kata       = self.data(DATA['kata'])
 
-        self.loadTafsir(DATA['tafsir'])
+        parallel(self.loadTafsir(DATA['tafsir']))
         self.loadJuz(DATA['juz'])
         self.loadSurat(DATA['surat'])
         self.loadHalaman(DATA['halaman'])
