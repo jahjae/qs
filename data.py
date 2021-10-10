@@ -4,6 +4,10 @@ import csv
 import random
 import threading
 
+format = "%(asctime)s: %(message)s"
+logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")
+
+
 class Q:
     def __init__(self):
         self.surat      = {}
@@ -27,6 +31,7 @@ class Q:
         self.loadCode()
 
     def loadTafsir(self, db):
+        logging.info("Tafsir ...")
         dbContent = self.data(db)
         ns = 0
         for x in dbContent:
@@ -42,6 +47,7 @@ class Q:
             self.tafsir[s] = ta
 
     def loadCode(self):
+        logging.info("Unicode ...")
         for x in self.kata[0:]:
             key = x[6]
             self.codekata[key] = x[6]
@@ -61,24 +67,32 @@ class Q:
                 self.codehuruf[u] = a
 
     def loadSurat(self, db):
+        logging.info("Surat ...")
+
         dbContent = self.data(db)
         for x in dbContent:
             key = int(x[0])
             self.surat[key] = [x[1],x[3],x[4],x[5],x[6]]
 
     def loadJuz(self, db):
+        logging.info("Juz ...")
+
         dbContent = self.data(db)
         for x in dbContent:
             key = str(x[0])
             self.juz[key] = {'surat': x[1],'ayat': x[2]}
 
     def loadHalaman(self, db):
+        logging.info("Halaman ...")
+
         dbContent = self.data(db)
         for x in dbContent:
             key = str(x[0])
             self.halaman[key] = {'surat': x[1], 'ayat': x[2]}
 
     def loadArtiAyat(self, db):
+        logging.info("Arti ayat ...")
+
         dbContent = self.data(db)
         ns = 0
         for x in dbContent:
@@ -92,6 +106,8 @@ class Q:
             self.artiayat[s] = ta
 
     def loadArtiKata(self, db):
+        logging.info("Arti Kata ...")
+
         dbContent = self.data(db)
 
         ns = 0
