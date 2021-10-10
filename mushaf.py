@@ -2,6 +2,11 @@ from init import *
 
 import os
 import random
+import logging
+
+format = "%(asctime)s: %(message)s"
+logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")
+
 
 def TextFormat(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0'})
@@ -74,6 +79,7 @@ def Number(q, u, index):
                     +' / '+q.halaman[x]['ayat']+'</p>')
 
 def quranAyat(q, u, s, a):
+    logging.info('quranAyat '+s+a)
     reset = True
     for x in q.kata[0:]:
         if x[3] == str(s):
@@ -114,7 +120,6 @@ def quranAyat(q, u, s, a):
 
 
 def quranKata(q, u, x):
-
     for y in range(int(x[7])):
         pos = y + 8
         pos1 = y + 9
@@ -352,6 +357,7 @@ def quranHuruf(q, u, index):
 
 
 def Daily(q, u, index):
+    logging.info('Daily ...')
     u.highlight('.d')
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 1
@@ -365,7 +371,7 @@ def Daily(q, u, index):
     s = random.randint(1, 114)
     a = random.randint(1, int(q.surat[s][0]))
 
-    u.render('<header><a href="/menu">'+'>'+'</a></header>')
+    u.header('<a href="/menu">'+'>'+'</a>')
     u.render('<p></p>')
     u.render('<div class="m" style="width: 100%; text-align: center; line-height: 1.2">')
 
@@ -392,6 +398,7 @@ def Daily(q, u, index):
 
 
 def Index(q, u, index):
+    logging.info('Indexing ...')
     u.style('a', {'text-decoration': 'none'})
     u.style('p', {'line-height': '0.5'})
     u.props['menu'] = 0
@@ -408,6 +415,7 @@ def Index(q, u, index):
 
 
 def Goto(q, u, index):
+    logging.info('Goto ...')
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
 
@@ -451,9 +459,8 @@ def Goto(q, u, index):
 
         u.props['index'] = u.props['ayat']
 
-        print(q.surat[u.props['surat']][0])
-        print(u.props['surat'])
-        print(u.props['ayat'])
+        logging.info('Surat .. '+u.props['surat'])
+        logging.info('Ayat ... '+u.props['ayat'])
 
     os.environ['INDEX'] = str(u.props['index'])
 
@@ -461,6 +468,7 @@ def Goto(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 def Search(q,  u, index):
+    logging.info('Searching ...')
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
 
@@ -477,6 +485,7 @@ def Search(q,  u, index):
 
 
 def Info(q, u, index):
+    logging.info('Info ...')
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('p', {'font-size': TSIZET[1]})
     u.style('a', {'text-decoration': 'none'})
@@ -525,6 +534,7 @@ def Info(q, u, index):
     u.p('<a href="/note">NOTE</a>')
 
 def Menu(q, u, index):
+    logging.info('Menu ...')
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
 
