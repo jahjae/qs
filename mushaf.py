@@ -399,13 +399,12 @@ def Index(q, u, index):
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
 
     for x in q.indexkata:
-        u.render('<p><a href="/'+str(x)+'">'+str(x).upper()+'. </a></p>')
-        u.render('<p></p>')
+        u.p('<a href="/'+str(x)+'">'+str(x).upper()+'. </a>')
+        u.p('')
         for y in q.indexkata[x]:
-            u.render('<p>QS '+y[1]+':'+y[2])
-            u.render('</p>')
+            u.p('QS '+y[1]+':'+y[2])
 
-        u.render('<p></p>')
+        u.p('')
 
 
 def Goto(q, u, index):
