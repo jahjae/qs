@@ -1,6 +1,6 @@
 from init import *
+from apps import *
 
-import apps
 import csv
 import random
 import threading
@@ -25,12 +25,12 @@ class Q:
         self.kata       = self.data(DATA['kata'])
 
         parallel(self.loadTafsir(DATA['tafsir']))
-        self.loadJuz(DATA['juz'])
+        parallel(self.loadJuz(DATA['juz']))
         self.loadSurat(DATA['surat'])
         self.loadHalaman(DATA['halaman'])
         self.loadArtiAyat(DATA['artiayat'])
-        self.loadArtiKata(DATA['artikata'])
-        self.loadCode()
+        parallel(self.loadArtiKata(DATA['artikata']))
+        parallel(self.loadCode())
 
     def loadTafsir(self, db):
         logging.info("Tafsir ...")
