@@ -76,7 +76,6 @@ def main(environ, start_response):
 
 if __name__ == "__main__":
     u = C() # User Interface
-    logging.info('Loading ...')
 
     # set property
     u.props['mode'] = 0 #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
@@ -122,9 +121,7 @@ if __name__ == "__main__":
     os.environ['ARABICFONTCOLOR'] = u.props['arabicfontcolor']
     os.environ['FONTCOLOR'] = u.props['fontcolor']
 
-    logging.info('Distributing ...')
     q = Q() # Quran
 
     httpd = make_server('', 8000, main)
-    logging.info("Serving ...")
     httpd.serve_forever()
