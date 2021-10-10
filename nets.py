@@ -1,36 +1,78 @@
-class Input:
-    def __init__(self):
-        self.style = {}
-        self.defaulValue = ''
-        self.placeholder = ''
 
-class Text:
-    def __init__(self):
-        self.style = {}
+import os
+import init
 
-class View:
+class C:
     def __init__(self):
-        self.style = {}
+        self.component = []
+        self.artikata = []
+        self.props = {
+                'mode'              : 0,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
+                'view'              : 0,        #0: Show All, 1: Hide All, 2, firstword
+                'çolor'             : True,
+                'backgroundcolor'   : '',
+                'arabic'            : True,
+                'tafsir'            : 1,
+                'translation'       : True,
+                'word'              : 1,
+                'tajweed'           : False,
+                'random'            : False,
+                'print'             : 0,        # True: Mushaf Madina, False: Mushaf Usmani
+                'mushaf'            : 0,
+                'perayat'           : 0,
+                'firstword'         : 1,
+                'firstwordcolor'    : '',
+                'align'             : 'right',
+                'arabicfont'        : 'Scheherazade',
+                'arabicfontcolor'   : '',
+                'arabicfontsize'    : 1,
+                'font'              : 'Harmattan',
+                'fontcolor'         : '',
+                'fontsize'          : 0,
+                'index'             : '1',
+                'page'              : 1,
+                'row'               : 1,
+                'juz'               : 1,
+                'surat'             : 1,
+                'ayat'              : 1,
+                'kata'              : 1,
+                'title'             : 'Al Quran',
+                'theme'             : 0,
+                'menu'              : 0,
+                'selected'          : '',
+                'search'            : 0,
+                'text'              : 0,
+                'highlight'         : {},
+                'match'             : 0,
+                'hubo'              : 0,
+            }
 
-class Image:
-    def __init__(self):
-        self.style = {}
-        self.source = ''
+    def render(self, text):
+        self.component.append(text)
 
-class Button:
-    def __init__(self):
-        self.style = {}
-        self.title = ''
-        self.color = ''
+    def style(self, xobj, xstyle):
+        sty = '<style>'+xobj+' {'
+        for x in xstyle:
+            sty = sty + x +': '+xstyle[x]+';'
 
-    def onPress(self):
-        pass
+        sty = sty + '}</style>'
+        self.render(sty)
 
-class List:
-    def __init__(self):
-        self.style = {}
-        self.data = {}
+    def div(self, xobj):
+        sty = '<div>'+xobj+'</div>'
+        self.render(sty)
 
-class Scroll:
-    def __init__(self):
-        self.style = {}
+    def line(self, xobj):
+        sty = '<line>'+xobj+'</line>'
+        self.render(sty)
+ 
+    def svg(self, x, y, xobj):
+        sty = '<svg>'+xobj+'</svg>'
+        self.render(sty)
+
+    def highlight(self, xobj):
+        xstyle = { 'color': '#000000'}
+        self.style(xobj, xstyle)
+
+        xstyle = { 'color': '#0000ff' }
+        self.style(xobj + ':hover', xstyle)
