@@ -21,7 +21,7 @@ def Number(q, u, index):
 
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
-    u.render('<header><a href="/menu">'+'>'+'</a></header>')
+    u.header('<a href="/menu">'+'>'+'</a>')
     u.style('p.surat', {'font-size': TSIZET[u.props['fontsize']],
         'text-align': 'left','line-height': '1',})
     u.style('p.ayat', {'font-size': TSIZET[u.props['fontsize']],
@@ -202,9 +202,9 @@ def quranHuruf(q, u, index):
 
     if u.props['mode'] != 3:
         if u.props['mode'] == 4:
-            u.render('<header><a href="/menu">'+'>'+'</a>'+' '+q.surat[u.props['surat']][1]+' '+str(u.props['surat'])+':'+str(u.props['ayat'])+'</header>')
+            u.header('<a href="/menu">'+'>'+'</a>'+' '+q.surat[u.props['surat']][1]+' '+str(u.props['surat'])+':'+str(u.props['ayat']))
         else:
-            u.render('<header><a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index'])+'</header>')
+            u.header('<a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index']))
 
 
     if u.props['mushaf'] == 1:

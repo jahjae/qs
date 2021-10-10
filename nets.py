@@ -62,6 +62,10 @@ class C:
         sty = '<p>'+xobj+'</p>'
         self.render(sty)
 
+    def header(self, xobj):
+        sty = '<header>'+xobj+'</header>'
+        self.render(sty)
+
     def div(self, xobj):
         sty = '<div>'+xobj+'</div>'
         self.render(sty)
