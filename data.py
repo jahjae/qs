@@ -26,9 +26,9 @@ class Q:
 
         parallel(self.loadTafsir(DATA['tafsir']))
         parallel(self.loadJuz(DATA['juz']))
-        self.loadSurat(DATA['surat'])
-        self.loadHalaman(DATA['halaman'])
-        self.loadArtiAyat(DATA['artiayat'])
+        parallel(self.loadSurat(DATA['surat']))
+        parallel(self.loadHalaman(DATA['halaman']))
+        parallel(self.loadArtiAyat(DATA['artiayat']))
         parallel(self.loadArtiKata(DATA['artikata']))
         parallel(self.loadCode())
 

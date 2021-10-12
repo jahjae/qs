@@ -2,7 +2,6 @@
 import os
 import init
 
-
 class Label:
     def __init__(self, text=None, command=None)
         self.command = _command
