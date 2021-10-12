@@ -1,9 +1,9 @@
 defmodule Q do
-  def Surat do
+  def surat do
 
   end
 
-  def Ayat do
+  def ayat do
 
   end
 end
