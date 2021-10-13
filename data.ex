@@ -1,4 +1,4 @@
-defmodule Q do
+defmodule Data do
   def surat do
 
   end
@@ -7,3 +7,4 @@ defmodule Q do
 
   end
 end
+
