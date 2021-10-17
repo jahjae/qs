@@ -6,8 +6,8 @@ start()->
     spawn(main, qs, [Sid]).
 
 qs(Sid)->
-    Sid ! {ayat, self(), '1'},
+    Sid ! {ayat, self()},
     receive
-        {ayat, X}->
-            io:format("ayat ~p~n",[X])
+        {ayat}->
+            io:format("ayat")
     end.

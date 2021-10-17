@@ -3,7 +3,8 @@
 
 qs()->
     receive
-        {ayat, Cid, X}->
-            Cid ! {surat, X}
+        {ayat, Cid}->
+            Cid ! {surat},
+            qs
     end.
 
