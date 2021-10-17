@@ -40,7 +40,6 @@ class Q:
             s = int(x[0])
             a = int(x[1])
 
-#           new tafsir
             if ns != s:
                 ns = s
                 ta = {}
