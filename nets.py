@@ -1,17 +1,6 @@
 
 import os
-import init
-
-class Label:
-    def __init__(self, text=None, command=None)
-        self.command = _command
-        self.attibute = {}
-        self.attibute['text'] = text
-     
-    def grid(columns=0, rows=0)
-        self.attibute['column'] = columns
-        self.attibute['rows'] = rows
-            
+import init            
 
 class C:
     def __init__(self):
