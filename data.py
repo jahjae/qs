@@ -211,7 +211,6 @@ class Q:
 
         return u
 
-
     def artiAyat(self, u, surat, ayat):
         s = int(surat)
         a = int(ayat)
@@ -243,7 +242,6 @@ class Q:
         u.render('</a>')
 
         return u
-
 
     def periksaHuruf(self, qBase, a, b, c, d):
         for x in qBase:
