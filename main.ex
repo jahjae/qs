@@ -10,7 +10,7 @@ defmodule Qs do
 		send sid, {:ayat, self(), x, y}
     	receive do
       		{:ayat, arg1, _arg2} ->
-				IO.puts() "QS #{arg1}"
+				IO.puts "QS #{arg1}"
 		end
     end
 end
