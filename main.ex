@@ -7,10 +7,10 @@ defmodule Qs do
   	end
 
   	def mushaf(sid, x, y) do
-		send sid, {:ayat, self(), x, y}
+			send sid, {:ayat, self(), x, y}
     	receive do
       		{:ayat, arg1, _arg2} ->
 				IO.puts "QS #{arg1}"
-		end
+			end
     end
 end
