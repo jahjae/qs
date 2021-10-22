@@ -24,13 +24,13 @@ class Q:
         self.tafsir     = {}
         self.kata       = self.data(DATA['kata'])
 
-        parallel(self.loadTafsir(DATA['tafsir']))
-        parallel(self.loadJuz(DATA['juz']))
-        parallel(self.loadSurat(DATA['surat']))
-        parallel(self.loadHalaman(DATA['halaman']))
-        parallel(self.loadArtiAyat(DATA['artiayat']))
-        parallel(self.loadArtiKata(DATA['artikata']))
-        parallel(self.loadCode())
+        self.loadTafsir(DATA['tafsir'])
+        self.loadJuz(DATA['juz'])
+        self.loadSurat(DATA['surat'])
+        self.loadHalaman(DATA['halaman'])
+        self.loadArtiAyat(DATA['artiayat'])
+        self.loadArtiKata(DATA['artikata'])
+        self.loadCode()
 
     def loadTafsir(self, db):
         logging.info("Tafsir ...")
@@ -284,5 +284,4 @@ class Q:
 
     def mushafHuruf(self, u, huruf):
         u.render('<a class="a" style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + '; color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
-
         return u
