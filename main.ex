@@ -1,16 +1,13 @@
 defmodule Qs do
-	def start do
-		x = IO.gets "Surat : "
-		y = IO.gets "Ayat  : "
-    	sid = spawn Mushaf, :quran, []
-    	spawn Qs, :mushaf, [sid, x, y]
-  	end
+	def surat(args1) do
+		{args1}
+	end
 
-  	def mushaf(sid, x, y) do
-			send sid, {:ayat, self(), x, y}
-    	receive do
-      		{:ayat, arg1, _arg2} ->
-				IO.puts "QS #{arg1}"
-			end
-    end
+	def ayat(args1, args2) do
+		{args1, args2}
+	end
+
+	def page(args1) do
+		args1
+	end
 end
