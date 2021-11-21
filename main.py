@@ -123,5 +123,5 @@ if __name__ == "__main__":
 
     q = Q() # Quran
 
-    httpd = make_server('', 7722, main)
+    httpd = make_server('', 8000, main)
     httpd.serve_forever()
