@@ -1,5 +1,7 @@
 from wsgiref.simple_server import make_server
 from multiprocessing import *
+import logging
+import os
 
 from data import *
 from apps import *
@@ -8,12 +10,8 @@ from nets import *
 from mushaf import *
 from init import *
 
-import logging
-import os
-
 format = "%(asctime)s: %(message)s"
 logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")
-
 
 def main(environ, start_response):
     status = '200 OK'

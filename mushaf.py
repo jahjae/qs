@@ -7,7 +7,6 @@ import logging
 format = "%(asctime)s: %(message)s"
 logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")
 
-
 def TextFormat(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0'})
     u.style('a', {'text-decoration': 'none'})
