@@ -83,7 +83,7 @@ if __name__ == "__main__":
     u.props['mushaf'] = 0 # 1 = True, 0 = False
     u.props['tafsir'] = 0 # 1 = True,
     u.props['word'] = 0 # 1 = True, 0 = False
-    u.props['font'] = 'Harmattan'
+    u.props['font'] = FONTS[0]
     u.props['fontsize'] = 1
     u.props['arabicfont'] = 1
     u.props['arabicfontsize'] = 2
