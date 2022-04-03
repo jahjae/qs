@@ -17,6 +17,8 @@ HIGHLIGH = {
 }
 
 FONTS = {
+    3:  'Lateef',
+    2:  'Scheherazade New',
     1:  'Microsoft Uighur',
     0:  'Harmattan',
 
