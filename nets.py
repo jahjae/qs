@@ -4,6 +4,7 @@ import init
 
 class C:
     def __init__(self):
+        self.stage = {}
         self.component = []
         self.artikata = []
         self.props = {
