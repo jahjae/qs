@@ -514,12 +514,12 @@ def Info(q, u, index):
     u.render('<p> <a href="/text">TEXT</a>: '                   +FORMAT[u.props['text']]+'</p>')
     u.render('<p> <a href="/view">VIEW</a>: '                   +VIEWT[u.props['view']] +'</p>')
     u.render('<p> <a href="/pertama">HIGHLIGH</a>: '            +HIGHLIGH[u.props['firstword']] +'</p>')
-    u.p('<a href="/word">BY WORD</a>: '                +LOGICALT[u.props['word']])
+    u.p('<a href="/word">BY WORD</a>: '                         +LOGICALT[u.props['word']])
     u.render('<p> <a href="/translation">TRANSLATION</a>: '     +LOGICALT[u.props['tafsir']] +' / ')
-    u.render('<a href="/fontsize">SIZE</a>: '+TSIZET[u.props['fontsize']]+'</p>')
+    u.render('<a href="/fontsize">SIZE</a>: '                   +TSIZET[u.props['fontsize']]+'</p>')
 
     u.render('<p> <a href="/fontname">FONTS</a>: '              +FONTS[u.props['arabicfont']]+' / ')
-    u.render('<a href="/arabicsize">SIZE</a>: '+ASIZET[u.props['arabicfontsize']]+'</p>')
+    u.render('<a href="/arabicsize">SIZE</a>: '                 +ASIZET[u.props['arabicfontsize']]+'</p>')
 
     u.p('<a href="/index">INDEX</a>')
     u.p('<a href="/search">DICTIONARY</a>')

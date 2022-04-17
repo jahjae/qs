@@ -4,7 +4,7 @@ from apps import *
 import csv
 import random
 import threading
-import logging
+import logging      
 
 format = "%(asctime)s: %(message)s"
 logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")
@@ -24,6 +24,7 @@ class Q:
         self.tafsir     = {}
         self.kata       = self.data(DATA['kata'])
 
+        
         self.loadTafsir(DATA['tafsir'])
         self.loadJuz(DATA['juz'])
         self.loadSurat(DATA['surat'])

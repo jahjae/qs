@@ -76,7 +76,9 @@ if __name__ == "__main__":
     u = C() # User Interface
 
     # set property
-    u.props = {'mode': 0, 'view': 0, 'index': 1,}
+    u.props['mode'] = 0 #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
+    u.props['view'] = 0 # 0: Show All, 1: Hide All 2: First Only
+    u.props['index'] = 1
     u.props['print'] = 0 # 1 = True, 0 = False
     u.props['mushaf'] = 0 # 1 = True, 0 = False
     u.props['tafsir'] = 0 # 1 = True,
