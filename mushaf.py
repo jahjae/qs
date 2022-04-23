@@ -515,15 +515,12 @@ def Info(q, u, index):
     u.p('<a href="/word">BY WORD</a>: '                         +LOGICALT[u.props['word']])
     u.render('<p> <a href="/translation">TRANSLATION</a>: '     +LOGICALT[u.props['tafsir']] +' / ')
     u.render('<a href="/fontsize">SIZE</a>: '                   +TSIZET[u.props['fontsize']]+'</p>')
-
     u.render('<p> <a href="/fontname">FONTS</a>: '              +FONTS[u.props['arabicfont']]+' / ')
     u.render('<a href="/arabicsize">SIZE</a>: '                 +ASIZET[u.props['arabicfontsize']]+'</p>')
-
     u.p('<a href="/index">INDEX</a>')
     u.p('<a href="/search">DICTIONARY</a>')
-
-    u.p('<a href="/theme">THEME</a>: '                 +THEMET[u.props['theme']])
-    u.p('<a href="/match">MATCH</a>: '                 +MATCHT[u.props['match']])
+    u.p('<a href="/theme">THEME</a>: '                          +THEMET[u.props['theme']])
+    u.p('<a href="/match">MATCH</a>: '                          +MATCHT[u.props['match']])
     u.p('<a href="/note">NOTE</a>')
 
 def Menu(q, u, index):
