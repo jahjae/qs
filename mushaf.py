@@ -168,8 +168,6 @@ def quranKata(q, u, x):
 
         # use font for Number
         if x[pos] in PAGES:
-            u.props['arabicfont'] = 0
-            u.props['arabicfontsize'] = 0
             u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
         q.mushafHuruf(u, x[pos])

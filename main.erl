@@ -1,11 +1,11 @@
 -module(main).
--export([start/0, qs/1]).
+-export([start/0, call/1]).
 
 start()->
     Sid = spawn(mushaf, qs, []),
-    spawn(main, qs, [Sid]).
+    spawn(main, call, [Sid]).
 
-qs(Sid)->
+call(Sid)->
     Sid ! {ayat, self()},
     receive
         {ayat}->
