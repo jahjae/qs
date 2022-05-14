@@ -54,7 +54,6 @@ class Q:
             key = x[6]
             self.codekata[key] = x[6]
 
-
             for y in range(int(x[7])):
                 pos = y + 8
                 u = x[pos]
