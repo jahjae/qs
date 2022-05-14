@@ -162,10 +162,10 @@ class Q:
 
         u.render('</div>')
         if u.props['tafsir'] == 1:
-            u.render('<div style="border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 0.5;">')
+            u.render('<div style="border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 1.6;">')
 
         if u.props['tafsir'] != 1:
-            u.render('<div style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 0.5;">')
+            u.render('<div style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 1.6;">')
 
         return u
 
@@ -176,10 +176,10 @@ class Q:
 
         u.render('</div>')
         if u.props['tafsir'] == 1:
-            u.render('<div style="padding: 10px 0 0 0;width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="padding: 10px 0 0 0;width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.6;">')
 
         if u.props['tafsir'] != 1 :
-            u.render('<div class="m" style="width: 100%; border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div class="m" style="width: 100%; border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.6;">')
 
         return u
 
@@ -190,10 +190,10 @@ class Q:
 
         u.render('</div>')
         if u.props['tafsir'] == 1:
-            u.render('<div style="padding: 10px 0 10px 0;width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="padding: 10px 0 10px 0; width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 2;">')
 
         if u.props['tafsir'] != 1 :
-            u.render('<div class="m" style="width: 100%; border-bottom: 1px solid #eee; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div class="m" style="padding: 10px 0 10px 0; width: 100%; border-bottom: 1px solid #eee; text-align: '+ u.props['align']+'; white-space: '+ warp +'line-height: 2;">')
 
         return u
 
@@ -204,10 +204,10 @@ class Q:
 
         u.render('</div>')
         if u.props['tafsir'] == 1:
-            u.render('<div style="padding: 10px 0 10px 0; width: 100%; border-bottom: 1px solid #eee; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="padding: 10px 0 10px 0; width: 100%; border-bottom: 1px solid #eee; text-align: left; white-space: '+ warp +' ; line-height: 1.6;">')
 
         if u.props['tafsir'] != 1:
-            u.render('<div style="width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.2;">')
+            u.render('<div style="width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.6;">')
 
         return u
 
