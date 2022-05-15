@@ -388,7 +388,7 @@ def Daily(q, u, index):
         'text-align': 'center','line-height': '1',})
     u.render('<p>'+q.artiayat[s][a]+'</p>')
     u.style('p', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'center',
-        'line-height': '1',})
+        'line-height': '1.6',})
     u.render('<p>'+q.surat[s][1]+' '+str(s)+':'+str(a)+'</p>')
     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
 
