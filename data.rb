@@ -1,0 +1,2 @@
+def unicode()
+end
