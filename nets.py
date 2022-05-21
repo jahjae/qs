@@ -51,6 +51,9 @@ class C:
     def render(self, text):
         self.component.append(text)
 
+    def script(self, xobj, x):
+        pass
+
     def style(self, xobj, xstyle):
         sty = '<style>'+xobj+' {'
         for x in xstyle:
