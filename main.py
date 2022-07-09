@@ -7,7 +7,6 @@ from data import *
 from apps import *
 from nets import *
 
-from mushaf import *
 from init import *
 
 format = "%(asctime)s: %(message)s"

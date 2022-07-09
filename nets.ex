@@ -1,3 +1,0 @@
-defmodule Nets do
-
-end

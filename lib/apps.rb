@@ -1,27 +1,21 @@
-from init import *
 
-import os
-import random
-import logging
 
-format = "%(asctime)s: %(message)s"
-logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")
-
-def TextFormat(q, u, index):
+def textFormat q, u, index
     u.style('header', {'position': 'sticky', 'top': '0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
 
-    u.props['text'] = u.props['text'] + 1
+    u.props[:text] += 1
 
-    if u.props['text'] == len(FORMAT):
-        u.props['text'] = 0
-
+    if u.props['text'] == FORMAT.lenght
+        u.props[:text] = 0
+    end
     os.environ['INDEX'] = str(u.props['index'])
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
+end
 
-def Number(q, u, index):
+def number q, u, index
 
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -32,8 +26,8 @@ def Number(q, u, index):
         'text-align': 'right', 'line-height': '1',})
 
 
-    if u.props['mode'] == 4:
-        for x in q.surat:
+    if u.props['mode'] == 4
+        for x in q.surat do
             u.render('<p class="surat"><a href="/'+str(x)+'">'+str(x)+'</a>'+q.surat[x][1]+', '
                     +q.surat[x][0]+', '
                     +q.surat[x][2]+', '
@@ -41,9 +35,11 @@ def Number(q, u, index):
             u.render('<p class="ayat">')
             # quranAyat(q, u, str(x), str(0))
             u.render('</p>')
+        end
+    end
 
-    if u.props['mode'] == 3:
-        for x in q.surat:
+    if u.props['mode'] == 3
+        for x in q.surat do
             u.render('<p class="surat"><a href="/'+str(x)+'">'
                     +str(x)+'. </a>'
                     +q.surat[x][1]+', '
@@ -53,15 +49,14 @@ def Number(q, u, index):
             u.render('<p class="ayat">')
             # quranAyat(q, u, str(x), str(0))
             u.render('</p>')
+        end
+    end
 
+    if u.props['mode'] == 2
+      u.style('p.surat', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'left', 'line-height': '1',})
+      u.style('p.ayat', {'font-size': TSIZET[u.props['fontsize']],'text-align': 'right', 'line-height': '1',})
 
-    if u.props['mode'] == 2:
-        u.style('p.surat', {'font-size': TSIZET[u.props['fontsize']],
-            'text-align': 'left', 'line-height': '1',})
-        u.style('p.ayat', {'font-size': TSIZET[u.props['fontsize']],
-            'text-align': 'right', 'line-height': '1',})
-
-        for x in q.juz:
+        for x in q.juz do
             u.render('<p><a href="/'+str(x)+'">'
                     +str(x)+'. </a>'
                     +q.surat[int(q.juz[x]['surat'])][1]
@@ -69,57 +64,64 @@ def Number(q, u, index):
             u.render('<p class="ayat">')
             quranAyat(q, u, q.juz[x]['surat'], q.juz[x]['ayat'])
             u.render('</p>')
+        end
+    end
 
-
-    if u.props['mode'] == 0:
-        for x in q.halaman:
+    if u.props['mode'] == 0
+        for x in q.halaman do
             u.render('<p><a href="/'+str(x)+'">'+str(x)
                     +'. </a>'+q.surat[int(q.halaman[x]['surat'])][1]
                     +' / '+q.halaman[x]['ayat']+'</p>')
+        end
+    end
+end
 
-def quranAyat(q, u, s, a):
+def quranAyat q, u, s, a
     logging.info('QS '+str(s)+':'+str(a))
     reset = True
-    for x in q.kata[0:]:
-        if x[3] == str(s):
-            if x[4] == str(a):
+    for x in q.kata do
+        if x[3] == str(s)
+            if x[4] == str(a)
                 u.props['page']     = int(x[0])
                 u.props['row']      = int(x[1])
                 u.props['juz']      = int(x[2])
                 u.props['surat']    = int(x[3])
                 u.props['ayat']     = int(x[4])
 
-                if reset:
-                    reset = False
+                if reset
+                    reset = false
                     halamanSebelum = x[0]
                     barisSebelum = x[1]
                     juzSebelum = x[2]
                     suratSebelum = x[3]
                     ayatSebelum = x[4]
                     kataSebelum = x[5]
-
+                end
                 u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
                 kataBerikut = q.compare(x[5], kataSebelum)
 
-                if kataBerikut:
+                if kataBerikut
                     kataSebelum = x[5]
                     q.spasi(u)
-
+                end
                 u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
                 u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
 
-                if u.props['mushaf'] == 1:
+                if u.props['mushaf'] == 1
                     u.props['arabicfontsize'] = 0
-
-                if u.props['print'] == 1:
+                end
+                if u.props['print'] 
                     q.mushafKata(u, x[0], x[4], x[6])
-
-                if u.props['print'] != 1:
+                else
                     quranKata(q, u, x)
+                end
+            end
+        end
+    end
+end
 
-
-def quranKata(q, u, x):
-    for y in range(int(x[7])):
+def quranKata q, u, x
+    for y in range(int(x[7])) do
         pos = y + 8
         pos1 = y + 9
         pos2 = y + 10
@@ -129,51 +131,57 @@ def quranKata(q, u, x):
         if u.props['firstword'] == 2:
 
             # 1619
-            if x[pos1] == '1619':
+            if x[pos1] == '1619'
                 u.props['arabicfontcolor'] = '#ff0000'
-            else:
+            else
                 # 1614 & 1648
-                if x[pos1] == '1614' and x[pos2] == '1648':
+                if x[pos1] == '1614' and x[pos2] == '1648'
                     u.props['arabicfontcolor'] = '#ff0000'
-                else:
+                else
 
                     # 1614 & 1575 = A
-                    if x[pos1] == '1614' and x[pos2] == '1575':
+                    if x[pos1] == '1614' and x[pos2] == '1575'
                         u.props['arabicfontcolor'] = '#ff0000'
-                    else:
+                    else
 
                         # 1616	1610 = I
-                        if x[pos1] == '1616' and x[pos2] == '1610':
+                        if x[pos1] == '1616' and x[pos2] == '1610'
                             u.props['arabicfontcolor'] = '#ff0000'
-                        else:
+                        else
 
                             # 1615	1608 = U
-                            if x[pos1] == '1615' and x[pos2] == '1608':
+                            if x[pos1] == '1615' and x[pos2] == '1608'
                                 u.props['arabicfontcolor'] = '#ff0000'
-                            else:
+                            else
                                 u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
-
+                            end
+                        end
+                    end
+                end
+            end
+        end
 
         # show or hide
-        if u.props['view']  != 0:
+        if u.props['view']  != 0
             u.props['arabicfontcolor'] = u.props['backgroundcolor']
-
+        end
         # first word
-        if u.props['firstword'] == 1 and x[5] == '1':
+        if u.props['firstword'] == 1 and x[5] == '1'
             u.props['arabicfontcolor'] = u.props['firstwordcolor']
-
+        end
         # non ayat
-        if x[4] == '0':
+        if x[4] == '0'
             u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
-
+        end
         # use font for Number
-        if x[pos] in PAGES:
+        if x[pos] in PAGES
             u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
-
+        end
         q.mushafHuruf(u, x[pos])
+    end
+end
 
-
-def quranHuruf(q, u, index):
+def quranHuruf q, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('p.page', {'position': 'sticky', 'top': '0', 'padding': '10px 0 0 0'})
 
@@ -199,23 +207,26 @@ def quranHuruf(q, u, index):
 
     u.style('body',{'background-color': u.props['backgroundcolor']})
 
-    if u.props['mode'] == 3:
+    if u.props['mode'] == 3
         u.render('<header><a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index'])+' / 114 - '+ q.surat[u.props['index']][1] +'</header>')
-
-    if u.props['mode'] != 3:
-        if u.props['mode'] == 4:
+    end
+    if u.props['mode'] != 3
+        if u.props['mode'] == 4
             u.header('<a href="/menu">'+'>'+'</a>'+' '+q.surat[u.props['surat']][1]+' '+str(u.props['surat'])+':'+str(u.props['ayat']))
-        else:
+        else
             u.header('<a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index']))
+        end
+    end
 
-
-    if u.props['mushaf'] == 1:
+    if u.props['mushaf'] == 1
         u.props['align'] = 'center'
         u.props['arabicfontsize'] = 0
         u.props['tafsir'] = 0
+    end
 
-    if u.props['view'] == 1:
+    if u.props['view'] == 1
         u.props['firstword'] = 0
+    end
 
 
     reset = True
@@ -223,30 +234,32 @@ def quranHuruf(q, u, index):
 
     u.render('<div class="m" style="width: 100%;">')
     q.barisBaru(u)
-    for x in quran[0:]:
+    for x in quran do
 
         u.props['arabicfontcolor'] = os.environ.get('ARABICFONTCOLOR')
 
         modeon = False
-        if x[u.props['mode']] == index:
-            if u.props['mode'] == 4:
-                if x[3] == str(u.props['surat']):
+        if x[u.props['mode']] == index
+            if u.props['mode'] == 4
+                if x[3] == str(u.props['surat'])
                     modeon = True
-                else:
+                else
                     modeon = False
-
-            if u.props['mode'] != 4:
+                end
+            end
+            if u.props['mode'] != 4
                 modeon = True
+            end
+        end
 
-
-        if modeon:
+        if modeon
             u.props['page'] = int(x[0])
             u.props['row'] = int(x[1])
             u.props['juz'] = int(x[2])
             u.props['surat'] = int(x[3])
             u.props['ayat'] = int(x[4])
 
-            if reset:
+            if reset
                 reset = False
                 halamanSebelum = x[0]
                 barisSebelum = x[1]
@@ -254,6 +267,7 @@ def quranHuruf(q, u, index):
                 suratSebelum = x[3]
                 ayatSebelum = x[4]
                 kataSebelum = x[5]
+            end
 
             halamanBerikut = q.compare(x[0], halamanSebelum)
             barisBerikut = q.compare(x[1], barisSebelum)
@@ -262,29 +276,33 @@ def quranHuruf(q, u, index):
             ayatBerikut = q.compare(x[4], ayatSebelum)
             kataBerikut = q.compare(x[5], kataSebelum)
 
-            if barisBerikut:
-                if u.props['mushaf'] == 1:
+            if barisBerikut
+                if u.props['mushaf'] == 1
                     q.barisBaru(u)
-
-                if u.props['mushaf'] != 1:
-                    if x[4] == '0':
+                else
+                    if x[4] == '0'
                         q.barisBaru(u)
+                    end
+                end
 
                 barisSebelum = x[1]
+            end
 
 
-            if ayatBerikut:
+            if ayatBerikut
                 #q.nomorAyat(u, ayatSebelum)
 
-                if u.props['mushaf'] != 1:
-                    if u.props['tafsir'] == 1 and ayatSebelum  != '0':
+                if u.props['mushaf'] != 1
+                    if u.props['tafsir'] == 1 and ayatSebelum  != '0'
                         q.artiBaru(u)
                         q.artiAyat(u, suratSebelum, ayatSebelum)
-
-                    if not halamanBerikut:
+                    end
+                    if not halamanBerikut
                         q.barisBaru(u)
+                    end
+                end
 
-                if halamanBerikut:
+                if halamanBerikut
                     halamanSebelum = x[0]
                     q.barisBaru(u)
 
@@ -293,57 +311,64 @@ def quranHuruf(q, u, index):
                     u.render('<p class="page"></p>')
                     u.render('<div style="border-bottom: 10px solid #dddddd"></div>')
                     u.render('<p class="page">PAGE: '+halamanSebelum+'</p>')
+                end
 
                 ayatSebelum = x[4]
                 kataSebelum = '0'
+            end
 
-            if suratBerikut:
+            if suratBerikut
                 suratSebelum = x[3]
                 ayatSebelum = '0'
                 kataSebelum = '0'
+            end
 
 #           adding space before next word
-            if kataBerikut:
+            if kataBerikut
                 q.spasi(u)
-                if u.props['mushaf'] != 1:
-                    if u.props['word'] == 1 and ayatSebelum != '0' and kataSebelum != '0':
-                        if u.props['tafsir'] == 1:
+                if not u.props['mushaf']
+                    if u.props['word'] == 1 and ayatSebelum != '0' and kataSebelum != '0'
+                        if u.props['tafsir'] == 1
                             q.kataBaru(u)
                             q.artiKata(u, suratSebelum, ayatSebelum, kataSebelum)
                             q.kataBaru(u)
-
+                        end
                         q.barisBaru(u)
-
+                    end
+                end
                 kataSebelum = x[5]
-
+            end
             # use font QCF
-            if u.props['print'] == 1:
+            if u.props[:print]
                 # component, halaman, ayat, unicode kata
                 u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
 
-                if u.props['mushaf'] == 1:
+                if u.props['mushaf']
                     u.props['arabicfontsize'] = 0
-
+                end
                 q.mushafKata(u, x[0], x[4], x[6])
 
-
-            if u.props['print'] != 1:
+            end
+            if not u.props['print']
                 q.spasi(u)
 
                 u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
                 u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
 
-                if u.props['mushaf'] == 1:
+                if u.props['mushaf']
                     u.props['arabicfontsize'] = 0
-
+                end
                 quranKata(q, u, x)
+            end
+        end
+    end
 
-
-    if u.props['mushaf'] != 1:
-        if u.props['tafsir'] and ayatSebelum  != '0':
+    if not u.props['mushaf']
+        if u.props['tafsir'] and ayatSebelum  != '0'
             q.artiBaru(u)
             q.artiAyat(u, suratSebelum, ayatSebelum)
-
+        end
+    end
     u.render('</div>')
     u.style("m", {'align': "center"})
 
@@ -351,9 +376,9 @@ def quranHuruf(q, u, index):
     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
     return u
+end
 
-
-def Daily(q, u, index):
+def Daily q, u, index
     u.highlight('.d')
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 1
@@ -391,9 +416,9 @@ def Daily(q, u, index):
         'line-height': '1.6',})
     u.render('<p>'+q.surat[s][1]+' '+str(s)+':'+str(a)+'</p>')
     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
+end
 
-
-def Index(q, u, index):
+def Index q, u, index
     logging.info('Indexing ...')
     u.style('a', {'text-decoration': 'none'})
     u.style('p', {'line-height': '0.5'})
@@ -401,65 +426,69 @@ def Index(q, u, index):
 
     u.render('<header><a href="/menu">'+'>'+'</a></header>')
 
-    for x in q.indexkata:
+    for x in q.indexkata
         u.p('<a href="/'+str(x)+'">'+str(x).upper()+'. </a>')
         u.p('')
-        for y in q.indexkata[x]:
+        for y in q.indexkata[x] do
             u.p('QS '+y[1]+':'+y[2])
-
+        end
         u.p('')
+    end
+end
 
-
-def Goto(q, u, index):
+def Goto q, u, index
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
 
-    if u.props['mode'] == 0:
+    if u.props['mode'] == 0
         u.props['page'] = u.props['page'] + 1
-        if u.props['page'] == 605:
+        if u.props['page'] == 605
             u.props['page'] = 1
-
+        end
         u.props['index'] = u.props['page']
-
-    if u.props['mode'] == 1:
+    end
+    if u.props['mode'] == 1
         u.props['row'] = u.props['row'] + 1
-        if u.props['row'] == q.surat[u.props['surat']][0]:
+        if u.props['row'] == q.surat[u.props['surat']][0]
             u.props['row'] = 1
-
+        end
         u.props['index'] = u.props['row']
-
-    if u.props['mode'] == 2:
-        u.props['juz'] = u.props['juz'] + 1
-        if u.props['juz'] == 31:
+    end
+    if u.props['mode'] == 2
+        u.props['juz'] += 1
+        if u.props['juz'] == 31
             u.props['juz'] = 1
-
+        end
         u.props['index'] = u.props['juz']
-
-    if u.props['mode'] == 3:
-        u.props['surat'] = u.props['surat'] + 1
-        if u.props['surat'] == 115:
+    end
+    if u.props['mode'] == 3
+        u.props['surat'] += 1
+        if u.props['surat'] == 115
             u.props['surat'] = 1
-
+        end
         u.props['index'] = u.props['surat']
+    end
+    if u.props['mode'] == 4
+        u.props['ayat'] += 1
 
-    if u.props['mode'] == 4:
-        u.props['ayat'] = u.props['ayat'] + 1
-
-        if u.props['ayat'] == int(q.surat[u.props['surat']][0]) + 1:
+        if u.props['ayat'] == int(q.surat[u.props['surat']][0]) + 1
             u.props['ayat'] = 1
 
             u.props['surat'] = u.props['surat'] + 1
-            if u.props['surat'] == 115:
+            if u.props['surat'] == 115
                 u.props['surat'] = 1
+            end
+        end
 
         u.props['index'] = u.props['ayat']
-
+    end
     os.environ['INDEX'] = str(u.props['index'])
 
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
+end
 
-def Search(q,  u, index):
+def Search q,  u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
 
@@ -468,12 +497,12 @@ def Search(q,  u, index):
 
     u.props['arabicfont'] = int(os.environ.get('ARABICFONT'))
 
-    for x in q.huruf:
+    for x in q.huruf do
         q.barisBaru(u)
         u.render('<a class ="d" style="text-align: center; font-size: 50vw; color: '+q.huruf[x]['color']+';font-family: '+ FONTS[u.props['arabicfont']]+';" href="/select/">' +chr(int(x))+ '</a>')
-
+    end
     u.render('</div>')
-
+end
 
 def Info(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
@@ -484,26 +513,26 @@ def Info(q, u, index):
 
     u.p('<a href="/daily">DAILY</a> > AYAT')
 
-    if u.props['mode'] == 4:
+    if u.props['mode'] == 4
         u.render('<p> <a href="/mode">MODE</a> > ')
         u.render('<a href="/goto">'+MODET[u.props['mode']]+'</a> > '+str(u.props['surat'])+':'+str(u.props['ayat'])+'</p>')
-
-    if u.props['mode'] == 3:
+    end
+    if u.props['mode'] == 3
         u.render('<p> <a href="/mode">MODE</a> > ')
         u.render('<a href="/goto">'+MODET[u.props['mode']]+'</a> > <a href="/number">'+str(u.props['index'])+'</a> / 114 - '+q.surat[u.props['index']][1]+'</p>')
-
-    if u.props['mode'] == 2:
+    end
+    if u.props['mode'] == 2
         u.render('<p> <a href="/mode">MODE</a> > ')
         u.render('<a href="/goto">'+MODET[u.props['mode']] +'</a> > <a href="/number">'+str(u.props['index'])+'</a> / 30</p>')
-
-    if u.props['mode'] == 1:
+    end
+    if u.props['mode'] == 1
         u.render('<p> <a href="/mode">MODE</a> > ')
         u.render('<a href="/goto">'+MODET[u.props['mode']] +'</a> > '+str(u.props['index'])+' / '+u.quran[u.props['surat']][0]+'</p>')
-
-    if u.props['mode'] == 0:
+    end
+    if u.props['mode'] == 0
         u.render('<p> <a href="/mode">MODE</a> > ')
         u.render('<a href="/goto">'+MODET[u.props['mode']] +'</a> > <a href="/number">'+str(u.props['index'])+'</a> / 604</p>')
-
+    end
     u.render('<p> <a href="/mushaf">MUSHAF</a>: '               +MUSHAFT[u.props['mushaf']]+'</p>')
     u.render('<p> <a href="/quran">READING</a>: '               +LOGICALT[u.props['print']] +'</p>')
     u.render('<p> <a href="/text">TEXT</a>: '                   +FORMAT[u.props['text']]+'</p>')
@@ -519,22 +548,25 @@ def Info(q, u, index):
     u.p('<a href="/theme">THEME</a>: '                          +THEMET[u.props['theme']])
     u.p('<a href="/match">MATCH</a>: '                          +MATCHT[u.props['match']])
     u.p('<a href="/note">NOTE</a>')
+end
 
-def Menu(q, u, index):
+def Menu q, u, index
     logging.info('Menu ...')
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
 
     os.environ['INDEX'] = str(u.props['index'])
 
-    if u.props['menu'] == 1:
+    if u.props['menu'] == 1
         u.props['menu'] = 0
 
         noPage = str(u.props['index'])
         exec(ADDRESS['/']+'(q, u, noPage)')
-    else:
+    else
         u.props['menu'] = 1
         Info(q, u, index)
+    end
+end
 
 def Match(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
