@@ -1,7 +1,9 @@
-require 'init.rb'
+require_relative 'init.rb'
 
 class Quran
-    def initialize
+  attr_accessor :halaman, :juz, :surat, :kata, :huruf, :codehuruf, :artiayat, :artikata, :indexkata, :codekata, :tafsir
+ 
+  def initialize
         @surat      = {}
         @huruf      = {}
         @juz        = {}
@@ -12,50 +14,54 @@ class Quran
         @codehuruf  = {}
         @codekata   = {}
         @tafsir     = {}
-        @kata       = self.data(DATA['kata'])
+        @kata       = data DATA[:kata]
 
         
-        loadTafsir(DATA['tafsir'])
-        loadJuz(DATA['juz'])
-        loadSurat(DATA['surat'])
-        loadHalaman(DATA['halaman'])
-        loadArtiAyat(DATA['artiayat'])
-        loadArtiKata(DATA['artikata'])
-        loadCode()
+        loadTafsir DATA[:tafsir]
+        loadJuz DATA[:juz]
+        loadSurat DATA[:surat]
+        loadHalaman DATA[:halaman]
+        loadArtiAyat DATA[:artiayat]
+        loadArtiKata DATA[:artikata]
+        loadCode
+    end
 
     def loadTafsir db
         dbContent = data db
         ns = 0
-        for x in dbContent do
-            s = int(x[0])
-            a = int(x[1])
-
-            if ns != s
-                ns = s
-                ta = {}
-            end
-            ta[a] = x[2]
-            @tafsir[s] = ta
+        ta = {}
+        dbContent.each do |x|
+          s = x[0].to_i
+          a = x[1].to_i
+          
+          if ns != s
+            ns = s
+            ta = {}
+          end
+          ta[a] = x[2]
+          @tafsir[s] = ta
         end
     end
 
     def loadCode
 
-        for x in @kata
+      a = Array.new
+      @kata.each do |x|
             key = x[6]
             @codekata[key] = x[6]
+            l = x[7].to_i
 
-            for y in range(int(x[7])) do
+            l.times do |y|
                 pos = y + 8
                 u = x[pos]
-                @huruf[u] = {'color': 'rgb('+str(random.randint(1,200))+','+str(random.randint(1,200))+','+ str(random.randint(1,200))+')'}
+                @huruf[u] = {'color': "rgb(#{rand 200},#{rand 200}, #{rand 200})"}
 
                 begin
                     a = @codehuruf[u]
                 rescue
-                    a = []
+                  a = Array.new
                 end
-                a.append([x[0],x[1],x[2],x[3],x[4],x[5]])
+                a = [x[0],x[1],x[2],x[3],x[4],x[5]]
                 @codehuruf[u] = a
             end
         end
@@ -63,36 +69,35 @@ class Quran
 
     def loadSurat db
         dbContent = data db
-        for x in dbContent do
-            key = int(x[0])
-            @surat[key] = [x[1],x[3],x[4],x[5],x[6]]
+        @surat = Hash.new
+        dbContent.each do |x|
+          key = x[0].to_i
+          @surat[key] = [x[1],x[3],x[4],x[5],x[6]]
         end
     end
 
     def loadJuz db
         dbContent = data db
-        for x in dbContent do
-            key = str(x[0])
-            @juz[key] = {'surat': x[1],'ayat': x[2]}
+        @juz = {} 
+        dbContent.each do |x|
+            @juz[x[0].to_s] = {surat: x[1], ayat: x[2]}
         end
     end
 
     def loadHalaman db
-        logging.info("Halaman ...")
-
         dbContent = data db
-        for x in dbContent do
-            key = str(x[0])
-            @halaman[key] = {'surat': x[1], 'ayat': x[2]}
+        dbContent.each do |x|
+            @halaman[x[0].to_s] = {surat: x[1], ayat: x[2]}
         end
     end
 
     def loadArtiAyat db
         dbContent = data db
         ns = 0
-        for x in dbContent do
-            s = int(x[0])
-            a = int(x[1])
+        ta = {}        
+        dbContent.each do |x|
+          s = x[0].to_i
+          a = x[1].to_i
             if ns != s
                 ns = s
                 ta = {}
@@ -100,39 +105,49 @@ class Quran
             ta[a] = x[2]
             @artiayat[s] = ta
         end
+
     end
 
     def loadArtiKata db
         dbContent = data db
 
+        a = []
+        
         ns = 0
         na = 0
-        for x in dbContent do
+
+        ta = {}
+        tk = {}
+
+        dbContent.each do |x|
             # Index Kata
             u = x[4]
 
             begin
-                a = @indexkata[u]
+              a = @indexkata[u].to_a
             rescue
-                a = []
+              a = []
             end
-            a.append([self.surat[int(x[0])][2],x[0],x[1],x[2]])
+  
+            a = [@surat[x[0][2]],x[0],x[1],x[2]]
             @indexkata[u] = a
 
             # Arti Kata
-            s = int(x[0])
-            a = int(x[1])
-            k = int(x[3])
+            s = x[0].to_i
+            a = x[1].to_i
+            k = x[3].to_i
 
             if ns != s
                 ns = s
                 ta = {}
                 tk = {}
             end
+
             if na != a
                 na = a
                 tk = {}
             end
+        
             tk[k] = x[4]
             ta[a] = tk
             @artikata[s] = ta
@@ -150,11 +165,12 @@ class Quran
 
     def kataBaru u
         warp = ''
-        if u.props['mushaf']
+        if u.props[:mushaf]
             warp = 'nowrap'
         end
+        
         u.render('</div>')
-        if u.props['tafsir']
+        if u.props[:tafsir]
             u.render('<div style="border-bottom: 1px solid '+u.props[:backgroundcolor]+'; text-align: '+ u.props[:align]+'; white-space: '+ warp +' ; width=100%; line-height: 1.6;">')
         else
             u.render('<div style="border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; width=100%; line-height: 1.6;">')
@@ -164,12 +180,13 @@ class Quran
 
     def tambahBaris u
         warp = ''
-        if u.props['mushaf']
+        if u.props[:mushaf]
             warp = 'nowrap'
         end
+        
         u.render('</div>')
-        if u.props['tafsir']
-            u.render('<div style="padding: 10px 0 0 0;width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.6;">')
+        if u.props[:tafsir]
+            u.render('<div style="padding: 10px 0 0 0;width: 100%; border-bottom: 1px solid '+u.props[:backgroundcolor]+'; text-align: '+ u.props[:align]+'; white-space: '+ warp +' ; line-height: 1.6;">')
 
         else
             u.render('<div class="m" style="width: 100%; border-bottom: 1px solid #ddd; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 1.6;">')
@@ -182,11 +199,12 @@ class Quran
         if u.props[:mushaf]
             warp = 'nowrap'
         end
+        
         u.render('</div>')
         if u.props[:tafsir]
-            u.render('<div style="padding: 10px 0 10px 0; width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: '+ u.props['align']+'; white-space: '+ warp +' ; line-height: 2;">')
+            u.render('<div style="padding: 10px 0 10px 0; width: 100%; border-bottom: 1px solid '+u.props[:backgroundcolor]+'; text-align: '+ u.props[:align]+'; white-space: '+ warp +' ; line-height: 2;">')
         else
-            u.render('<div class="m" style="padding: 10px 0 10px 0; width: 100%; border-bottom: 1px solid #eee; text-align: '+ u.props['align']+'; white-space: '+ warp +'line-height: 2;">')
+            u.render('<div class="m" style="padding: 10px 0 10px 0; width: 100%; border-bottom: 1px solid #eee; text-align: '+ u.props[:align]+'; white-space: '+ warp +'line-height: 2;">')
         end
         return u
     end
@@ -198,10 +216,10 @@ class Quran
       end
       
       u.render('</div>')
-      if u.props['tafsir']
-        u.render('<div style="padding: 10px 0 10px 0; width: 100%; border-bottom: 1px solid #eee; text-align: left; white-space: '+ warp +' ; line-height: 1.6;">')
+      if u.props[:tafsir]
+        u.render "<div style='padding: 10px 0 10px 0; width: 100%; border-bottom: 1px solid #eee; text-align: left; white-space: #{warp}; line-height: 1.6;'>"
       else
-        u.render('<div style="width: 100%; border-bottom: 1px solid '+u.props['backgroundcolor']+'; text-align: left; white-space: '+ warp +' ; line-height: 1.6;">')
+        u.render "<div style='width: 100%; border-bottom: 1px solid #{u.props['backgroundcolor']}; text-align: left; white-space: #{warp}; line-height: 1.6;'>"
       end
       return u
     end
@@ -212,7 +230,7 @@ class Quran
         result = ''
     
         begin
-            result = self.artiayat[s][a]
+            result = @artiayat[s][a]
     
         rescue
             result = ''
@@ -235,15 +253,15 @@ class Quran
         rescue
             result = ''
         end
-        u.render('<a style="font-color: '+u.props['fontcolor']+'; font-size:' + TSIZET[u.props['fontsize']] + ';">')
-        u.render(result)
-        u.render('</a>')
+        u.render "<a style='font-color: #{u.props['fontcolor']}; font-size: #{TSIZET[u.props['fontsize']]};'>"
+        u.render result
+        u.render "</a>"
 
         return u
     end
 
     def periksaHuruf qBase, a, b, c, d
-        for x in qBase do
+      qBase.each do |x|
             if x[0] == a
                 if x[1] == b
                     if x[2] == c
@@ -258,39 +276,47 @@ class Quran
 
     def data db
         rows = []
-        file = open(db)
-        dbContent = csv.reader(file)
+        file = File.open db, 'r'
+        dbContent = file.readlines
       
-        for row in dbContent do
-            rows.append(row)
+        dbContent.each do |row|
+          rows.append row.split ","
         end
         return rows
     end
 
     def mushafKata u, halaman, ayat, kata
-        if u.props['mushaf'] == 1
-            u.props['arabicfontsize'] = 0
+    
+      if u.props[:mushaf]
+            u.props[:arabicfontsize] = 0
         end
-        if len(halaman) == 1
+
+      if halaman.lenght == 1
             font = 'QCF_P00' + halaman
         end
-        if len(halaman) == 2
+        if halaman.lenght == 2
             font = 'QCF_P0' + halaman
         end
-        if len(halaman) == 3
+        if halaman.lenght == 3
             font = 'QCF_P' + halaman
         end
         if ayat == '0'
             font = 'QCF_BSML'
         end
 
-        u.render('<a style="font-size: '+ ASIZET[u.props[:arabicfontsize]] + '; font-family: ' + font + ';color: '+ u.props[:arabicfontcolor] +';">')
-        u.render(chr(int(kata)))
-        u.render('</a>')
+        u.render "<a style='font-size: #{ASIZET[u.props[:arabicfontsize]]} ; font-family: #{font} ;color: #{u.props[:arabicfontcolor]} ;'>"
+        u.render kata.chr
+        u.render "</a>"
         return u
     end
 
     def mushafHuruf u, huruf
-        u.render('<a class="a" style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + '; color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
-        return u
+      x = []
+
+      x[0] = huruf.to_i
+      s = x.pack 'U*'
+  
+      u.render "#{s}"
+      return u
     end
+end
