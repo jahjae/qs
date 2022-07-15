@@ -311,12 +311,7 @@ class Quran
     end
 
     def mushafHuruf u, huruf
-      x = []
-
-      x[0] = huruf.to_i
-      s = x.pack 'U*'
-  
-      u.render "#{s}"
+      u.render "<a>#{huruf.chr(Encoding::UTF_8)}</a>"
       return u
     end
 end

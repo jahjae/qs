@@ -1,6 +1,7 @@
 require_relative 'init.rb'
 
-def textFormat q, u, index
+class Mushaf
+  def textFormat q, u, index
     u.style('header', {'position': 'sticky', 'top': '0'})
     u.style('a', {'text-decoration': 'none'})
     u.props[:menu] = 0
@@ -13,9 +14,9 @@ def textFormat q, u, index
 
     noPage = u.props[:index]
     exec(ADDRESS['/']+'(q, u, noPage)')
-end
+  end
 
-def number q, u, index
+  def number q, u, index
 
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -61,11 +62,10 @@ def number q, u, index
           u.render "<p><a href='/#{x}'>#{x}</a> #{q.surat[q.halaman[x][:surat]][1]} / #{q.halaman[x][:ayat]} </p>"
         end
     end
-end
+  end
 
-def quranAyat q, u, s, a
+  def quranAyat q, u, s, a
     reset = TRUE
-    puts 'Quran Ayat'
 
     q.kata do |x|
       if x[3].to_i == s.to_i
@@ -111,20 +111,17 @@ def quranAyat q, u, s, a
             end
         end
     end
-end
-
-def quranKata q, u, a, x
-  total = x[7].to_i
-  total.times do |y|
-    pos = y + 8
-    q.mushafHuruf u, x[pos]
   end
-end
 
-# /
-def quranHuruf q, u, index
-    puts 'Quran Huruf'
+  def quranKata q, u, a, x
+    total = x[7].to_i
+    total.times do |y|
+      pos = y + 8
+      q.mushafHuruf u, x[pos]
+    end
+  end
 
+  def quranHuruf q, u, index
     u.style 'header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'}
     u.style 'p.page', {'position': 'sticky', 'top': '0', 'padding': '10px 0 0 0'}
 
@@ -153,139 +150,138 @@ def quranHuruf q, u, index
     if u.props[:view] == 1
         u.props[:firstword] = 0
     end
-    reset = TRUE
+    first = TRUE
   
     u.render('<div class="m" style="width: 100%;">')
     q.barisBaru u 
 
     for x in q.kata do
-        modeon = FALSE
+    
+      if x[u.props[:mode]] == index
+          
+        u.props[:page] = x[0].to_i
+        u.props[:row] = x[1].to_i
+        u.props[:juz] = x[2].to_i
+        u.props[:surat] = x[3].to_i
+        u.props[:ayat] = x[4].to_i
+          
+        if first
+            
+          first = !first
 
-        # 
-        if x[u.props[:mode]].to_i == index.to_i
-          modeon = TRUE
-        else
-          modeon = FALSE
+          halamanSebelum = x[0].to_i
+          barisSebelum = x[1].to_i
+          juzSebelum = x[2].to_i
+          suratSebelum = x[3].to_i
+          ayatSebelum = x[4].to_i
+          kataSebelum = x[5].to_i
         end
 
-        if modeon
-          u.props[:page] = x[0].to_i
-          u.props[:row] = x[1].to_i
-          u.props[:juz] = x[2].to_i
-          u.props[:surat] = x[3].to_i
-          u.props[:ayat] = x[4].to_i
-          
-          if reset
-            reset = FALSE
-                
-            halamanSebelum = x[0].to_i
-            barisSebelum = x[1].to_i
-            juzSebelum = x[2].to_i
-            suratSebelum = x[3].to_i
-            ayatSebelum = x[4].to_i
-            kataSebelum = x[5].to_i
-          end
+        halamanBerikut = q.compare x[0].to_i, halamanSebelum
+        barisBerikut = q.compare x[1].to_i, barisSebelum
+        juzBerikut = q.compare x[2].to_i, juzSebelum
+        suratBerikut = q.compare x[3].to_i, suratSebelum
+        ayatBerikut = q.compare x[4].to_i, ayatSebelum
+        kataBerikut = q.compare x[5].to_i, kataSebelum
 
-            
-          halamanBerikut = q.compare x[0].to_i, halamanSebelum
-          barisBerikut = q.compare x[1].to_i, barisSebelum
-          juzBerikut = q.compare x[2].to_i, juzSebelum
-          suratBerikut = q.compare x[3].to_i, suratSebelum
-          ayatBerikut = q.compare x[4].to_i, ayatSebelum
-          kataBerikut = q.compare x[5].to_i, kataSebelum
-          
-          if barisBerikut
-            if u.props[:mushaf]
+        if barisBerikut
+          if u.props[:mushaf]
               q.barisBaru u
-            else
-              if x[4].to_i == 0
-                q.barisBaru u
-              end
+          else
+            if x[4].to_i == 0
+              q.barisBaru u
             end
-            
-            barisSebelum = x[1].to_i
           end
-          
-          if ayatBerikut
-                if not u.props[:mushaf]
-                    if u.props[:tafsir] and ayatSebelum  != 0
-                        q.artiBaru u
-                        q.artiAyat u, suratSebelum, ayatSebelum
-                    end
-                    if not halamanBerikut
-                        q.barisBaru u
-                    end
-                end
-
-                if halamanBerikut
-                  halamanSebelum = x[0].to_i
-                  q.barisBaru u
-                  
-                  
-                  u.style("m", {'align': "center"})
-                  u.render('<p class="page"></p>')
-                  u.render('<div style="border-bottom: 10px solid #dddddd"></div>')
-                  u.render "<p class='page'>PAGE: #{halamanSebelum.to_s}</p>"
-                end
-
-                ayatSebelum = x[4].to_i
-                kataSebelum = 0
-
-          end
-
-            if suratBerikut
-              suratSebelum = x[3].to_i
-                ayatSebelum = 0
-                kataSebelum = 0
-            end
-
-#           adding space before next word
-            if kataBerikut
-                q.spasi u
-                if not u.props[:mushaf]
-                    if u.props[:word] and ayatSebelum != 0 and kataSebelum != 0
-                        if u.props[:tafsir]
-                            q.kataBaru u
-                            q.artiKata u, suratSebelum, ayatSebelum, kataSebelum
-                            q.kataBaru u
-                        end
-                        q.barisBaru u
-                    end
-                end
-                kataSebelum = x[5].to_i
-            end
-            # use font QCF
-            if u.props[:print]
-                # component, halaman, ayat, unicode kata
-                if u.props[:mushaf]
-                    u.props[:arabicfontsize] = 0
-                end
-                q.mushafKata u, x[0].to_i, x[4].to_i, x[6].to_i
-
-            else
-                q.spasi u
-
-                if u.props[:mushaf]
-                    u.props[:arabicfontsize] = 0
-                end
-                quranKata q, u, u.props[:ayat], x
-            end
+          barisSebelum = x[1].to_i
         end
+          
+        if ayatBerikut
+          if !u.props[:mushaf]
+            if u.props[:tafsir] and ayatSebelum  != 0
+              q.artiBaru u
+              q.artiAyat u, suratSebelum, ayatSebelum
+            end
+
+            if !halamanBerikut
+              q.barisBaru u
+            end
+          end
+
+          if halamanBerikut
+            halamanSebelum = x[0].to_i
+            q.barisBaru u
+
+            u.style("m", {'align': "center"})
+            u.render('<p class="page"></p>')
+            u.render('<div style="border-bottom: 10px solid #dddddd"></div>')
+            u.render "<p class='page'>PAGE: #{halamanSebelum.to_s}</p>"
+          end
+
+          ayatSebelum = x[4].to_i
+          kataSebelum = 0
+        end
+
+        if suratBerikut
+          suratSebelum = x[3].to_i
+          ayatSebelum = 0
+          kataSebelum = 0
+        end
+
+#       adding space before next word
+
+        if kataBerikut
+          q.spasi u
+
+          if not u.props[:mushaf]
+            if u.props[:word] and ayatSebelum != 0 and kataSebelum != 0
+              if u.props[:tafsir]
+                q.kataBaru u
+                q.artiKata u, suratSebelum, ayatSebelum, kataSebelum
+                q.kataBaru u
+              end
+              q.barisBaru u
+            end
+          end
+
+          kataSebelum = x[5].to_i
+        end
+
+           
+        # use font QCF
+        if u.props[:print]
+                
+          # component, halaman, ayat, unicode kata  
+          if u.props[:mushaf]
+            u.props[:arabicfontsize] = 0
+          end
+              
+          # Ui, Halaman, 
+          q.mushafKata u, x[0].to_i, x[4].to_i, x[6].to_i
+
+        else
+          q.spasi u
+
+          if u.props[:mushaf]
+            u.props[:arabicfontsize] = 0
+          end
+          quranKata q, u, u.props[:ayat], x
+        end
+      end
     end
 
-    if not u.props[:mushaf]
-        if u.props[:tafsir] and ayatSebelum  != 0
-            q.artiBaru(u)
-            q.artiAyat(u, suratSebelum, ayatSebelum)
-        end
+    if !u.props[:mushaf]
+      if u.props[:tafsir] # and ayatSebelum.to_i  != 0
+        q.artiBaru u
+        q.artiAyat u, suratSebelum, ayatSebelum
+      end
     end
     u.render('</div>')
     u.style("m", {'align': "center"})
 
     return u
-end
+  end
 
-def daily q, u, index
+  def daily q, u, index
     u.highlight '.d'
     u.style 'a', {'text-decoration': 'none'}
     u.props[:menu] = 1
@@ -306,12 +302,8 @@ def daily q, u, index
     if a == 0
       a = 1 
     end
-    
 
-    u.header "<a href='/menu'>Daily</a>"
-    u.p('')
-
-    u.style 'ayat', {'font-family': "#{FONTS[1]}", 'text-align': 'center', 'font-size': "#{ASIZET[2]}"}
+    u.style 'ayat', {'font-family': "#{FONTS[0]}", 'text-align': 'center', 'font-size': "#{ASIZET[2]}"}
     u.render '<a class="ayat">' 
     
     quranAyat q, u, s, a
@@ -328,12 +320,11 @@ def daily q, u, index
     u.render q.artiayat[s][a] 
     u.render '</p>'
     
-    u.style 'p', {'font-size': "#{TSIZET[1]}",'text-align': 'center','line-height': '1.6'}
-    u.render "<p>QS #{s}:#{a}</p>"
-end
+    u.style 'p', {'font-size': "#{TSIZET[1]}",'text-align': 'center','line-height': '1.2'}
+    u.render "<p>#{q.surat[s][1]} #{s}:#{a}</p>"
+  end
 
-def index q, u, index
-    logging.info('Indexing ...')
+  def index q, u, index
     u.style('a', {'text-decoration': 'none'})
     u.style('p', {'line-height': '0.5'})
     u.props['menu'] = 0
@@ -348,9 +339,9 @@ def index q, u, index
         end
         u.p('')
     end
-end
+  end
 
-def goto q, u, index
+  def goto q, u, index
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
 
@@ -396,13 +387,12 @@ def goto q, u, index
 
         u.props['index'] = u.props['ayat']
     end
-    os.environ['INDEX'] = str(u.props['index'])
-
+    
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
-end
+  end
 
-def Search q,  u, index
+  def Search q,  u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
 
@@ -416,9 +406,9 @@ def Search q,  u, index
         u.render('<a class ="d" style="text-align: center; font-size: 50vw; color: '+q.huruf[x]['color']+';font-family: '+ FONTS[u.props['arabicfont']]+';" href="/select/">' +chr(int(x))+ '</a>')
     end
     u.render('</div>')
-end
+  end
 
-def info q, u, index
+  def info q, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('p', {'font-size': TSIZET[1]})
     u.style('a', {'text-decoration': 'none'})
@@ -462,26 +452,26 @@ def info q, u, index
     u.p('<a href="/theme">THEME</a>: '                          +THEMET[u.props['theme']])
     u.p('<a href="/match">MATCH</a>: '                          +MATCHT[u.props['match']])
     u.p('<a href="/note">NOTE</a>')
-end
+  end
 
-def menu q, u, index
+  def menu q, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
 
     os.environ['INDEX'] = str(u.props['index'])
 
-    if u.props['menu'] == 1
-        u.props['menu'] = 0
+    if u.props[:menu] == 1
+        u.props[:menu] = 0
 
-        noPage = str(u.props['index'])
+        noPage = u.props[:index]
         exec(ADDRESS['/']+'(q, u, noPage)')
     else
-        u.props['menu'] = 1
-        Info(q, u, index)
+        u.props[:menu] = 1
+        info(q, u, index)
     end
-end
+  end
 
-def match q, u, index
+  def match q, u, index
     u.style 'header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'}
     u.style 'a', {'text-decoration': 'none'}
 
@@ -494,9 +484,9 @@ def match q, u, index
     end
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
-end
+  end
 
-def mode q, u, index
+  def mode q, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -533,9 +523,9 @@ def mode q, u, index
 
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
-end
+  end
 
-def Arabicsize q, u, index
+  def Arabicsize q, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -550,44 +540,39 @@ def Arabicsize q, u, index
 
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
-end
+  end
 
-def Fontname q, u, index
+  def Fontname q, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
 
     u.props['arabicfont'] = u.props['arabicfont'] + 1
 
-    if u.props['arabicfont'] == len(FONTS)
-        u.props['arabicfont'] = 1
+    if u.props[:arabicfont] == FONTS.lenght
+        u.props[:arabicfont] = 1
     end
    
-    os.environ['ARABICFONT'] = str(u.props['arabicfont'])
-    os.environ['INDEX'] = str(u.props['index'])
-
-    noPage = str(u.props['index'])
+    noPage = str(u.props[:index])
     exec(ADDRESS['/']+'(q, u, noPage)')
-end
+  end
 
-def Fontsize q, u, index
+  def fontsize q, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
-    u.props['menu'] = 0
+    u.props[:menu] = 0
 
-    u.props['fontsize'] += 1
+    u.props[:fontsize] += 1
 
-    if u.props['fontsize'] == len(TSIZET)+1
-        u.props['fontsize'] = 1
+    if u.props[:fontsize] == TSIZET.lenght + 1
+        u.props[:fontsize] = 1
     end
-    os.environ['FONTSIZE'] = str(u.props['fontsize'])
-    os.environ['INDEX'] = str(u.props['index'])
-
-    noPage = str(u.props['index'])
+  
+    noPage = u.props['index']
     exec(ADDRESS['/']+'(q, u, noPage)')
-end
+  end
 
-def Theme qdata, u, index
+  def Theme qdata, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.props['menu'] = 0
     u.style('a', {'text-decoration': 'none'})
@@ -599,21 +584,13 @@ def Theme qdata, u, index
     end
     x = u.props['theme']
 
-    os.environ['BACKGROUNDCOLOR'] = COLOR[x][0]
-    os.environ['FIRSTWORDCOLOR'] = COLOR[x][1]
-    os.environ['ARABICFONTCOLOR'] = COLOR[x][2]
-    os.environ['FONTCOLOR'] = COLOR[x][3]
-
-    os.environ['THEME'] = str(u.props['theme'])
-    os.environ['INDEX'] = str(u.props['index'])
-
     u.props['backgroundcolor'] = os.environ['BACKGROUNDCOLOR']
 
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(qdata, u, noPage)')
-end
+  end
 
-def View qdata, u, index
+  def View qdata, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -623,85 +600,70 @@ def View qdata, u, index
     else
         u.props['view'] = u.props['view'] + 1
     end
-    os.environ['VIEW'] = str(u.props['view'])
-    os.environ['INDEX'] = str(u.props['index'])
 
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(qdata, u, noPage)')
-end
+  end
 
-def Pertama qdata, u, index
+  def Pertama qdata, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
-    u.props['menu'] = 0
+    u.props[:menu] = 0
 
-    if u.props['firstword'] == len(HIGHLIGH) - 1
-        u.props['firstword'] = 0
+    if u.props[:firstword] == HIGHLIGH.lenght - 1
+        u.props[:firstword] = 0
     else
-        u.props['firstword'] += 1
+        u.props[:firstword] += 1
     end
     os.environ['FIRSTWORD'] = str(u.props['firstword'])
     os.environ['INDEX'] = str(u.props['index'])
 
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(qdata, u, noPage)')
-end
+  end
 
-def Quran q, u, index
+  def Quran q, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
-    u.props['menu'] = 0
+    u.props[:menu] = 0
 
-    u.props['print'] = !u.props['print']
-
-    os.environ['PRINT'] = str(u.props['print'])
-    os.environ['INDEX'] = str(u.props['index'])
+    u.props[:print] = !u.props[:print]
 
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
-end
+  end
 
-def Translation qdata, u, index
+  def Translation qdata, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
 
-    u.props['tafsir'] = !u.props['tafsir']
-
-    os.environ['TAFSIR'] = str(u.props['tafsir'])
-    os.environ['INDEX'] = str(u.props['index'])
+    u.props[:tafsir] = !u.props[:tafsir]
 
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(qdata, u, noPage)')
+  end
 
-end
-def Word qdata, u, index
+  def Word qdata, u, index
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
-    u.props['menu'] = 0
+    u.props[:menu] = 0
 
-    if u.props['word'] == 1
-        u.props['word'] = 0
-    else
-        u.props['word'] = 1
-    end
-    os.environ['WORD'] = str(u.props['word'])
-    os.environ['INDEX'] = str(u.props['index'])
-
+    u.props[:word] = !u.props[:word]
+  
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(qdata, u, noPage)')
-end
+  end
 
-def Mushaf qdata, u, index
+  def Mushaf qdata, u, index
     u.style 'header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0',}
     u.style 'a', {'text-decoration': 'none'}
     u.props[:menu] = 0
 
     u.props[:mushaf] = !u.props[:mushaf]
     
-    os.environ['MUSHAF'] = str(u.props['mushaf'])
-    os.environ['INDEX'] = str(u.props['index'])
-
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(qdata, u, noPage)')
+  end
 end
+

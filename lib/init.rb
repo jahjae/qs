@@ -71,7 +71,7 @@ PAGES = {
 PAGENUMBER = [1632,1633,1634,1635,1636,1637,1638,1639,1640,1641]
 
 ADDRESS = {
-    '/': 'quranHuruf',
+    '/' => 'quranHuruf',
     '/mushaf': 'Mushaf',
     '/word': 'Word',
     '/translation': 'Translation',
@@ -80,13 +80,13 @@ ADDRESS = {
     '/info': 'Info',
     '/pertama': 'Pertama',
     '/theme': 'Theme',
-    '/menu': 'Menu',
+    '/menu' => 'menu',
     '/mode': 'Mode',
     '/goto': 'Goto',
     '/search': 'Search',
     '/arabicsize': 'Arabicsize',
     '/fontsize': 'Fontsize',
-    '/daily': 'Daily',
+    '/daily' => 'daily',
     '/number': 'Number',
     '/page': 'Page',
     '/juz': 'Juz',

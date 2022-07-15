@@ -4,25 +4,28 @@ from apps import *
 import csv
 import random
 import threading
-import logging      
+import logging
 
 format = "%(asctime)s: %(message)s"
 logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")
 
 
-class Q:
-    def __init__(self):
-        self.surat      = {}
-        self.huruf      = {}
-        self.juz        = {}
-        self.halaman    = {}
-        self.artiayat   = {}
-        self.indexkata  = {}
-        self.artikata   = {}
-        self.codehuruf  = {}
-        self.codekata   = {}
-        self.tafsir     = {}
-        self.kata       = self.data(DATA['kata'])
+type
+  Quran = object
+
+
+proc initz*(q: var Qurans):
+        q.surat      = {}
+        q.huruf      = {}
+        q.juz        = {}
+        q.halaman    = {}
+        q.artiayat   = {}
+        q.indexkata  = {}
+        q.artikata   = {}
+        q.codehuruf  = {}
+        q.codekata   = {}
+        q.tafsir     = {}
+        q.kata       = self.data(DATA['kata'])
 
         
         self.loadTafsir(DATA['tafsir'])
@@ -33,9 +36,8 @@ class Q:
         self.loadArtiKata(DATA['artikata'])
         self.loadCode()
 
-    def loadTafsir(self, db):
-        logging.info("Tafsir ...")
-        dbContent = self.data(db)
+proc loadTafsir*(q: var Quran, db: string):
+        dbContent = q.data(db)
         ns = 0
         for x in dbContent:
             s = int(x[0])
@@ -46,28 +48,27 @@ class Q:
                 ta = {}
 
             ta[a] = x[2]
-            self.tafsir[s] = ta
+            q.tafsir[s] = ta
 
-    def loadCode(self):
-        logging.info("Unicode ...")
-        for x in self.kata[0:]:
+proc loadCode*(q: var Quran):
+        for x in q.kata[0:]:
             key = x[6]
-            self.codekata[key] = x[6]
+            q.codekata[key] = x[6]
 
             for y in range(int(x[7])):
                 pos = y + 8
                 u = x[pos]
-                self.huruf[u] = {'color': 'rgb('+str(random.randint(1,200))+','+str(random.randint(1,200))+','+ str(random.randint(1,200))+')'}
+                q.huruf[u] = {'color': 'rgb('+str(random.randint(1,200))+','+str(random.randint(1,200))+','+ str(random.randint(1,200))+')'}
 
                 try:
-                    a = self.codehuruf[u]
+                    a = q.codehuruf[u]
                 except Exception:
                     a = []
 
-                a.append([x[0],x[1],x[2],x[3],x[4],x[5]])
-                self.codehuruf[u] = a
+                a.add([x[0],x[1],x[2],x[3],x[4],x[5]])
+                q.codehuruf[u] = a
 
-    def loadSurat(self, db):
+    proc loadSurat(self, db):
         logging.info("Surat ...")
 
         dbContent = self.data(db)
@@ -75,7 +76,7 @@ class Q:
             key = int(x[0])
             self.surat[key] = [x[1],x[3],x[4],x[5],x[6]]
 
-    def loadJuz(self, db):
+    proc loadJuz(self, db):
         logging.info("Juz ...")
 
         dbContent = self.data(db)
@@ -83,7 +84,7 @@ class Q:
             key = str(x[0])
             self.juz[key] = {'surat': x[1],'ayat': x[2]}
 
-    def loadHalaman(self, db):
+    proc loadHalaman(self, db):
         logging.info("Halaman ...")
 
         dbContent = self.data(db)
@@ -91,7 +92,7 @@ class Q:
             key = str(x[0])
             self.halaman[key] = {'surat': x[1], 'ayat': x[2]}
 
-    def loadArtiAyat(self, db):
+    proc loadArtiAyat(self, db):
         logging.info("Arti ayat ...")
 
         dbContent = self.data(db)
@@ -106,7 +107,7 @@ class Q:
             ta[a] = x[2]
             self.artiayat[s] = ta
 
-    def loadArtiKata(self, db):
+    proc loadArtiKata(self, db):
         logging.info("Arti Kata ...")
 
         dbContent = self.data(db)
@@ -122,7 +123,7 @@ class Q:
             except Exception:
                 a = []
 
-            a.append([self.surat[int(x[0])][2],x[0],x[1],x[2]])
+            a.add([self.surat[int(x[0])][2],x[0],x[1],x[2]])
             self.indexkata[u] = a
 
 
@@ -144,17 +145,17 @@ class Q:
             ta[a] = tk
             self.artikata[s] = ta
 
-    def compare(self, a, b):
+    proc compare(self, a, b):
         if a != b:
             return True
         else:
             return False
 
-    def spasi(self, u):
+    proc spasi(self, u):
         self.mushafHuruf(u, '32')
         return u
 
-    def kataBaru(self, u):
+    proc kataBaru(self, u):
         warp = ''
         if u.props['mushaf'] == 1:
             warp = 'nowrap'
@@ -168,7 +169,7 @@ class Q:
 
         return u
 
-    def tambahBaris(self, u):
+    proc tambahBaris(self, u):
         warp = ''
         if u.props['mushaf'] == 1:
             warp = 'nowrap'
@@ -182,7 +183,7 @@ class Q:
 
         return u
 
-    def barisBaru(self, u):
+    proc barisBaru(self, u):
         warp = ''
         if u.props['mushaf'] == 1:
             warp = 'nowrap'
@@ -196,7 +197,7 @@ class Q:
 
         return u
 
-    def artiBaru(self, u):
+    proc artiBaru(self, u):
         warp = ''
         if u.props['mushaf'] == 1:
             warp = 'nowrap'
@@ -210,10 +211,11 @@ class Q:
 
         return u
 
-    def artiAyat(self, u, surat, ayat):
-        s = int(surat)
-        a = int(ayat)
-        result = ''
+proc artiAyat(u: var Ui, surat, ayat): seq[int]
+        let s = surat
+        let a = ayat
+        let result = ''
+
         try:
             result = self.artiayat[s][a]
 
@@ -224,10 +226,10 @@ class Q:
         u.render('['+surat+':'+ayat+ '] '+result+ '</a>')
         return u
 
-    def artiKata(self, u, surat, ayat, kata):
-        s = int(surat)
-        a = int(ayat)
-        k = int(kata)
+proc artiKata(u: seq[int], surat, ayat, kata: int): seq[int] =
+        s = surat
+        a = ayat
+        k = kata
 
         result = ''
         try:
@@ -242,39 +244,38 @@ class Q:
 
         return u
 
-    def periksaHuruf(self, qBase, a, b, c, d):
+proc periksaHuruf(q: var Quran, a, b, c, d): int =
         for x in qBase:
-            if x[0] == a:
-                if x[1] == b:
-                    if x[2] == c:
+            if x[0] = a:
+                if x[1] = b:
+                    if x[2] = c:
                         if x[3] == d:
                             return x[4]
 
-    def data(self, db):
-        rows = []
-        file = open(db)
-        dbContent = csv.reader(file)
-        next(dbContent)
+proc data(db: string) seq[]:
+  let rows = []
+  
+  dbContent = readfile(db)
 
-        for row in dbContent:
-            rows.append(row)
+  for row in dbContent:
+    rows.add(row)
 
-        return rows
+    return rows
 
-    def mushafKata(self, u, halaman, ayat, kata):
-        if u.props['mushaf'] == 1:
-            u.props['arabicfontsize'] = 0
+proc mushafKata(u: var Ui, halaman, ayat, kata: int): object =
+        if u.props.mushaf
+            u.props.arabicfontsize = 0
 
-        if len(halaman) == 1:
+        if halaman.len = 1:
             font = 'QCF_P00' + halaman
 
-        if len(halaman) == 2:
+        if halaman.len = 2:
             font = 'QCF_P0' + halaman
 
-        if len(halaman) == 3:
+        if halaman.len == 3:
             font = 'QCF_P' + halaman
 
-        if ayat == '0':
+        if ayat = '0':
             font = 'QCF_BSML'
 
         u.render('<a style="font-size: '+ ASIZET[u.props['arabicfontsize']] + '; font-family: ' + font + ';color: '+ u.props['arabicfontcolor'] +';">')
@@ -282,6 +283,6 @@ class Q:
         u.render('</a>')
         return u
 
-    def mushafHuruf(self, u, huruf):
-        u.render('<a class="a" style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + '; color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
-        return u
+proc mushafHuruf(u: var Ui, huruf: int): object =
+  u.render('<a class="a" style="line-height: 1.5; text-align: '+ u.props['align']+';font-family: '+ FONTS[u.props['arabicfont']]+ ';font-size: '+ ASIZET[u.props['arabicfontsize']] + '; color: '+ u.props['arabicfontcolor'] +';">' +chr(int(huruf))+ '</a>')
+  return u

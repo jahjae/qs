@@ -7,7 +7,7 @@ import logging
 format = "%(asctime)s: %(message)s"
 logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")
 
-def TextFormat(q, u, index):
+proc TextFormat*(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -21,7 +21,7 @@ def TextFormat(q, u, index):
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
 
-def Number(q, u, index):
+proc Number*(q, u, index):
 
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -77,7 +77,7 @@ def Number(q, u, index):
                     +'. </a>'+q.surat[int(q.halaman[x]['surat'])][1]
                     +' / '+q.halaman[x]['ayat']+'</p>')
 
-def quranAyat(q, u, s, a):
+proc quranAyat*(q, u, s, a):
     logging.info('QS '+str(s)+':'+str(a))
     reset = True
     for x in q.kata[0:]:
@@ -118,7 +118,7 @@ def quranAyat(q, u, s, a):
                     quranKata(q, u, x)
 
 
-def quranKata(q, u, x):
+proc quranKata*(q, u, x):
     for y in range(int(x[7])):
         pos = y + 8
         pos1 = y + 9
@@ -173,7 +173,7 @@ def quranKata(q, u, x):
         q.mushafHuruf(u, x[pos])
 
 
-def quranHuruf(q, u, index):
+proc quranHuruf*(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('p.page', {'position': 'sticky', 'top': '0', 'padding': '10px 0 0 0'})
 
@@ -353,7 +353,7 @@ def quranHuruf(q, u, index):
     return u
 
 
-def Daily(q, u, index):
+proc Daily*(q, u, index):
     u.highlight('.d')
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 1
@@ -393,7 +393,7 @@ def Daily(q, u, index):
     u.props['arabicfontsize'] = int(os.environ.get('ARABICFONTSIZE'))
 
 
-def Index(q, u, index):
+proc Index*(q, u, index):
     logging.info('Indexing ...')
     u.style('a', {'text-decoration': 'none'})
     u.style('p', {'line-height': '0.5'})
@@ -410,7 +410,7 @@ def Index(q, u, index):
         u.p('')
 
 
-def Goto(q, u, index):
+proc Goto*(q, u, index):
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
 
@@ -459,7 +459,7 @@ def Goto(q, u, index):
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
 
-def Search(q,  u, index):
+proc Search*(q,  u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
 
@@ -475,7 +475,7 @@ def Search(q,  u, index):
     u.render('</div>')
 
 
-def Info(q, u, index):
+proc Info*(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('p', {'font-size': TSIZET[1]})
     u.style('a', {'text-decoration': 'none'})
@@ -520,7 +520,7 @@ def Info(q, u, index):
     u.p('<a href="/match">MATCH</a>: '                          +MATCHT[u.props['match']])
     u.p('<a href="/note">NOTE</a>')
 
-def Menu(q, u, index):
+proc Menu*(q, u, index):
     logging.info('Menu ...')
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
@@ -536,7 +536,7 @@ def Menu(q, u, index):
         u.props['menu'] = 1
         Info(q, u, index)
 
-def Match(q, u, index):
+proc Match(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
 
@@ -550,7 +550,7 @@ def Match(q, u, index):
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
 
-def Mode(q, u, index):
+proc Mode*(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -588,7 +588,7 @@ def Mode(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 
-def Arabicsize(q, u, index):
+proc Arabicsize*(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -605,7 +605,7 @@ def Arabicsize(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 
-def Fontname(q, u, index):
+proc fontname*(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -621,7 +621,7 @@ def Fontname(q, u, index):
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
 
-def Fontsize(q, u, index):
+proc fontsize*(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -637,7 +637,7 @@ def Fontsize(q, u, index):
     noPage = str(u.props['index'])
     exec(ADDRESS['/']+'(q, u, noPage)')
 
-def Theme(qdata, u, index):
+proc theme*(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.props['menu'] = 0
     u.style('a', {'text-decoration': 'none'})
@@ -660,10 +660,10 @@ def Theme(qdata, u, index):
     u.props['backgroundcolor'] = os.environ['BACKGROUNDCOLOR']
 
     noPage = str(u.props['index'])
-    exec(ADDRESS['/']+'(qdata, u, noPage)')
+    exec(ADDRESS['/']+'(q, u, noPage)')
 
 
-def View(qdata, u, index):
+proc view*(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -677,9 +677,9 @@ def View(qdata, u, index):
     os.environ['INDEX'] = str(u.props['index'])
 
     noPage = str(u.props['index'])
-    exec(ADDRESS['/']+'(qdata, u, noPage)')
+    exec(ADDRESS['/']+'(q, u, noPage)')
 
-def Pertama(qdata, u, index):
+proc pertama*(qdata, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -696,7 +696,7 @@ def Pertama(qdata, u, index):
     exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 
-def Quran(q, u, index):
+proc quran*(q, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -713,7 +713,7 @@ def Quran(q, u, index):
     exec(ADDRESS['/']+'(q, u, noPage)')
 
 
-def Translation(qdata, u, index):
+proc translation*(qdata, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -730,7 +730,7 @@ def Translation(qdata, u, index):
     exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 
-def Word(qdata, u, index):
+proc Word(qdata, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0
@@ -747,7 +747,7 @@ def Word(qdata, u, index):
     exec(ADDRESS['/']+'(qdata, u, noPage)')
 
 
-def Mushaf(qdata, u, index):
+proc Mushaf(qdata, u, index):
     u.style('header', {'position': 'sticky', 'top': '0', 'padding': '5px 0 0 0'})
     u.style('a', {'text-decoration': 'none'})
     u.props['menu'] = 0

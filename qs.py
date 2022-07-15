@@ -3,11 +3,11 @@ from multiprocessing import *
 import logging
 import os
 
-from data import *
-from apps import *
-from nets import *
+from lib.data import *
+from lib.apps import *
+from lib.nets import *
 
-from init import *
+from lib.init import *
 
 format = "%(asctime)s: %(message)s"
 logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")

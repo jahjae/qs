@@ -1,6 +1,5 @@
 
-import os
-import init            
+import os            
 
 class C:
     def __init__(self):

@@ -7,15 +7,16 @@ require_relative './lib/init.rb'
 
 q = Quran.new
 u = Ui.new
+m = Mushaf.new
 
 server = TCPServer.new 8000
 
-def main q, u, path
+def main q, u, m, path
     u.component = []
     u.render('<!DOCTYPE html>')
     u.render('<html lang="EN">')
     u.render('<head>')
-    u.render "<title>#{u.props[:title]}</title>"
+    u.render "<title>#{ADDRESS[path]}</title>"
     u.render('<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">')
     u.render('<link rel="preconnect" href="https://fonts.gstatic.com">')
     u.render('<link href="https://fonts.googleapis.com/css2?family=Scheherazade New&display=swap" rel="stylesheet">')
@@ -23,8 +24,11 @@ def main q, u, path
     u.render "<body style='margin: 20px; font-family: #{FONTS[1]};'>"
     
     index = u.props[:index] 
-    quranHuruf q, u, index
-
+    begin
+      m.send(ADDRESS[path], q,  u, index)
+    rescue
+      u.component = []
+    end
     u.render('</body></html>')
     body = u.component.join ' '
 
@@ -33,7 +37,7 @@ end
 
 u.props[:mode] = 2 #   0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
 u.props[:view] = 0 # 0: Show All, 1: Hide All 2: First Only
-u.props[:index] = 2
+u.props[:index] = 1
 u.props[:print] = FALSE # 1 = True, 0 = False
 u.props[:mushaf] = FALSE # 1 = True, 0 = False
 u.props[:tafsir] = FALSE # 1 = True,
@@ -61,15 +65,13 @@ u.style 'a', {'text-decoration': 'none'}
 loop {
   Thread.start server.accept do | client |
     request = client.gets
-    method, path = request.split ' '
+    _, path = request.split ' '
 
     client.print "HTTP/1.1 200\r\n"
     client.print "Content-Type: text/html\r\n"
-    client.set_encoding 'UTF-8'
     client.print "\r\n"
     
-    body = main q, u, '/'
-
+    body = main q, u, m, path
     client.print body
     client.close
   end

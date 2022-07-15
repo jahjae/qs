@@ -7,6 +7,7 @@ class Ui
         @component = []
         @artikata = []
         @props = {
+          pid: '',
                 mode: 0,        #0: Pages, 1:Row 2: Juz, 3: Sura, 4: Ayat
                 view: 0,        #0: Show All, 1: Hide All, 2, firstword
                 color: TRUE,
