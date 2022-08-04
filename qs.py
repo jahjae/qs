@@ -1,5 +1,6 @@
 from wsgiref.simple_server import make_server
 from multiprocessing import *
+
 import logging
 import os
 
@@ -52,7 +53,7 @@ def main(environ, start_response):
             os.environ['INDEX'] = str(u.props['index'])
 
             exec(ADDRESS[path[0]]+'(q, u, noPage)')
- 
+
     if len(path) == 4:
         if path[3] in NUMBER:
             error = False

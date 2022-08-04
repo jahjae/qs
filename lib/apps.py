@@ -1,7 +1,8 @@
-
 import os
 import random
 import logging
+
+from lib.init import *
 
 format = "%(asctime)s: %(message)s"
 logging.basicConfig(format=format, level=logging.INFO,datefmt="%H:%M:%S")
@@ -205,7 +206,7 @@ def quranHuruf(q, u, index):
         if u.props['mode'] == 4:
             u.header('<a href="/menu">'+'>'+'</a>'+' '+q.surat[u.props['surat']][1]+' '+str(u.props['surat'])+':'+str(u.props['ayat']))
         else:
-            u.header('<a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']].upper()+' '+str(u.props['index']))
+            u.header('<a href="/menu">'+'>'+'</a>'+' '+MODET[u.props['mode']]+' '+str(u.props['index']))
 
 
     if u.props['mushaf'] == 1:
