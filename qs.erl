@@ -1,5 +1,8 @@
 -module(qs).
--export([formula/3]).
+-export([main/1,formula/3]).
+
+main(_)->
+  formula(add, 12, 14).
 
 formula(add, A, B)->
-  A + B.
+  io.format("",A + B).
