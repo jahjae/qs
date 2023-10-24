@@ -22,9 +22,9 @@ class Q:
         self.codehuruf  = {}
         self.codekata   = {}
         self.tafsir     = {}
-        self.kata       = self.data(DATA['kata'])
 
-        
+    def loadData(self):
+        self.kata       = self.data(DATA['kata'])
         self.loadTafsir(DATA['tafsir'])
         self.loadJuz(DATA['juz'])
         self.loadSurat(DATA['surat'])
@@ -32,6 +32,9 @@ class Q:
         self.loadArtiAyat(DATA['artiayat'])
         self.loadArtiKata(DATA['artikata'])
         self.loadCode()
+
+    def getData(self):
+        self.loadData()
 
     def loadTafsir(self, db):
         logging.info("Tafsir ...")
@@ -51,12 +54,12 @@ class Q:
     def loadCode(self):
         logging.info("Unicode ...")
         for x in self.kata[0:]:
-            key = x[6]
-            self.codekata[key] = x[6]
+            key = int(x[6])
+            self.codekata[key] = int(x[6])
 
             for y in range(int(x[7])):
                 pos = y + 8
-                u = x[pos]
+                u = int(x[pos])
                 self.huruf[u] = {'color': 'rgb('+str(random.randint(1,200))+','+str(random.randint(1,200))+','+ str(random.randint(1,200))+')'}
 
                 try:
@@ -80,16 +83,16 @@ class Q:
 
         dbContent = self.data(db)
         for x in dbContent:
-            key = str(x[0])
-            self.juz[key] = {'surat': x[1],'ayat': x[2]}
+            key = int(x[0])
+            self.juz[key] = {'surat': int(x[1]),'ayat': int(x[2])}
 
     def loadHalaman(self, db):
         logging.info("Halaman ...")
 
         dbContent = self.data(db)
         for x in dbContent:
-            key = str(x[0])
-            self.halaman[key] = {'surat': x[1], 'ayat': x[2]}
+            key = int(x[0])
+            self.halaman[key] = {'surat': int(x[1]), 'ayat': int(x[2])}
 
     def loadArtiAyat(self, db):
         logging.info("Arti ayat ...")

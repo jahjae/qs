@@ -120,6 +120,7 @@ if __name__ == "__main__":
     os.environ['FONTCOLOR'] = u.props['fontcolor']
 
     q = Q() # Quran
+    q.getData()
 
     httpd = make_server('', 8000, main)
     httpd.serve_forever()
